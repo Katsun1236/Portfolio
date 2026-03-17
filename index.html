@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bastien Festor | Stratégie & Création</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Outfit:wght@200;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Palette Sunset */
+            --bg-top: #ff9966;
+            --bg-bottom: #ff5e62;
+            --card-bg: rgba(255, 255, 255, 0.15); /* Verre plus clair */
+            --card-border: rgba(255, 255, 255, 0.4);
+            --text: #ffffff;
+            --text-muted: #ffe0d0; /* Blanc teinté pêche */
+            --accent: #ffd700; /* Or jaune */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(180deg, #516395 0%, #d8686d 40%, #ff9966 100%);
+            background-attachment: fixed; /* Le fond reste fixe quand on scroll */
+            color: var(--text);
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* --- LE SOLEIL INTERACTIF --- */
+        .sun-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .the-sun {
+            width: 40vw;
+            height: 40vw;
+            background: radial-gradient(circle, rgba(255,220,100,0.8) 0%, rgba(255,150,100,0.4) 40%, rgba(255,100,100,0) 70%);
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.8;
+            transition: transform 0.1s ease-out;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1, h2, h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            color: white;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .highlight {
+            color: var(--accent);
+            font-weight: 700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+            text-shadow: 0 0 10px rgba(255,255,255,0.8);
+        }
+
+        /* --- HERO SECTION --- */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 0 1rem;
+        }
+
+        header h1 {
+            font-size: 5rem;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            font-weight: 300;
+        }
+
+        .scroll-line {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            height: 100px;
+            background: rgba(255,255,255,0.3);
+            transform: translateX(-50%);
+        }
+
+        .scroll-line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: #fff;
+            animation: drop 2s infinite;
+            box-shadow: 0 0 10px white;
+        }
+
+        @keyframes drop {
+            0% { top: -100%; }
+            100% { top: 100%; }
+        }
+
+        /* --- MAIN CONTAINER --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            padding: 100px 20px;
+        }
+
+        /* La ligne centrale */
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(255,255,255,0.2);
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+
+        /* --- SECTIONS --- */
+        section {
+            margin-bottom: 150px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-header {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 40px;
+            border-radius: 50px;
+            border: 1px solid var(--card-border);
+            display: inline-block;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 80px;
+            z-index: 2;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .section-header h2 {
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin: 0;
+        }
+
+        /* --- ABOUT GRID --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid var(--card-border);
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .stat-card:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-family: 'Space Grotesk';
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        /* --- SKILLS (TOOLS) --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-item {
+            background: var(--card-bg);
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--card-border);
+            padding: 1.5rem;
+            text-align: center;
+            border-radius: 15px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .skill-item:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+        }
+
+        /* --- PROJECTS TIMELINE --- */
+        .project {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 120px;
+        }
+
+        .project:last-child { margin-bottom: 0; }
+
+        .project-content {
+            width: 45%;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid var(--card-border);
+            position: relative;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+
+        .project-img {
+            width: 45%;
+            height: 320px;
+            border-radius: 20px;
+            border: 1px solid var(--card-border);
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .project:hover .project-img img {
+            transform: scale(1.08);
+        }
+
+        /* --- GALLERY SCROLLING (Nouveau) --- */
+        .project-gallery-wrapper {
+            width: 45%;
+            height: 320px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            border: 1px solid var(--card-border);
+            background: rgba(0,0,0,0.1);
+        }
+
+        .marquee-container {
+            display: flex;
+            height: 100%;
+            width: max-content; /* S'adapte au contenu */
+            animation: scroll 15s linear infinite;
+        }
+        
+        /* Pause au survol */
+        .project-gallery-wrapper:hover .marquee-container {
+            animation-play-state: paused;
+        }
+
+        .gallery-item {
+            width: 320px; /* Largeur de chaque image */
+            height: 100%;
+            position: relative;
+            flex-shrink: 0;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Overlay text au survol */
+        .gallery-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: 0.3s;
+            backdrop-filter: blur(3px);
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay p {
+            color: var(--accent);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-family: 'Space Grotesk';
+            text-align: center;
+            padding: 1rem;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } /* Déplace de la moitié (puisqu'on a dupliqué le contenu) */
+        }
+
+        /* Connecteurs (points sur la ligne) */
+        .connector {
+            position: absolute;
+            left: 50%;
+            width: 24px;
+            height: 24px;
+            background: #ffd700;
+            border: 4px solid rgba(255,255,255,0.5);
+            transform: translateX(-50%);
+            border-radius: 50%;
+            box-shadow: 0 0 20px #ffd700;
+            z-index: 5;
+        }
+
+        .project.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .project h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .project-role {
+            display: inline-block;
+            padding: 6px 14px;
+            background: rgba(255,255,255,0.2);
+            color: #fff;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+
+        .btn-link {
+            display: inline-block;
+            margin-top: 25px;
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .btn-link:hover {
+            background: white;
+            color: #d8686d;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* --- CONTACT --- */
+        .contact-box {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            border-radius: 30px;
+            padding: 5rem 2rem;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .contact-email {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            margin: 2rem 0;
+            font-family: 'Space Grotesk';
+            font-weight: 700;
+            transition: 0.3s;
+        }
+        
+        .contact-email:hover {
+            text-shadow: 0 0 20px rgba(255,255,255,0.8);
+            transform: scale(1.02);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            header h1 { font-size: 3.5rem; }
+            .the-sun { width: 80vw; height: 80vw; top: 20%; } 
+            .timeline-line { left: 20px; }
+            .section-header { left: 0; transform: none; margin-left: 50px; }
+            
+            .about-grid { grid-template-columns: 1fr; }
+            
+            .project, .project.reverse {
+                flex-direction: column;
+                align-items: flex-start;
+                padding-left: 50px;
+            }
+            
+            .project-content, .project-img, .project-gallery-wrapper {
+                width: 100%;
+                margin-bottom: 30px;
+            }
+
+            .connector { left: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Le soleil d'ambiance -->
+    <div class="sun-container">
+        <div class="the-sun"></div>
+    </div>
+
+    <nav>
+        <div class="logo">BASTIEN FESTOR</div>
+        <div class="nav-links">
+            <a href="#about">Profil</a>
+            <a href="#projects">Travaux</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <header>
+        <p>Namur & Hainaut</p>
+        <h1>CRÉATEUR<br><span class="highlight">D'EXPÉRIENCES</span></h1>
+        <p>Communication Web & Événementiel.<br>Je transforme des concepts en communautés.</p>
+        <div class="scroll-line"></div>
+    </header>
+
+    <div class="container">
+        <!-- La ligne qui traverse tout -->
+        <div class="timeline-line"></div>
+
+        <!-- Section A Propos -->
+        <section id="about">
+            <div class="section-header">
+                <h2>Le Profil</h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-text">
+                    <h3>Polyvalent & Créatif</h3>
+                    <p style="margin-top: 1rem; color: var(--text-muted);">
+                        J'ai 21 ans et j'aime toucher à tout l'écosystème web. Que ce soit en concevant des stratégies marketing, en créant des communautés engagées ou en développant des sites web, je cherche toujours l'impact.
+                    </p>
+                    <br>
+                    <p style="color: var(--text-muted);">Actuellement étudiant, je travaille principalement en province de Namur et du Hainaut.</p>
+                </div>
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-number">2+</div>
+                        <div class="stat-label">Années d'études HEAJ</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">4+</div>
+                        <div class="stat-label">Outils Maîtrisés</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Passionné</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">BE</div>
+                        <div class="stat-label">Namur / Hainaut</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Outils -->
+        <section id="skills">
+            <div class="section-header">
+                <h2>La Toolbox</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-item">Adobe Photoshop</div>
+                <div class="skill-item">Premiere Pro</div>
+                <div class="skill-item">After Effects</div>
+                <div class="skill-item">Screaming Frog</div>
+                <div class="skill-item">Google Ads</div>
+                <div class="skill-item">Canva</div>
+                <div class="skill-item">HTML / CSS</div>
+                <div class="skill-item">WordPress</div>
+            </div>
+        </section>
+
+        <!-- Section Projets -->
+        <section id="projects">
+            <div class="section-header">
+                <h2>Réalisations</h2>
+            </div>
+
+            <!-- Projet 1 : Blocus -->
+            <div class="project">
+                <div class="connector"></div>
+                <div class="project-content">
+                    <span class="project-role">Web Development</span>
+                    <h3>PROJET BLOCUS</h3>
+                    <p style="color: var(--text-muted);">Une plateforme conçue pour aider les étudiants à organiser leur étude. Un outil utilitaire développé pour répondre à un besoin réel.</p>
+                    <a href="https://projet-blocus.vercel.app" target="_blank" class="btn-link">Voir le site →</a>
+                </div>
+                <div class="project-img">
+                    <div style="width:100%; height:100%; background: linear-gradient(135deg, #667eea, #764ba2); display:flex; align-items:center; justify-content:center; color:white;">
+                        <h3>WEB APP</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projet 2 : Easy Garden -->
+            <div class="project reverse">
+                <div class="connector"></div>
+                <div class="project-content">
+                    <span class="project-role">Social Media & Web</span>
+                    <h3>EASY GARDEN</h3>
+                    <p style="color: var(--text-muted);">Création et gestion complète de la présence digitale. De la page web au compte Instagram, mise en place d'une identité cohérente.</p>
+                    <a href="https://www.instagram.com/easyxgarden/" target="_blank" class="btn-link">Voir l'Instagram →</a>
+                </div>
+                <div class="project-img">
+                    <div style="width:100%; height:100%; background: linear-gradient(135deg, #43e97b, #38f9d7); display:flex; align-items:center; justify-content:center; color:#333;">
+                        <h3>BRANDING</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projet 3 : Bénévolat & Design (Carrousel) -->
+            <div class="project">
+                <div class="connector"></div>
+                <div class="project-content">
+                    <span class="project-role">Bénévolat & Passions</span>
+                    <h3>DESIGN & COMMUNAUTÉ</h3>
+                    <p style="color: var(--text-muted);">Sur mon temps libre, je m'investis dans plusieurs projets bénévoles (serveurs de jeux, maisons de jeunes...). Je réalise des designs graphiques, des affiches et des supports de communication pour animer ces communautés.</p>
+                </div>
+                <div class="project-gallery-wrapper">
+                    <div class="marquee-container">
+                        <!-- Set 1 -->
+                        <div class="gallery-item">
+                            <img src="HELPECREW PALADIUM.png" alt="Paladium">
+                            <div class="gallery-overlay"><p>Paladium - iconographie- 1</p></div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="Template Rank-up.png" alt="Rank Up">
+                            <div class="gallery-overlay"><p>Paladium - Iconographie - 2</p></div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="opera_6SAkEEvuqE.jpg" alt="MJ Lierre">
+                            <div class="gallery-overlay"><p>MJ Lierre-sur-Sambre</p></div>
+                        </div>
+                        
+                        <!-- Set 2 (Dupliqué pour la boucle infinie) -->
+                        <div class="gallery-item">
+                            <img src="HELPECREW PALADIUM.png" alt="Paladium">
+                            <div class="gallery-overlay"><p>Paladium - Iconographie - 1</p></div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="Template Rank-up.png" alt="Rank Up">
+                            <div class="gallery-overlay"><p>Paladium - Iconographie - 2</p></div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="opera_6SAkEEvuqE.jpg" alt="MJ Lierre">
+                            <div class="gallery-overlay"><p>MJ Lierre-sur-Sambre</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Section Contact -->
+        <section id="contact">
+            <div class="section-header">
+                <h2>Contact</h2>
+            </div>
+            <div class="contact-box">
+                <p>Un projet en tête ? Une collaboration ?</p>
+                <a href="mailto:bastienfestor4@gmail.com" class="contact-email">bastienfestor4@gmail.com</a>
+                <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                    <a href="https://www.instagram.com/_bastien_f/" target="_blank" class="btn-link">Instagram</a>
+                    <a href="https://www.linkedin.com/in/bastien-festor-927277349" target="_blank" class="btn-link">LinkedIn</a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p style="text-align: center; padding: 30px; color: var(--text-muted); font-size: 0.8rem; background: rgba(0,0,0,0.2);">
+            © 2026 Bastien Festor. Design with <span style="color: #ffd700;">☀</span> in Namur.
+        </p>
+    </footer>
+
+    <script>
+        // 1. Animation d'apparition au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project, .about-grid, .skills-grid').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(50px)';
+            el.style.transition = 'all 1s cubic-bezier(0.2, 0.8, 0.2, 1)';
+            observer.observe(el);
+        });
+
+        // 2. Parallax pour le soleil
+        const sun = document.querySelector('.the-sun');
+        document.addEventListener('mousemove', (e) => {
+            const x = (window.innerWidth - e.pageX * 2) / 50;
+            const y = (window.innerHeight - e.pageY * 2) / 50;
+            sun.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+        });
+
+    </script>
+</body>
+</html>
