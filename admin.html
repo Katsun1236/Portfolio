@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bastien Festor | Administration Secrète</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Outfit:wght@200;300;400;600&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        :root {
+            --accent-dev: #00ffcc;
+            --bg-dark: #05050a;
+            --font-title: 'Space Grotesk', sans-serif;
+            --font-body: 'Outfit', sans-serif;
+            --font-code: 'Fira Code', monospace;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3, h4, .font-title { font-family: var(--font-title); }
+        .font-code { font-family: var(--font-code); }
+
+        #starfield {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: -1;
+            background: radial-gradient(circle at center, #0a0a1a 0%, #020205 100%);
+        }
+
+        .glass-card {
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 255, 204, 0.2);
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 255, 204, 0.05);
+        }
+
+        .input-field {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(0, 255, 204, 0.3);
+            color: #fff;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-family: var(--font-code);
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+        
+        .input-field:focus {
+            border-color: var(--accent-dev);
+            box-shadow: 0 0 10px rgba(0, 255, 204, 0.2);
+        }
+
+        .btn-primary {
+            background: var(--accent-dev);
+            color: #000;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-family: var(--font-code);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--accent-dev);
+            color: #000;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            font-family: var(--font-code);
+            font-weight: bold;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* --- STYLES POUR LE NOUVEAU CMS --- */
+        .tab-btn {
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(0,255,204,0.2);
+            color: gray; padding: 0.5rem 1.5rem; border-radius: 8px 8px 0 0;
+            font-family: var(--font-code); font-size: 0.875rem; cursor: pointer;
+            transition: all 0.3s;
+        }
+        .tab-btn.active {
+            background: rgba(0,255,204,0.1); color: var(--accent-dev);
+            border-bottom-color: transparent;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        textarea.input-field { min-height: 100px; resize: vertical; }
+
+        /* Masquer le dashboard par défaut */
+        #dashboard-view { display: none; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Fond Étoilé Interactif -->
+    <canvas id="starfield"></canvas>
+
+    <!-- ÉCRAN DE CONNEXION -->
+    <div id="login-view" class="min-h-screen flex items-center justify-center p-6">
+        <div class="glass-card p-8 md:p-12 w-full max-w-md text-center">
+            <div class="w-16 h-16 bg-[#00ffcc]/10 border border-[#00ffcc] rounded-full flex items-center justify-center mx-auto mb-6 text-2xl text-[#00ffcc]">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+            <h1 class="text-2xl font-bold font-title uppercase tracking-widest mb-2">Accès Restreint</h1>
+            <p class="text-gray-400 text-sm mb-8 font-code">Authentification requise pour l'édition.</p>
+            
+            <form id="login-form" class="space-y-6">
+                <div class="space-y-2 text-left">
+                    <label class="text-xs text-[#00ffcc] font-code uppercase tracking-widest">Mot de passe</label>
+                    <input type="password" id="admin-password" class="input-field" placeholder="••••••••" required>
+                </div>
+                <div id="login-error" class="text-red-400 text-xs font-code hidden">Mot de passe incorrect.</div>
+                <button type="submit" class="btn-primary w-full flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-terminal"></i> S'authentifier
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ÉCRAN DASHBOARD ADMIN -->
+    <div id="dashboard-view" class="min-h-screen flex flex-col">
+        <!-- Topbar Admin -->
+        <nav class="bg-[#05050a]/90 backdrop-blur-md border-b border-[#00ffcc]/20 py-4 px-6 md:px-12 flex justify-between items-center sticky top-0 z-50">
+            <div class="font-bold text-xl tracking-widest uppercase font-title flex items-center gap-3">
+                <span class="text-[#00ffcc]"><i class="fa-solid fa-database"></i></span>
+                BASTIEN | ADMIN
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="index.html" class="text-gray-400 hover:text-white text-sm font-code flex items-center gap-2 transition">
+                    <i class="fa-solid fa-arrow-left"></i> Retour au site
+                </a>
+                <button id="logout-btn" class="bg-red-500/20 text-red-500 border border-red-500/50 px-4 py-2 rounded text-xs font-code hover:bg-red-500 hover:text-white transition">
+                    Déconnexion
+                </button>
+            </div>
+        </nav>
+
+        <main class="flex-grow p-6 md:p-12 max-w-6xl mx-auto w-full">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold font-title uppercase tracking-widest text-[#00ffcc] mb-2">B-IMPACT CMS</h2>
+                <p class="text-gray-400 font-code text-sm">Gérez les textes, images et ajoutez de nouvelles sections à votre portfolio.</p>
+            </div>
+
+            <!-- Système d'onglets (Tabs) -->
+            <div class="flex border-b border-[#00ffcc]/20 mb-8 overflow-x-auto">
+                <button class="tab-btn active" onclick="switchTab('tab-accueil')">🏠 Accueil</button>
+                <button class="tab-btn" onclick="switchTab('tab-crea')">🎨 Créa & Com</button>
+                <button class="tab-btn" onclick="switchTab('tab-dev')">💻 Développement</button>
+                <button class="tab-btn" onclick="switchTab('tab-about')">👤 À Propos</button>
+            </div>
+
+            <!-- ONGLET : ACCUEIL -->
+            <div id="tab-accueil" class="tab-content active space-y-8">
+                <div class="glass-card p-6">
+                    <h3 class="text-lg font-bold font-title uppercase mb-6 flex items-center gap-2 border-b border-white/10 pb-3">
+                        Textes Principaux (Hero)
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="text-xs text-[#00ffcc] font-code uppercase">Titre Principal</label>
+                            <input type="text" class="input-field mt-1" value="BASTIEN FESTOR">
+                        </div>
+                        <div>
+                            <label class="text-xs text-[#00ffcc] font-code uppercase">Description courte</label>
+                            <textarea class="input-field mt-1">J'allie une vision créative 360° à une maîtrise technique du web pour construire des marques fortes et des applications performantes.</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ONGLET : CREA & COM -->
+            <div id="tab-crea" class="tab-content space-y-8">
+                <div class="glass-card p-6">
+                    <h3 class="text-lg font-bold font-title uppercase mb-6 flex items-center gap-2 border-b border-white/10 pb-3">
+                        <i class="fa-solid fa-images text-yellow-400"></i> Galerie Visuelle (Photoshop / Canva)
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-xs text-gray-400 font-code uppercase">Création Photoshop 1 (URL)</label>
+                            <input type="text" id="input-ps1" class="input-field" placeholder="https://..." value="https://placehold.co/400x400/0a0a1a/ffd700?text=Image+PS+1">
+                            <img id="preview-ps1" src="https://placehold.co/400x400/0a0a1a/ffd700?text=Image+PS+1" class="w-24 h-24 object-cover rounded mt-2 border border-white/20">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs text-gray-400 font-code uppercase">Brandboard (URL)</label>
+                            <input type="text" id="input-brandboard" class="input-field" placeholder="https://..." value="https://placehold.co/800x400/0a0a1a/ffd700?text=Brandboard+Client">
+                            <img id="preview-brandboard" src="https://placehold.co/800x400/0a0a1a/ffd700?text=Brandboard+Client" class="w-32 h-16 object-cover rounded mt-2 border border-white/20">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ONGLET : DEVELOPPEMENT -->
+            <div id="tab-dev" class="tab-content space-y-8">
+                <div class="glass-card p-6 relative">
+                    <div class="flex justify-between items-center border-b border-white/10 pb-3 mb-6">
+                        <h3 class="text-lg font-bold font-title uppercase flex items-center gap-2">
+                            <i class="fa-solid fa-code text-[#00ffcc]"></i> Projets Web Actuels
+                        </h3>
+                        <button onclick="addProjectRow()" class="bg-[#00ffcc]/20 text-[#00ffcc] px-3 py-1 rounded text-xs font-code hover:bg-[#00ffcc] hover:text-black transition">
+                            + Ajouter un projet
+                        </button>
+                    </div>
+                    
+                    <!-- Liste des projets dynamiques -->
+                    <div id="dynamic-projects-list" class="space-y-6">
+                        
+                        <!-- Projet 1 -->
+                        <div class="bg-black/30 p-4 rounded-lg border border-white/5 relative group">
+                            <button class="absolute top-2 right-2 text-red-500 opacity-0 group-hover:opacity-100 transition" onclick="this.parentElement.remove()"><i class="fa-solid fa-trash"></i></button>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label class="text-xs text-gray-400 font-code uppercase">Titre du projet</label>
+                                    <input type="text" class="input-field mt-1" value="Easy Garden">
+                                </div>
+                                <div>
+                                    <label class="text-xs text-gray-400 font-code uppercase">URL de l'image (Aperçu)</label>
+                                    <input type="text" class="input-field mt-1" value="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="text-xs text-gray-400 font-code uppercase">Description détaillée</label>
+                                <textarea class="input-field mt-1" style="min-height: 60px;">Développement complet du site vitrine d'un artisan paysagiste...</textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- ONGLET : A PROPOS -->
+            <div id="tab-about" class="tab-content space-y-8">
+                <div class="glass-card p-6">
+                    <h3 class="text-lg font-bold font-title uppercase mb-6 flex items-center gap-2 border-b border-white/10 pb-3">
+                        <i class="fa-solid fa-user text-purple-400"></i> Profil & Biographie
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex gap-4 items-start">
+                            <img id="preview-profil" src="https://placehold.co/400x400/0a0a1a/00ffcc?text=Profil" class="w-24 h-24 rounded border border-white/20 object-cover flex-shrink-0">
+                            <div class="flex-grow space-y-2">
+                                <label class="text-xs text-[#00ffcc] font-code uppercase">URL de la photo de profil</label>
+                                <input type="text" id="input-profil" class="input-field" placeholder="https://lien-vers-mon-image.jpg">
+                            </div>
+                        </div>
+                        <div class="pt-4">
+                            <label class="text-xs text-[#00ffcc] font-code uppercase">Texte de présentation complet</label>
+                            <textarea class="input-field mt-1 h-32">Salut, je suis Bastien. Étudiant à la Haute École Albert Jacquard (HEAJ) de Namur, j'ai toujours été fasciné...</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bouton de Sauvegarde Globale -->
+            <div class="mt-10 flex justify-end sticky bottom-6 z-50">
+                <button id="save-all-btn" class="btn-primary flex items-center gap-2 text-lg shadow-[0_0_20px_rgba(0,255,204,0.4)]">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> Pousser les modifications en production
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast">
+        <i class="fa-solid fa-circle-check text-xl"></i>
+        <span>Modifications enregistrées !</span>
+    </div>
+
+    <script>
+        // --- 1. GESTION DU FOND ÉTOILÉ ---
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let stars = [];
+
+        function initCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            stars = [];
+            for(let i=0; i<150; i++) {
+                stars.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    radius: Math.random() * 1.5,
+                    vx: Math.floor(Math.random() * 50) - 25,
+                    vy: Math.floor(Math.random() * 50) - 25,
+                    alpha: Math.random()
+                });
+            }
+        }
+
+        function drawStars() {
+            ctx.clearRect(0, 0, width, height);
+            for(let i=0; i<stars.length; i++) {
+                let s = stars[i];
+                s.alpha += (Math.random() - 0.5) * 0.1;
+                if(s.alpha < 0.1) s.alpha = 0.1;
+                if(s.alpha > 1) s.alpha = 1;
+                ctx.fillStyle = `rgba(0, 255, 204, ${s.alpha})`; // Étoiles Cyan pour l'admin
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.radius, 0, Math.PI*2, true);
+                ctx.fill();
+                s.x += s.vx / 150; s.y += s.vy / 150;
+                if(s.x < 0) s.x = width; if(s.x > width) s.x = 0;
+                if(s.y < 0) s.y = height; if(s.y > height) s.y = 0;
+            }
+            requestAnimationFrame(drawStars);
+        }
+        window.addEventListener('resize', initCanvas);
+        initCanvas(); drawStars();
+
+        // --- 2. LOGIQUE D'AUTHENTIFICATION ---
+        const loginForm = document.getElementById('login-form');
+        const loginView = document.getElementById('login-view');
+        const dashboardView = document.getElementById('dashboard-view');
+        const loginError = document.getElementById('login-error');
+        const logoutBtn = document.getElementById('logout-btn');
+
+        // Le mot de passe (À changer en production)
+        const ADMIN_PASSWORD = "bastien2026";
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const pwd = document.getElementById('admin-password').value;
+            
+            if (pwd === ADMIN_PASSWORD) {
+                // Succès : Masquer login, Afficher dashboard
+                loginView.style.display = 'none';
+                dashboardView.style.display = 'flex';
+            } else {
+                // Erreur
+                loginError.classList.remove('hidden');
+                document.getElementById('admin-password').value = '';
+            }
+        });
+
+        logoutBtn.addEventListener('click', () => {
+            dashboardView.style.display = 'none';
+            loginView.style.display = 'flex';
+            document.getElementById('admin-password').value = '';
+            loginError.classList.add('hidden');
+        });
+
+        // --- NOUVEAU : GESTION DES ONGLETS (TABS) ---
+        function switchTab(tabId) {
+            // Désactiver tous les boutons et contenus
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            // Activer le bouton cliqué et son contenu
+            event.target.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        // --- NOUVEAU : AJOUTER UN PROJET DYNAMIQUEMENT ---
+        function addProjectRow() {
+            const list = document.getElementById('dynamic-projects-list');
+            const newRow = document.createElement('div');
+            newRow.className = 'bg-black/30 p-4 rounded-lg border border-[#00ffcc]/30 relative group';
+            newRow.innerHTML = `
+                <button class="absolute top-2 right-2 text-red-500 opacity-0 group-hover:opacity-100 transition" onclick="this.parentElement.remove()"><i class="fa-solid fa-trash"></i></button>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="text-xs text-gray-400 font-code uppercase">Nouveau Titre</label>
+                        <input type="text" class="input-field mt-1" placeholder="Ex: App de Gestion">
+                    </div>
+                    <div>
+                        <label class="text-xs text-gray-400 font-code uppercase">URL Image</label>
+                        <input type="text" class="input-field mt-1" placeholder="https://...">
+                    </div>
+                </div>
+                <div>
+                    <label class="text-xs text-gray-400 font-code uppercase">Description</label>
+                    <textarea class="input-field mt-1" style="min-height: 60px;" placeholder="Description de votre nouveau projet..."></textarea>
+                </div>
+            `;
+            list.appendChild(newRow);
+        }
+
+        // --- 3. LOGIQUE DE PRÉVISUALISATION EN DIRECT ---
+        // Liste des IDs d'inputs et leurs previews correspondantes
+        const imageFields = [
+            { input: 'input-profil', preview: 'preview-profil' },
+            { input: 'input-articbase', preview: 'preview-articbase' },
+            { input: 'input-garden-dev', preview: 'preview-garden-dev' },
+            { input: 'input-ps1', preview: 'preview-ps1' },
+            { input: 'input-brandboard', preview: 'preview-brandboard' }
+        ];
+
+        // Mettre à jour l'image en direct quand on colle un lien
+        imageFields.forEach(field => {
+            const inputEl = document.getElementById(field.input);
+            const previewEl = document.getElementById(field.preview);
+            
+            inputEl.addEventListener('input', (e) => {
+                const newUrl = e.target.value.trim();
+                if (newUrl !== "") {
+                    // Si l'image charge mal, on la gère pour ne pas casser le design
+                    previewEl.onerror = function() {
+                        this.src = "https://placehold.co/400x400/0a0a1a/ff0000?text=Lien+Invalide";
+                    };
+                    previewEl.src = newUrl;
+                }
+            });
+        });
+
+        // --- 4. SAUVEGARDE ET TOAST NOTIFICATION ---
+        const saveBtn = document.getElementById('save-all-btn');
+        const toast = document.getElementById('toast');
+
+        saveBtn.addEventListener('click', () => {
+            
+            // NOTE IMPORTANTE :
+            // Actuellement, les données sont "sauvegardées" visuellement dans le navigateur.
+            // Pour que cela s'applique sur TOUS les autres fichiers HTML de ton site,
+            // il faudra connecter ce bouton à une base de données cloud (ex: Firebase).
+            
+            saveBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sauvegarde...';
+            saveBtn.style.opacity = '0.8';
+
+            setTimeout(() => {
+                saveBtn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> Enregistrer les modifications';
+                saveBtn.style.opacity = '1';
+                
+                // Afficher le toast
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            }, 1000);
+        });
+
+    </script>
+</body>
+</html>
