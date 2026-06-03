@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bastien Festor | Développement Web</title>
     
+    <meta name="description" content="Découvrez mes réalisations en développement web : sites vitrines, applications web (React, Supabase) et landing pages optimisées.">
+    
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Outfit:wght@200;300;400;600&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -25,6 +27,8 @@
             overflow-x: hidden;
             min-height: 100vh;
             margin: 0;
+            display: flex;
+            flex-direction: column;
         }
 
         h1, h2, h3, h4, .font-title { font-family: var(--font-title); }
@@ -91,9 +95,10 @@
         
         .modal-content {
             background: #0a0a1a; border: 1px solid rgba(0,255,204,0.3);
-            border-radius: 12px; max-width: 600px; width: 100%; padding: 40px;
+            border-radius: 24px; max-width: 600px; width: 100%; padding: 40px;
             transform: translateY(30px); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative; box-shadow: 0 25px 50px -12px rgba(0, 255, 204, 0.1);
+            max-height: 90vh; overflow-y: auto;
         }
         .modal-overlay.active .modal-content { transform: translateY(0); }
         
@@ -103,129 +108,130 @@
             background: rgba(255,255,255,0.1); display: flex;
             align-items: center; justify-content: center;
             cursor: pointer; transition: 0.3s;
+            z-index: 10;
         }
         .modal-close:hover { background: rgba(0,255,204,0.2); color: var(--accent-dev); transform: rotate(90deg); }
+
+        /* Protection image */
+        img { user-select: none; pointer-events: none; }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased" oncontextmenu="return false;">
 
     <!-- Fond Étoilé Interactif -->
     <canvas id="starfield"></canvas>
 
     <!-- Navbar Multi-Pages -->
     <nav class="fixed top-0 w-full z-50 py-5 px-6 md:px-12 flex justify-between items-center">
-        <a href="index.html" class="font-bold text-2xl tracking-widest uppercase font-title hover:text-gray-300 transition-colors">
+        <a href="index.html" class="font-bold text-2xl tracking-widest uppercase font-title hover:text-gray-300 transition-colors relative z-50">
             BASTIEN.
         </a>
         
-        <!-- Menu Desktop avec liens HTML réels -->
+        <!-- Menu Desktop -->
         <div class="hidden md:flex gap-8 font-semibold text-sm tracking-wider uppercase">
             <a href="index.html" class="nav-link">Accueil</a>
             <a href="communication.html" class="nav-link">Création & Com</a>
             <a href="developpement.html" class="nav-link active">Développement</a>
-            <a href="apropos.html" class="nav-link">À Propos</a>
+            <a href="about.html" class="nav-link">À Propos</a>
             <a href="contact.html" class="nav-link">Contact</a>
         </div>
 
         <!-- Menu Mobile Toggle -->
-        <div class="md:hidden text-2xl text-white cursor-pointer">
+        <div id="mobile-menu-btn" class="md:hidden text-2xl text-white cursor-pointer relative z-50">
             <i class="fa-solid fa-bars"></i>
         </div>
     </nav>
 
-    <main class="pt-32 pb-20 px-6 md:px-12 max-w-7xl mx-auto min-h-screen">
+    <!-- Menu Mobile Déroulant -->
+    <div id="mobile-menu" class="fixed top-0 left-0 w-full h-screen bg-[#05050a]/95 backdrop-blur-xl z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8 text-2xl font-title uppercase">
+        <a href="index.html" class="text-gray-400 hover:text-yellow-400 transition">Accueil</a>
+        <a href="communication.html" class="text-gray-400 hover:text-yellow-400 transition">Création & Com</a>
+        <a href="developpement.html" class="text-[#00ffcc] transition">Développement</a>
+        <a href="about.html" class="text-gray-400 hover:text-white transition">À Propos</a>
+        <a href="contact.html" class="text-gray-400 hover:text-white transition">Contact</a>
+    </div>
+
+    <main class="pt-32 pb-20 px-6 md:px-12 max-w-7xl mx-auto flex-grow">
         
         <!-- Hero Terminal Dev -->
-        <div class="mb-16">
-            <div class="code-window rounded-xl overflow-hidden max-w-3xl mx-auto backdrop-blur-md">
+        <div class="mb-20">
+            <div class="code-window rounded-xl overflow-hidden max-w-3xl mx-auto backdrop-blur-md shadow-[0_10px_40px_rgba(0,255,204,0.1)]">
                 <div class="code-header flex items-center px-4 py-3 gap-2">
                     <div class="mac-btn bg-red-500"></div>
                     <div class="mac-btn bg-yellow-500"></div>
                     <div class="mac-btn bg-green-500"></div>
-                    <span class="ml-4 text-xs text-gray-400">bastien@portfolio: ~/developpement</span>
+                    <span class="ml-4 text-xs text-gray-400 font-code tracking-widest">~/portfolio/dev</span>
                 </div>
                 <div class="p-6 md:p-8 text-sm md:text-base leading-relaxed">
                     <span class="text-[#c792ea]">const</span> <span class="text-[#82aaff]">developer</span> <span class="text-[#89ddff]">=</span> {<br>
+                    &nbsp;&nbsp;name: <span class="text-[#c3e88d]">'Bastien Festor'</span>,<br>
                     &nbsp;&nbsp;role: <span class="text-[#c3e88d]">'Développeur Web Indépendant'</span>,<br>
                     &nbsp;&nbsp;expertise: [<span class="text-[#c3e88d]">'Sites Vitrines'</span>, <span class="text-[#c3e88d]">'Landing Pages'</span>, <span class="text-[#c3e88d]">'Web Apps'</span>],<br>
                     &nbsp;&nbsp;location: <span class="text-[#c3e88d]">'Namur & Hainaut'</span><br>
                     };<br><br>
-                    <span class="text-[#64748b] italic">// Initialisation de l'environnement...</span><br>
+                    <span class="text-[#64748b] italic">// Initialisation des projets...</span><br>
                     <span class="text-[#c792ea]">await</span> <span class="text-[#82aaff]">developer</span>.<span class="text-[#82aaff]">buildProject</span>();<span class="cursor-blink"></span>
                 </div>
             </div>
         </div>
 
-        <!-- Réalisations Dev -->
+        <!-- Réalisations Dev (Visual Gallery) -->
         <h2 class="text-2xl font-bold mb-8 font-title uppercase tracking-wider border-b border-[#00ffcc]/20 pb-4 text-[#00ffcc]">Projets Déployés</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
             
             <!-- Projet : Articbase -->
-            <div class="bg-white/5 border border-white/10 rounded-xl overflow-hidden backdrop-blur-md hover:border-[#00ffcc]/50 transition-all duration-300 group cursor-pointer hover:-translate-y-2" onclick="openModal('articbase')">
-                <!-- Fausse arborescence de code -->
-                <div class="h-48 code-window border-b border-[#00ffcc]/20 p-4 text-xs md:text-sm text-gray-300 relative overflow-hidden">
-                    <div class="text-[#00ffcc] mb-3">~/projets/articbase $ tree</div>
-                    <div class="flex flex-col gap-1.5 pl-2 font-code">
-                        <span><i class="fa-regular fa-folder text-blue-400 w-5"></i> public/</span>
-                        <span><i class="fa-brands fa-html5 text-orange-500 w-5"></i> index.html</span>
-                        <span><i class="fa-brands fa-css3-alt text-blue-500 w-5"></i> style.css</span>
-                        <span><i class="fa-brands fa-js text-yellow-400 w-5"></i> seo_tracking.js</span>
-                    </div>
-                    <div class="absolute top-4 right-4 bg-[#00ffcc]/20 text-[#00ffcc] text-[10px] font-bold px-2 py-1 rounded uppercase">Landing Page</div>
+            <div class="bg-white/5 border border-[#00ffcc]/20 rounded-3xl overflow-hidden backdrop-blur-md hover:border-[#00ffcc]/70 transition-all duration-300 group cursor-pointer hover:-translate-y-2 shadow-lg" onclick="openModal('articbase')">
+                <div class="h-48 relative overflow-hidden bg-black">
+                    <!-- Remplacer par un vrai screenshot de la landing page Articbase -->
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop" alt="Articbase Preview" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100">
+                    <!-- Overlay Tech -->
+                    <div class="absolute inset-0 bg-[#00ffcc]/20 group-hover:bg-transparent transition-colors duration-500"></div>
+                    <div class="absolute top-4 right-4 bg-[#00ffcc] text-black text-xs font-bold px-3 py-1 rounded-full uppercase font-code">Landing Page</div>
                 </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2 font-code">Articbase</h3>
-                    <p class="text-sm text-gray-400 mb-4 line-clamp-2">Page de capture (Landing Page) optimisée pour une campagne SEA.</p>
-                    <span class="text-[#00ffcc] text-xs font-code flex items-center gap-2 group-hover:gap-4 transition-all">sudo inspect <i class="fa-solid fa-arrow-right"></i></span>
+                <div class="p-8">
+                    <h3 class="text-2xl font-bold mb-2 font-code">Articbase</h3>
+                    <p class="text-sm text-gray-400 mb-6 line-clamp-2">Page de capture (Landing Page) optimisée pour une campagne SEA.</p>
+                    <span class="text-[#00ffcc] text-sm font-code flex items-center gap-2 group-hover:gap-4 transition-all">>_ Analyser l'app <i class="fa-solid fa-arrow-right"></i></span>
                 </div>
             </div>
 
             <!-- Projet : Easy Garden -->
-            <div class="bg-white/5 border border-white/10 rounded-xl overflow-hidden backdrop-blur-md hover:border-[#00ffcc]/50 transition-all duration-300 group cursor-pointer hover:-translate-y-2" onclick="openModal('easy-garden')">
-                <!-- Fausse arborescence de code -->
-                <div class="h-48 code-window border-b border-[#00ffcc]/20 p-4 text-xs md:text-sm text-gray-300 relative overflow-hidden">
-                    <div class="text-[#00ffcc] mb-3">~/projets/easy-garden $ tree</div>
-                    <div class="flex flex-col gap-1.5 pl-2 font-code">
-                        <span><i class="fa-regular fa-folder text-blue-400 w-5"></i> src/components/</span>
-                        <span><i class="fa-regular fa-file-code text-indigo-400 w-5"></i> Header.jsx</span>
-                        <span><i class="fa-regular fa-file-code text-indigo-400 w-5"></i> ContactForm.jsx</span>
-                        <span><i class="fa-brands fa-css3-alt text-teal-400 w-5"></i> tailwind.config.js</span>
-                    </div>
-                    <div class="absolute top-4 right-4 bg-[#00ffcc]/20 text-[#00ffcc] text-[10px] font-bold px-2 py-1 rounded uppercase">Site Vitrine</div>
+            <div class="bg-white/5 border border-[#00ffcc]/20 rounded-3xl overflow-hidden backdrop-blur-md hover:border-[#00ffcc]/70 transition-all duration-300 group cursor-pointer hover:-translate-y-2 shadow-lg" onclick="openModal('easy-garden')">
+                <div class="h-48 relative overflow-hidden bg-black">
+                    <!-- Remplacer par un vrai screenshot de Easy Garden -->
+                    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop" alt="Easy Garden Preview" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-[#00ffcc]/20 group-hover:bg-transparent transition-colors duration-500"></div>
+                    <div class="absolute top-4 right-4 bg-[#00ffcc] text-black text-xs font-bold px-3 py-1 rounded-full uppercase font-code">Site Vitrine</div>
                 </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2 font-code">Easy Garden</h3>
-                    <p class="text-sm text-gray-400 mb-4 line-clamp-2">Site web vitrine professionnel, full responsive avec optimisation SEO.</p>
-                    <span class="text-[#00ffcc] text-xs font-code flex items-center gap-2 group-hover:gap-4 transition-all">sudo inspect <i class="fa-solid fa-arrow-right"></i></span>
+                <div class="p-8">
+                    <h3 class="text-2xl font-bold mb-2 font-code">Easy Garden</h3>
+                    <p class="text-sm text-gray-400 mb-6 line-clamp-2">Site web vitrine professionnel, full responsive avec optimisation SEO.</p>
+                    <span class="text-[#00ffcc] text-sm font-code flex items-center gap-2 group-hover:gap-4 transition-all">>_ Analyser l'app <i class="fa-solid fa-arrow-right"></i></span>
                 </div>
             </div>
 
             <!-- Projet : Projet Blocus -->
-            <div class="bg-white/5 border border-white/10 rounded-xl overflow-hidden backdrop-blur-md hover:border-[#00ffcc]/50 transition-all duration-300 group cursor-pointer hover:-translate-y-2" onclick="openModal('blocus')">
-                <!-- Fausse arborescence de code -->
-                <div class="h-48 code-window border-b border-[#00ffcc]/20 p-4 text-xs md:text-sm text-gray-300 relative overflow-hidden">
-                    <div class="text-[#00ffcc] mb-3">~/projets/blocus_app $ tree</div>
-                    <div class="flex flex-col gap-1.5 pl-2 font-code">
-                        <span><i class="fa-regular fa-folder text-blue-400 w-5"></i> api/</span>
-                        <span><i class="fa-solid fa-database text-gray-400 w-5"></i> supabase_client.js</span>
-                        <span><i class="fa-solid fa-lock text-red-400 w-5"></i> auth.js</span>
-                        <span><i class="fa-brands fa-react text-blue-500 w-5"></i> App.jsx</span>
-                    </div>
-                    <div class="absolute top-4 right-4 bg-[#00ffcc]/20 text-[#00ffcc] text-[10px] font-bold px-2 py-1 rounded uppercase">Web App / SaaS</div>
+            <div class="bg-white/5 border border-[#00ffcc]/20 rounded-3xl overflow-hidden backdrop-blur-md hover:border-[#00ffcc]/70 transition-all duration-300 group cursor-pointer hover:-translate-y-2 shadow-lg" onclick="openModal('blocus')">
+                <div class="h-48 relative overflow-hidden bg-black">
+                    <!-- Remplacer par un vrai screenshot du Dashboard Blocus -->
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop" alt="Blocus App Preview" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-[#00ffcc]/20 group-hover:bg-transparent transition-colors duration-500"></div>
+                    <div class="absolute top-4 right-4 bg-white/10 border border-[#00ffcc]/50 text-[#00ffcc] text-xs font-bold px-3 py-1 rounded-full uppercase font-code">Web App / SaaS</div>
                 </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2 font-code">Projet Blocus</h3>
-                    <p class="text-sm text-gray-400 mb-4 line-clamp-2">Reprise et développement avancé d'une application web de gestion d'études.</p>
-                    <span class="text-[#00ffcc] text-xs font-code flex items-center gap-2 group-hover:gap-4 transition-all">sudo inspect <i class="fa-solid fa-arrow-right"></i></span>
+                <div class="p-8">
+                    <h3 class="text-2xl font-bold mb-2 font-code">Projet Blocus</h3>
+                    <p class="text-sm text-gray-400 mb-6 line-clamp-2">Reprise et développement avancé d'une application web de gestion d'études.</p>
+                    <span class="text-[#00ffcc] text-sm font-code flex items-center gap-2 group-hover:gap-4 transition-all">>_ Analyser l'app <i class="fa-solid fa-arrow-right"></i></span>
                 </div>
             </div>
         </div>
 
         <!-- Expertise Technique -->
-        <h2 class="text-2xl font-bold mb-8 font-title uppercase tracking-wider border-b border-[#00ffcc]/20 pb-4 text-[#00ffcc]">Architecture & Stack</h2>
+        <h2 class="text-2xl font-bold mb-8 font-title uppercase tracking-wider border-b border-[#00ffcc]/20 pb-4 text-[#00ffcc]">Architecture & Outils</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
             <!-- Front-end & Design -->
-            <div class="code-window p-8 rounded-xl backdrop-blur-md">
+            <div class="code-window p-8 rounded-3xl backdrop-blur-md">
                 <div class="flex items-center gap-4 mb-6">
                     <i class="fa-solid fa-layer-group text-4xl text-[#c792ea]"></i>
                     <h3 class="text-xl font-bold font-code">Front-end & UI</h3>
@@ -240,7 +246,7 @@
             </div>
 
             <!-- Back-end & Tools -->
-            <div class="code-window p-8 rounded-xl backdrop-blur-md">
+            <div class="code-window p-8 rounded-3xl backdrop-blur-md">
                 <div class="flex items-center gap-4 mb-6">
                     <i class="fa-solid fa-server text-4xl text-[#89ddff]"></i>
                     <h3 class="text-xl font-bold font-code">Systèmes & Déploiement</h3>
@@ -256,16 +262,14 @@
         </div>
     </main>
 
-    <!-- ========================================== -->
-    <!-- MODAL POUR LES DÉTAILS DES PROJETS DEV     -->
-    <!-- ========================================== -->
+    <!-- MODAL POUR LES DÉTAILS DES PROJETS DEV -->
     <div id="project-modal" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-close" onclick="closeModal()">
                 <i class="fa-solid fa-xmark text-xl"></i>
             </div>
             
-            <div class="flex items-center gap-3 mb-4">
+            <div class="flex items-center gap-3 mb-4 mt-2">
                 <span id="modal-tag" class="bg-[#00ffcc]/20 border border-[#00ffcc]/50 text-[#00ffcc] text-[10px] font-bold px-3 py-1 rounded font-code uppercase">Catégorie</span>
             </div>
             
@@ -282,19 +286,35 @@
                 </div>
             </div>
             
-            <a id="modal-link" href="#" target="_blank" class="inline-flex items-center gap-2 bg-[#00ffcc]/10 border border-[#00ffcc] text-[#00ffcc] px-6 py-3 rounded font-bold font-code hover:bg-[#00ffcc] hover:text-black transition-all">
+            <a id="modal-link" href="#" target="_blank" class="inline-flex items-center gap-2 bg-[#00ffcc] text-black px-6 py-3 rounded-full font-bold font-code hover:bg-white hover:text-black transition-colors">
                 Lancer l'application <i class="fa-solid fa-arrow-up-right-from-square"></i>
             </a>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer class="w-full text-center py-6 text-xs text-gray-600 font-code tracking-widest uppercase mt-auto">
+    <footer class="w-full text-center py-6 text-xs text-gray-600 font-code tracking-widest uppercase mt-auto z-10">
         © 2026 BASTIEN FESTOR.
     </footer>
 
     <script>
-        /* --- 1. GESTION DU FOND ÉTOILÉ (CANVAS) --- */
+        /* --- MENU MOBILE --- */
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        let isMenuOpen = false;
+
+        mobileMenuBtn.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            if(isMenuOpen) {
+                mobileMenu.classList.remove('translate-x-full');
+                mobileMenuBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+            } else {
+                mobileMenu.classList.add('translate-x-full');
+                mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+            }
+        });
+
+        /* --- FOND ÉTOILÉ (CANVAS) --- */
         const canvas = document.getElementById('starfield');
         const ctx = canvas.getContext('2d');
         let width, height;
@@ -324,7 +344,8 @@
                 if(s.alpha < 0.1) s.alpha = 0.1;
                 if(s.alpha > 1) s.alpha = 1;
 
-                ctx.fillStyle = `rgba(255, 255, 255, ${s.alpha})`;
+                // Colorer les étoiles légèrement en cyan pour le thème Dev
+                ctx.fillStyle = `rgba(0, 255, 204, ${s.alpha})`;
                 ctx.beginPath();
                 ctx.arc(s.x, s.y, s.radius, 0, Math.PI*2, true);
                 ctx.fill();
@@ -344,7 +365,7 @@
         initCanvas();
         drawStars();
 
-        /* --- 2. DONNÉES ET GESTION DES MODALS (Détails Projets Dev) --- */
+        /* --- DONNÉES ET GESTION DES MODALS (Détails Projets Dev) --- */
         const projectData = {
             'articbase': {
                 tag: 'Landing Page & SEA',
@@ -365,7 +386,7 @@
                 title: 'Projet Blocus',
                 desc: "Reprise et développement d'une application web complexe destinée à l'aide aux études. Mise en place d'une architecture robuste, gestion de l'authentification et requêtes vers une base de données en temps réel.",
                 tools: ['React.js', 'Supabase Auth', 'Base de données', 'API'],
-                link: '#' // Lien à remplacer si le projet blocus est en ligne
+                link: '#'
             }
         };
 
@@ -387,12 +408,11 @@
             modalTools.innerHTML = '';
             data.tools.forEach(tool => {
                 const span = document.createElement('span');
-                span.className = 'px-3 py-1 bg-white/5 border border-white/10 rounded text-xs text-gray-300 font-code';
+                span.className = 'px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300 font-code';
                 span.innerText = tool;
                 modalTools.appendChild(span);
             });
 
-            // Gérer le cas où le lien n'est pas encore disponible
             if(data.link === '#') {
                 modalLink.innerHTML = "Déploiement en cours <i class='fa-solid fa-spinner fa-spin'></i>";
                 modalLink.style.pointerEvents = 'none';
@@ -416,6 +436,15 @@
         modalOverlay.addEventListener('click', function(e) {
             if(e.target === modalOverlay) closeModal();
         });
+
+        // Anti-curieux
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123) return false;
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+        }
     </script>
 </body>
 </html>
