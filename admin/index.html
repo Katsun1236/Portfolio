@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Bastien Admin | CMS</title>
+    <!-- Decap CMS Script -->
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background: #05050a; color: white; font-family: 'Outfit', sans-serif; }
+        #starfield { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; }
+        /* On injecte le style du CMS pour qu'il s'adapte à ton look */
+        .cms-container { background: rgba(10, 10, 15, 0.8); backdrop-filter: blur(15px); border: 1px solid rgba(0, 255, 204, 0.2); border-radius: 16px; }
+    </style>
+</head>
+<body>
+    <canvas id="starfield"></canvas>
+    
+    <!-- Design custom en haut -->
+    <header class="p-6 border-b border-[#00ffcc]/20 flex justify-between items-center">
+        <h1 class="font-bold text-2xl uppercase tracking-widest text-[#00ffcc]">B-Impact Admin</h1>
+        <a href="/" class="text-gray-400 hover:text-white">Retour au site</a>
+    </header>
+
+    <!-- Le CMS s'injectera ici -->
+    <div id="nc-root" class="max-w-6xl mx-auto mt-10 p-6"></div>
+
+    <script>
+        // --- GESTION DU FOND ÉTOILÉ ---
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+        let width, height; let stars = [];
+        function initCanvas() {
+            width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight;
+            for(let i=0; i<100; i++) stars.push({ x: Math.random()*width, y: Math.random()*height, r: Math.random()*1.5, a: Math.random() });
+        }
+        function draw() {
+            ctx.clearRect(0,0,width,height);
+            stars.forEach(s => { ctx.fillStyle = `rgba(0, 255, 204, ${s.a})`; ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI*2); ctx.fill(); });
+            requestAnimationFrame(draw);
+        }
+        window.addEventListener('resize', initCanvas); initCanvas(); draw();
+    </script>
+</body>
+</html>
