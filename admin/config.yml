@@ -1,56 +1,41 @@
 backend:
-name: git-gateway
-branch: main
+  name: git-gateway
+  branch: main
 
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
 
 collections:
+  - name: "pages"
+    label: "Textes des Pages"
+    files:
+      - label: "Page d'accueil"
+        name: "home"
+        file: "content/home.json"
+        fields:
+          - {label: "Titre Principal", name: "hero_title", widget: "string"}
+          - {label: "Description", name: "hero_desc", widget: "text"}
+          - {label: "Texte Bouton Créa", name: "btn_crea", widget: "string"}
+          - {label: "Texte Bouton Dev", name: "btn_dev", widget: "string"}
 
-name: "pages"
-label: "Textes des Pages"
-files:
+      - label: "Page À Propos"
+        name: "about"
+        file: "content/about.json"
+        fields:
+          - {label: "Photo de Profil", name: "profil_pic", widget: "image"}
+          - {label: "Paragraphe 1", name: "para_1", widget: "text"}
+          - {label: "Paragraphe 2", name: "para_2", widget: "text"}
 
-label: "Page d'accueil"
-name: "home"
-file: "content/home.json"
-fields:
-
-{label: "Titre Principal", name: "hero_title", widget: "string"}
-
-{label: "Description", name: "hero_desc", widget: "text"}
-
-{label: "Texte Bouton Créa", name: "btn_crea", widget: "string"}
-
-{label: "Texte Bouton Dev", name: "btn_dev", widget: "string"}
-
-label: "Page À Propos"
-name: "about"
-file: "content/about.json"
-fields:
-
-{label: "Photo de Profil", name: "profil_pic", widget: "image"}
-
-{label: "Paragraphe 1", name: "para_1", widget: "text"}
-
-{label: "Paragraphe 2", name: "para_2", widget: "text"}
-
-name: "projects"
-label: "Projets (Portfolio)"
-folder: "content/projects"
-create: true
-extension: "json"
-format: "json"
-fields:
-
-{label: "Titre du projet", name: "title", widget: "string"}
-
-{label: "Catégorie", name: "category", widget: "select", options: ["Dev", "Créa"]}
-
-{label: "Image d'aperçu", name: "image", widget: "image"}
-
-{label: "Description détaillée", name: "description", widget: "text"}
-
-{label: "Outils utilisés", name: "stack", widget: "string"}
-
-{label: "Lien vers le site", name: "link", widget: "string", required: false}
+  - name: "projects"
+    label: "Projets (Portfolio)"
+    folder: "content/projects"
+    create: true
+    extension: "json"
+    format: "json"
+    fields:
+      - {label: "Titre du projet", name: "title", widget: "string"}
+      - {label: "Catégorie", name: "category", widget: "select", options: ["Dev", "Créa"]}
+      - {label: "Image d'aperçu", name: "image", widget: "image"}
+      - {label: "Description détaillée", name: "description", widget: "text"}
+      - {label: "Outils utilisés", name: "stack", widget: "string"}
+      - {label: "Lien vers le site", name: "link", widget: "string", required: false}
