@@ -124,7 +124,7 @@
         
         .modal-content {
             background: #0a0a1a; border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 24px; max-width: 600px; width: 100%; padding: 40px;
+            border-radius: 24px; max-width: 600px; w-full; padding: 40px;
             transform: translateY(30px); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
@@ -138,16 +138,22 @@
             cursor: pointer; transition: 0.3s;
         }
         .modal-close:hover { background: rgba(255,255,255,0.2); transform: rotate(90deg); }
+        
+        /* Animation pour la bannière défilante */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased flex flex-col min-h-screen">
 
     <!-- Fond Étoilé Interactif -->
     <canvas id="starfield"></canvas>
 
     <!-- Navbar SPA -->
     <nav class="fixed top-0 w-full z-50 py-5 px-6 md:px-12 flex justify-between items-center">
-        <a href="index.html" class="font-bold text-2xl tracking-widest uppercase font-title cursor-pointer hover:text-gray-300 transition-colors">
+        <a href="index.html" class="font-bold text-2xl tracking-widest uppercase font-title cursor-pointer hover:text-gray-300 transition-colors relative z-50">
             BASTIEN.
         </a>
         
@@ -161,117 +167,135 @@
         </div>
 
         <!-- Menu Mobile Toggle -->
-        <div class="md:hidden text-2xl text-white cursor-pointer">
+        <div id="mobile-menu-btn" class="md:hidden text-2xl text-white cursor-pointer relative z-50">
             <i class="fa-solid fa-bars"></i>
         </div>
     </nav>
 
+    <!-- Menu Mobile Déroulant -->
+    <div id="mobile-menu" class="fixed top-0 left-0 w-full h-screen bg-[#05050a]/95 backdrop-blur-xl z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8 text-2xl font-title uppercase">
+        <a href="index.html" class="text-white hover:text-yellow-400 transition">Accueil</a>
+        <a href="communication.html" class="text-gray-400 hover:text-yellow-400 transition">Création & Com</a>
+        <a href="developpement.html" class="text-gray-400 hover:text-[#00ffcc] transition">Développement</a>
+        <a href="about.html" class="text-gray-400 hover:text-white transition">À Propos</a>
+        <a href="contact.html" class="text-gray-400 hover:text-white transition">Contact</a>
+    </div>
+
     <!-- ========================================== -->
-    <!-- PAGE 1 : ACCUEIL                           -->
+    <!-- CONTENU DE LA PAGE D'ACCUEIL               -->
     <!-- ========================================== -->
-    <main id="page-index" class="page-section active flex flex-col justify-center items-center text-center px-4 flex-grow min-h-screen">
-        <div class="mb-6 flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2 rounded-full backdrop-blur-md mt-20">
-            <i class="fa-solid fa-location-dot text-gray-400"></i>
-            <span class="text-xs md:text-sm text-gray-300 uppercase tracking-[0.2em] font-semibold">Namur & Hainaut</span>
+    <main class="flex-grow w-full">
+        
+        <!-- Section 1 : Hero -->
+        <section class="flex flex-col justify-center items-center text-center px-4 min-h-screen pt-20">
+            <div class="mb-6 flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2 rounded-full backdrop-blur-md">
+                <i class="fa-solid fa-location-dot text-gray-400"></i>
+                <span class="text-xs md:text-sm text-gray-300 uppercase tracking-[0.2em] font-semibold">Namur & Hainaut</span>
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight drop-shadow-2xl">
+                BASTIEN FESTOR
+            </h1>
+            
+            <div class="flex flex-col md:flex-row gap-4 md:gap-6 text-xl md:text-2xl font-light text-gray-300 mb-10 items-center">
+                <span class="text-yellow-400 font-semibold tracking-wider uppercase text-sm md:text-base border border-yellow-400/30 px-6 py-3 rounded-full backdrop-blur-sm shadow-[0_0_15px_rgba(255,215,0,0.1)]">
+                    Stratégie & Création
+                </span>
+                <span class="text-[#00ffcc] font-code tracking-wider uppercase text-sm md:text-base border border-[#00ffcc]/30 px-6 py-3 rounded-full backdrop-blur-sm shadow-[0_0_15px_rgba(0,255,204,0.1)]">
+                    &lt;Développeur Web/&gt;
+                </span>
+            </div>
+            
+            <p class="max-w-2xl text-gray-400 text-lg leading-relaxed mb-12">
+                J'allie une vision créative 360° à une maîtrise technique du web pour construire des marques fortes et des applications performantes.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-6">
+                <a href="communication.html" class="btn-crea px-8 py-4 rounded-full font-bold uppercase tracking-wider inline-block text-center">
+                    Découvrir mes créas
+                </a>
+                <a href="developpement.html" class="btn-dev px-8 py-4 rounded-full font-bold uppercase tracking-wider font-code inline-block text-center">
+                    Voir mon code <i class="fa-solid fa-terminal ml-2"></i>
+                </a>
+            </div>
+
+            <!-- Indicateur de Scroll -->
+            <div class="mt-20 animate-bounce cursor-pointer opacity-70" onclick="document.getElementById('expertise').scrollIntoView({behavior: 'smooth'})">
+                <span class="text-[10px] font-code text-gray-500 uppercase tracking-widest block mb-2">Scroll</span>
+                <i class="fa-solid fa-arrow-down text-gray-400"></i>
+            </div>
+        </section>
+
+        <!-- Section 2 : Expertise (Remplit la page) -->
+        <section id="expertise" class="max-w-7xl mx-auto px-6 py-24">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold font-title uppercase tracking-widest mb-4">Mon ADN</h2>
+                <p class="text-gray-400 text-lg">Deux expertises complémentaires pour des projets digitaux complets.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Hub Créa -->
+                <a href="communication.html" class="group bg-white/5 border border-white/10 p-10 rounded-3xl backdrop-blur-sm hover:bg-white/10 transition-all duration-300 relative overflow-hidden">
+                    <div class="absolute -right-10 -top-10 w-40 h-40 bg-yellow-400/20 blur-[50px] rounded-full group-hover:bg-yellow-400/40 transition-all"></div>
+                    <i class="fa-solid fa-pen-nib text-4xl text-yellow-400 mb-6"></i>
+                    <h3 class="text-2xl font-bold mb-4 font-title uppercase tracking-wider">Création & Communication</h3>
+                    <p class="text-gray-400 leading-relaxed mb-8">Stratégie de marque, identité visuelle, animation de communautés et gestion d'événements. Je conçois l'image qui fera résonner votre projet.</p>
+                    <span class="text-yellow-400 font-code text-sm flex items-center gap-2 group-hover:gap-4 transition-all">Explorer les créations <i class="fa-solid fa-arrow-right"></i></span>
+                </a>
+
+                <!-- Hub Dev -->
+                <a href="developpement.html" class="group bg-white/5 border border-white/10 p-10 rounded-3xl backdrop-blur-sm hover:bg-white/10 transition-all duration-300 relative overflow-hidden">
+                    <div class="absolute -right-10 -top-10 w-40 h-40 bg-[#00ffcc]/20 blur-[50px] rounded-full group-hover:bg-[#00ffcc]/40 transition-all"></div>
+                    <i class="fa-solid fa-code text-4xl text-[#00ffcc] mb-6"></i>
+                    <h3 class="text-2xl font-bold mb-4 font-title uppercase tracking-wider">Développement Web</h3>
+                    <p class="text-gray-400 leading-relaxed mb-8">Sites vitrines optimisés SEO, Landing pages performantes et Applications Web sur-mesure. Je construis les fondations techniques de vos idées.</p>
+                    <span class="text-[#00ffcc] font-code text-sm flex items-center gap-2 group-hover:gap-4 transition-all">Inspecter le code <i class="fa-solid fa-arrow-right"></i></span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Section 3 : Bannière Défilante (Marquee) -->
+        <div class="w-full bg-white/5 border-y border-white/10 py-5 overflow-hidden mb-20 relative">
+            <div class="flex whitespace-nowrap animate-[scroll_30s_linear_infinite] opacity-60 font-code text-sm tracking-widest uppercase items-center gap-8 w-max">
+                <span>Photoshop</span><i class="fa-solid fa-star text-[8px] text-yellow-400"></i>
+                <span>React.js</span><i class="fa-solid fa-star text-[8px] text-[#00ffcc]"></i>
+                <span>Tailwind CSS</span><i class="fa-solid fa-star text-[8px] text-[#00ffcc]"></i>
+                <span>Premiere Pro</span><i class="fa-solid fa-star text-[8px] text-yellow-400"></i>
+                <span>SEO Local</span><i class="fa-solid fa-star text-[8px] text-[#00ffcc]"></i>
+                <span>Canva</span><i class="fa-solid fa-star text-[8px] text-yellow-400"></i>
+                <span>Supabase</span><i class="fa-solid fa-star text-[8px] text-[#00ffcc]"></i>
+                <span>Notion</span><i class="fa-solid fa-star text-[8px] text-yellow-400"></i>
+                <span>JavaScript</span><i class="fa-solid fa-star text-[8px] text-[#00ffcc]"></i>
+                <span>Photoshop</span><i class="fa-solid fa-star text-[8px] text-yellow-400"></i>
+                <span>React.js</span><i class="fa-solid fa-star text-[8px] text-[#00ffcc]"></i>
+                <span>Tailwind CSS</span><i class="fa-solid fa-star text-[8px] text-[#00ffcc]"></i>
+                <span>Premiere Pro</span><i class="fa-solid fa-star text-[8px] text-yellow-400"></i>
+                <span>SEO Local</span><i class="fa-solid fa-star text-[8px] text-[#00ffcc]"></i>
+            </div>
         </div>
-        
-        <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight drop-shadow-2xl">
-            BASTIEN FESTOR
-        </h1>
-        
-        <div class="flex flex-col md:flex-row gap-4 md:gap-6 text-xl md:text-2xl font-light text-gray-300 mb-10 items-center">
-            <span class="text-yellow-400 font-semibold tracking-wider uppercase text-sm md:text-base border border-yellow-400/30 px-6 py-3 rounded-full backdrop-blur-sm shadow-[0_0_15px_rgba(255,215,0,0.1)]">
-                Stratégie & Création
-            </span>
-            <span class="text-[#00ffcc] font-code tracking-wider uppercase text-sm md:text-base border border-[#00ffcc]/30 px-6 py-3 rounded-full backdrop-blur-sm shadow-[0_0_15px_rgba(0,255,204,0.1)]">
-                &lt;Développeur Web/&gt;
-            </span>
-        </div>
-        
-        <p class="max-w-2xl text-gray-400 text-lg leading-relaxed mb-12">
-            J'allie une vision créative 360° à une maîtrise technique du web pour construire des marques fortes et des applications performantes.
-        </p>
-        
-        <div class="flex flex-col sm:flex-row gap-6">
-            <a href="communication.html" class="btn-crea px-8 py-4 rounded-full font-bold uppercase tracking-wider inline-block text-center">
-                Découvrir mes créas
-            </a>
-            <a href="developpement.html" class="btn-dev px-8 py-4 rounded-full font-bold uppercase tracking-wider font-code inline-block text-center">
-                Voir mon code <i class="fa-solid fa-terminal ml-2"></i>
-            </a>
-        </div>
+
     </main>
 
     <!-- Footer -->
-    <footer class="fixed bottom-0 w-full text-center py-6 text-xs text-gray-600 font-code tracking-widest uppercase z-10 pointer-events-none">
+    <footer class="w-full text-center py-6 text-xs text-gray-600 font-code tracking-widest uppercase mt-auto relative z-10 pointer-events-none">
         © 2026 BASTIEN FESTOR.
     </footer>
 
     <script>
-        /* --- 1. GESTION DU FOND ÉTOILÉ (CANVAS) --- */
-        const canvas = document.getElementById('starfield');
-        const ctx = canvas.getContext('2d');
-        let width, height;
-        let stars = [];
+        /* --- 1. GESTION DU MENU MOBILE --- */
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        let isMenuOpen = false;
 
-        function initCanvas() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-            stars = [];
-            // Générer 250 étoiles
-            for(let i=0; i<250; i++) {
-                stars.push({
-                    x: Math.random() * width,
-                    y: Math.random() * height,
-                    radius: Math.random() * 1.5,
-                    vx: Math.floor(Math.random() * 50) - 25,
-                    vy: Math.floor(Math.random() * 50) - 25,
-                    alpha: Math.random()
-                });
+        mobileMenuBtn.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            if(isMenuOpen) {
+                mobileMenu.classList.remove('translate-x-full');
+                mobileMenuBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+            } else {
+                mobileMenu.classList.add('translate-x-full');
+                mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
             }
-        }
+        });
 
-        function drawStars() {
-            ctx.clearRect(0, 0, width, height);
-            
-            for(let i=0; i<stars.length; i++) {
-                let s = stars[i];
-                s.alpha += (Math.random() - 0.5) * 0.1;
-                if(s.alpha < 0.1) s.alpha = 0.1;
-                if(s.alpha > 1) s.alpha = 1;
-
-                ctx.fillStyle = `rgba(255, 255, 255, ${s.alpha})`;
-                ctx.beginPath();
-                ctx.arc(s.x, s.y, s.radius, 0, Math.PI*2, true);
-                ctx.fill();
-                
-                s.x += s.vx / 150;
-                s.y += s.vy / 150;
-                
-                if(s.x < 0) s.x = width;
-                if(s.x > width) s.x = 0;
-                if(s.y < 0) s.y = height;
-                if(s.y > height) s.y = 0;
-            }
-            requestAnimationFrame(drawStars);
-        }
-
-        window.addEventListener('resize', initCanvas);
-        initCanvas();
-        drawStars();
-
-        /* --- 2. PROTECTION DU CODE (Anti-Clic Droit & Raccourcis) --- */
-        // Bloque le clic droit
-        document.addEventListener('contextmenu', event => event.preventDefault());
-
-        // Bloque F12, Ctrl+Maj+I, Ctrl+Maj+C, Ctrl+Maj+J, Ctrl+U
-        document.onkeydown = function (e) {
-            if (e.keyCode == 123) { return false; } // F12
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { return false; } // Ctrl+Maj+I
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) { return false; } // Ctrl+Maj+C
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { return false; } // Ctrl+Maj+J
-            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; } // Ctrl+U
-        };
-    </script>
-</body>
-</html>
+        /* --- 2. GESTION DU FOND ÉTOILÉ (CANVAS) --- */
