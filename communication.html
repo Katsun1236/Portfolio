@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bastien Festor | Création & Com</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Outfit:wght@200;300;400;600&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        :root {
+            --accent-crea: #ffd700;
+            --bg-dark: #05050a;
+            --font-title: 'Space Grotesk', sans-serif;
+            --font-body: 'Outfit', sans-serif;
+            --font-code: 'Fira Code', monospace;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        h1, h2, h3, h4, .font-title { font-family: var(--font-title); }
+        .font-code { font-family: var(--font-code); }
+
+        /* --- BACKGROUND ÉTOILÉ (CANVAS) --- */
+        #starfield {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: -1;
+            background: radial-gradient(circle at center, #0a0a1a 0%, #020205 100%);
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            background: rgba(5, 5, 10, 0.7);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .nav-link {
+            position: relative;
+            color: rgba(255,255,255,0.6);
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .nav-link:hover { color: #fff; }
+        .nav-link.active { color: #fff; font-weight: 600; }
+        .nav-link::after {
+            content: ''; position: absolute; bottom: -4px; left: 0;
+            width: 0%; height: 2px; background: var(--accent-crea);
+            transition: width 0.3s ease;
+        }
+        .nav-link.active::after { width: 100%; }
+
+        /* --- MODAL (FENÊTRE DÉTAILS) --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px);
+            z-index: 100; opacity: 0; visibility: hidden;
+            transition: all 0.4s ease;
+            display: flex; justify-content: center; align-items: center; padding: 20px;
+        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        
+        .modal-content {
+            background: #0a0a1a; border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px; max-width: 600px; width: 100%; padding: 40px;
+            transform: translateY(30px); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        .modal-overlay.active .modal-content { transform: translateY(0); }
+        
+        .modal-close {
+            position: absolute; top: 20px; right: 20px;
+            width: 40px; height: 40px; border-radius: 50%;
+            background: rgba(255,255,255,0.1); display: flex;
+            align-items: center; justify-content: center;
+            cursor: pointer; transition: 0.3s;
+        }
+        .modal-close:hover { background: rgba(255,255,255,0.2); transform: rotate(90deg); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Fond Étoilé Interactif -->
+    <canvas id="starfield"></canvas>
+
+    <!-- Navbar Multi-Pages -->
+    <nav class="fixed top-0 w-full z-50 py-5 px-6 md:px-12 flex justify-between items-center">
+        <a href="index.html" class="font-bold text-2xl tracking-widest uppercase font-title hover:text-gray-300 transition-colors">
+            BASTIEN.
+        </a>
+        
+        <!-- Menu Desktop avec liens HTML réels -->
+        <div class="hidden md:flex gap-8 font-semibold text-sm tracking-wider uppercase">
+            <a href="index.html" class="nav-link">Accueil</a>
+            <a href="communication.html" class="nav-link active">Création & Com</a>
+            <a href="developpement.html" class="nav-link">Développement</a>
+            <a href="apropos.html" class="nav-link">À Propos</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+
+        <!-- Menu Mobile Toggle -->
+        <div class="md:hidden text-2xl text-white cursor-pointer">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </nav>
+
+    <main class="pt-32 pb-20 px-6 md:px-12 max-w-7xl mx-auto min-h-screen">
+        <div class="text-center mb-16">
+            <h1 class="text-4xl md:text-6xl text-yellow-400 font-bold mb-4 font-title uppercase tracking-widest drop-shadow-[0_0_15px_rgba(255,215,0,0.3)]">Création & Com</h1>
+            <p class="text-gray-400 text-lg max-w-2xl mx-auto font-light">Stratégie, identité visuelle et animation de communautés. Je donne vie à vos projets grâce à une communication ciblée et impactante.</p>
+        </div>
+
+        <!-- Réalisations -->
+        <h2 class="text-2xl font-bold mb-8 font-title uppercase tracking-wider border-b border-white/10 pb-4">Mes Réalisations</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+            
+            <!-- Drop the Mic -->
+            <div class="bg-white/5 border border-white/10 rounded-3xl overflow-hidden backdrop-blur-md hover:border-yellow-400/30 transition-all duration-300 group cursor-pointer hover:-translate-y-2" onclick="openModal('drop-the-mic')">
+                <div class="h-48 bg-gradient-to-br from-purple-900 to-black relative overflow-hidden flex items-center justify-center">
+                    <i class="fa-solid fa-microphone-lines text-5xl text-yellow-400/80 group-hover:scale-110 group-hover:text-yellow-400 transition-all duration-500"></i>
+                    <div class="absolute top-4 right-4 bg-yellow-400 text-black text-xs font-bold px-3 py-1 rounded-full uppercase">Stand-up</div>
+                </div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-bold mb-2">Drop the Mic</h3>
+                    <p class="text-sm text-gray-400 mb-6 line-clamp-2">Stratégie de communication pour un événement de stand-up à La Nef.</p>
+                    <span class="text-yellow-400 text-sm font-semibold flex items-center gap-2 group-hover:gap-4 transition-all">Détails techniques <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+            </div>
+
+            <!-- Easy Garden -->
+            <div class="bg-white/5 border border-white/10 rounded-3xl overflow-hidden backdrop-blur-md hover:border-yellow-400/30 transition-all duration-300 group cursor-pointer hover:-translate-y-2" onclick="openModal('easy-garden')">
+                <div class="h-48 bg-gradient-to-br from-green-900 to-black relative overflow-hidden flex items-center justify-center">
+                    <i class="fa-solid fa-leaf text-5xl text-yellow-400/80 group-hover:scale-110 group-hover:text-yellow-400 transition-all duration-500"></i>
+                    <div class="absolute top-4 right-4 bg-yellow-400 text-black text-xs font-bold px-3 py-1 rounded-full uppercase">Site Vitrine</div>
+                </div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-bold mb-2">Easy Garden</h3>
+                    <p class="text-sm text-gray-400 mb-6 line-clamp-2">Création de l'identité digitale complète pour un jardinier paysagiste.</p>
+                    <span class="text-yellow-400 text-sm font-semibold flex items-center gap-2 group-hover:gap-4 transition-all">Détails techniques <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+            </div>
+
+            <!-- MJ Lierre -->
+            <div class="bg-white/5 border border-white/10 rounded-3xl overflow-hidden backdrop-blur-md hover:border-yellow-400/30 transition-all duration-300 group cursor-pointer hover:-translate-y-2" onclick="openModal('mj-lierre')">
+                <div class="h-48 bg-gradient-to-br from-orange-900 to-black relative overflow-hidden flex items-center justify-center">
+                    <i class="fa-solid fa-masks-theater text-5xl text-yellow-400/80 group-hover:scale-110 group-hover:text-yellow-400 transition-all duration-500"></i>
+                    <div class="absolute top-4 right-4 bg-white/10 border border-white/20 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">Projet d'étude</div>
+                </div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-bold mb-2">MJ Lierre</h3>
+                    <p class="text-sm text-gray-400 mb-6 line-clamp-2">Identité visuelle Néo-Brutaliste pour le festival "Jeunes Talents".</p>
+                    <span class="text-yellow-400 text-sm font-semibold flex items-center gap-2 group-hover:gap-4 transition-all">Détails techniques <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Boîte à Outils -->
+        <h2 class="text-2xl font-bold mb-8 font-title uppercase tracking-wider border-b border-white/10 pb-4">Boîte à Outils & Maîtrise</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+            <!-- Suite Adobe -->
+            <div class="bg-white/5 border border-white/10 p-10 rounded-3xl backdrop-blur-md">
+                <div class="flex items-center gap-4 mb-6">
+                    <i class="fa-brands fa-adobe text-5xl text-red-500 drop-shadow-[0_0_15px_rgba(239,68,68,0.4)]"></i>
+                    <h3 class="text-2xl font-bold">Suite Adobe</h3>
+                </div>
+                <p class="text-gray-400 text-sm mb-8 leading-relaxed">Maîtrise professionnelle des outils de création visuelle, de mise en page et de montage vidéo pour des rendus hauts de gamme et sur mesure.</p>
+                <div class="flex flex-wrap gap-3">
+                    <span class="px-5 py-2 bg-black/40 border border-white/5 rounded-full text-sm font-semibold"><i class="fa-solid fa-image text-blue-400 mr-2"></i>Photoshop</span>
+                    <span class="px-5 py-2 bg-black/40 border border-white/5 rounded-full text-sm font-semibold"><i class="fa-solid fa-vector-square text-orange-500 mr-2"></i>Illustrator</span>
+                    <span class="px-5 py-2 bg-black/40 border border-white/5 rounded-full text-sm font-semibold"><i class="fa-solid fa-book-open text-pink-500 mr-2"></i>InDesign</span>
+                    <span class="px-5 py-2 bg-black/40 border border-white/5 rounded-full text-sm font-semibold"><i class="fa-solid fa-film text-purple-500 mr-2"></i>Premiere Pro</span>
+                </div>
+            </div>
+
+            <!-- Brandboard & Canva -->
+            <div class="bg-white/5 border border-white/10 p-10 rounded-3xl backdrop-blur-md">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-cyan-400 to-purple-500 flex items-center justify-center text-white font-bold text-2xl shadow-[0_0_15px_rgba(6,182,212,0.4)]">C</div>
+                    <h3 class="text-2xl font-bold">Identité Graphique</h3>
+                </div>
+                <p class="text-gray-400 text-sm mb-8 leading-relaxed">Création de chartes graphiques complètes, brandboards, logos et gabarits réutilisables pour une communication fluide sur les réseaux sociaux.</p>
+                <div class="flex flex-wrap gap-3">
+                    <span class="px-5 py-2 bg-black/40 border border-white/5 rounded-full text-sm font-semibold"><i class="fa-solid fa-palette text-yellow-400 mr-2"></i>Canva</span>
+                    <span class="px-5 py-2 bg-black/40 border border-white/5 rounded-full text-sm font-semibold"><i class="fa-solid fa-swatchbook text-green-400 mr-2"></i>Brandboards</span>
+                    <span class="px-5 py-2 bg-black/40 border border-white/5 rounded-full text-sm font-semibold"><i class="fa-solid fa-pen-nib text-blue-300 mr-2"></i>Logos</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Plateformes / Réseaux -->
+        <h2 class="text-2xl font-bold mb-8 font-title uppercase tracking-wider border-b border-white/10 pb-4">Plateformes d'action</h2>
+        <div class="flex flex-wrap gap-6 justify-center md:justify-start">
+            <div class="group flex flex-col items-center gap-3 w-24">
+                <div class="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-3xl group-hover:bg-[#1877F2] group-hover:border-[#1877F2] transition-all duration-300"><i class="fa-brands fa-facebook-f"></i></div>
+                <span class="text-[10px] uppercase tracking-widest font-semibold text-gray-500 group-hover:text-white transition-colors">Facebook</span>
+            </div>
+            <div class="group flex flex-col items-center gap-3 w-24">
+                <div class="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-3xl group-hover:bg-gradient-to-tr group-hover:from-[#f09433] group-hover:via-[#dc2743] group-hover:to-[#bc1888] group-hover:border-transparent transition-all duration-300"><i class="fa-brands fa-instagram"></i></div>
+                <span class="text-[10px] uppercase tracking-widest font-semibold text-gray-500 group-hover:text-white transition-colors">Instagram</span>
+            </div>
+            <div class="group flex flex-col items-center gap-3 w-24">
+                <div class="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-3xl group-hover:bg-[#FF0000] group-hover:border-[#FF0000] transition-all duration-300"><i class="fa-brands fa-youtube"></i></div>
+                <span class="text-[10px] uppercase tracking-widest font-semibold text-gray-500 group-hover:text-white transition-colors">YouTube</span>
+            </div>
+            <div class="group flex flex-col items-center gap-3 w-24">
+                <div class="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-3xl group-hover:bg-white group-hover:text-black group-hover:border-white transition-all duration-300"><i class="fa-brands fa-x-twitter"></i></div>
+                <span class="text-[10px] uppercase tracking-widest font-semibold text-gray-500 group-hover:text-white transition-colors">Twitter (X)</span>
+            </div>
+            <div class="group flex flex-col items-center gap-3 w-24">
+                <div class="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-3xl group-hover:bg-[#00f2fe] group-hover:text-black group-hover:border-[#00f2fe] group-hover:shadow-[2px_2px_0px_#ff0050] transition-all duration-300"><i class="fa-brands fa-tiktok"></i></div>
+                <span class="text-[10px] uppercase tracking-widest font-semibold text-gray-500 group-hover:text-white transition-colors">TikTok</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- ========================================== -->
+    <!-- MODAL POUR LES DÉTAILS DES PROJETS         -->
+    <!-- ========================================== -->
+    <div id="project-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal()">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </div>
+            
+            <div class="flex items-center gap-3 mb-4">
+                <span id="modal-tag" class="bg-yellow-400 text-black text-xs font-bold px-3 py-1 rounded-full uppercase">Catégorie</span>
+            </div>
+            
+            <h3 id="modal-title" class="text-3xl font-bold mb-4 font-title">Titre du Projet</h3>
+            
+            <p id="modal-desc" class="text-gray-300 text-lg leading-relaxed mb-8">
+                Description détaillée du projet et des missions effectuées.
+            </p>
+            
+            <div class="mb-8">
+                <h4 class="text-sm uppercase tracking-widest text-gray-500 mb-3 font-semibold">Outils & Techniques utilisés</h4>
+                <div id="modal-tools" class="flex flex-wrap gap-2">
+                    <!-- Rempli en JS -->
+                </div>
+            </div>
+            
+            <a id="modal-link" href="#" target="_blank" class="inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-bold hover:bg-yellow-400 transition-colors">
+                Visiter le site en ligne <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="w-full text-center py-6 text-xs text-gray-600 font-code tracking-widest uppercase mt-auto">
+        © 2026 BASTIEN FESTOR.
+    </footer>
+
+    <script>
+        /* --- 1. GESTION DU FOND ÉTOILÉ (CANVAS) --- */
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let stars = [];
+
+        function initCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            stars = [];
+            for(let i=0; i<250; i++) {
+                stars.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    radius: Math.random() * 1.5,
+                    vx: Math.floor(Math.random() * 50) - 25,
+                    vy: Math.floor(Math.random() * 50) - 25,
+                    alpha: Math.random()
+                });
+            }
+        }
+
+        function drawStars() {
+            ctx.clearRect(0, 0, width, height);
+            for(let i=0; i<stars.length; i++) {
+                let s = stars[i];
+                s.alpha += (Math.random() - 0.5) * 0.1;
+                if(s.alpha < 0.1) s.alpha = 0.1;
+                if(s.alpha > 1) s.alpha = 1;
+
+                ctx.fillStyle = `rgba(255, 255, 255, ${s.alpha})`;
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.radius, 0, Math.PI*2, true);
+                ctx.fill();
+                
+                s.x += s.vx / 150;
+                s.y += s.vy / 150;
+                
+                if(s.x < 0) s.x = width;
+                if(s.x > width) s.x = 0;
+                if(s.y < 0) s.y = height;
+                if(s.y > height) s.y = 0;
+            }
+            requestAnimationFrame(drawStars);
+        }
+
+        window.addEventListener('resize', initCanvas);
+        initCanvas();
+        drawStars();
+
+        /* --- 2. DONNÉES ET GESTION DES MODALS (Détails Projets) --- */
+        const projectData = {
+            'drop-the-mic': {
+                tag: 'Stand-up & Événementiel',
+                title: 'Drop the Mic',
+                desc: "Développement de la stratégie de communication globale pour un événement de stand-up à La Nef. Création de l'identité visuelle de A à Z, planification des publications et animation de la communauté sur les réseaux sociaux.",
+                tools: ['Stratégie', 'Canva', 'Premiere Pro', 'Instagram', 'TikTok'],
+                link: 'https://drop-the-mic.netlify.app'
+            },
+            'easy-garden': {
+                tag: 'Identité & Web',
+                title: 'Easy Garden',
+                desc: "Création de l'identité visuelle, élaboration d'un brandboard complet et développement du site vitrine pour un artisan jardinier paysagiste. Optimisation pour le référencement local.",
+                tools: ['Photoshop', 'Illustrator', 'Web Design', 'SEO Local'],
+                link: 'https://easy-garden.eu'
+            },
+            'mj-lierre': {
+                tag: 'Projet Fictif',
+                title: 'MJ Lierre-sur-Sambre',
+                desc: "Conception d'une identité visuelle au style Néo-Brutaliste assumé pour le festival fictif 'Jeunes Talents'. L'objectif était de cibler un public jeune et hyper-connecté avec des couleurs vives et des typographies percutantes.",
+                tools: ['Identité Visuelle', 'Photoshop', 'Illustrator'],
+                link: 'https://mj-lss.netlify.app'
+            }
+        };
+
+        const modalOverlay = document.getElementById('project-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDesc = document.getElementById('modal-desc');
+        const modalTools = document.getElementById('modal-tools');
+        const modalLink = document.getElementById('modal-link');
+        const modalTag = document.getElementById('modal-tag');
+
+        function openModal(projectId) {
+            const data = projectData[projectId];
+            if(!data) return;
+
+            modalTitle.innerText = data.title;
+            modalDesc.innerText = data.desc;
+            modalTag.innerText = data.tag;
+            
+            modalTools.innerHTML = '';
+            data.tools.forEach(tool => {
+                const span = document.createElement('span');
+                span.className = 'px-3 py-1 bg-white/10 border border-white/20 rounded-full text-xs font-semibold text-gray-300';
+                span.innerText = tool;
+                modalTools.appendChild(span);
+            });
+
+            modalLink.href = data.link;
+
+            modalOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeModal() {
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        modalOverlay.addEventListener('click', function(e) {
+            if(e.target === modalOverlay) closeModal();
+        });
+    </script>
+</body>
+</html>

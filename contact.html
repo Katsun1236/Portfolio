@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bastien Festor | Contact</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Outfit:wght@200;300;400;600&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        :root {
+            --accent-crea: #ffd700;
+            --accent-dev: #00ffcc;
+            --bg-dark: #05050a;
+            --font-title: 'Space Grotesk', sans-serif;
+            --font-body: 'Outfit', sans-serif;
+            --font-code: 'Fira Code', monospace;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3, h4, .font-title { font-family: var(--font-title); }
+        .font-code { font-family: var(--font-code); }
+
+        /* --- BACKGROUND ÉTOILÉ (CANVAS) --- */
+        #starfield {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: -1;
+            background: radial-gradient(circle at center, #0a0a1a 0%, #020205 100%);
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            background: rgba(5, 5, 10, 0.7);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .nav-link {
+            position: relative;
+            color: rgba(255,255,255,0.6);
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .nav-link:hover { color: #fff; }
+        .nav-link.active { color: #fff; font-weight: 600; }
+        
+        /* Soulignement double couleur (Or & Cyan) pour la page Contact */
+        .nav-link.active::after { 
+            content: ''; position: absolute; bottom: -4px; left: 0;
+            width: 100%; height: 2px; 
+            background: linear-gradient(90deg, var(--accent-crea), var(--accent-dev));
+        }
+
+        /* --- STYLES SPÉCIFIQUES CONTACT --- */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, var(--accent-crea), var(--accent-dev));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Formulaire */
+        .input-field {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            padding: 1rem 1.2rem;
+            border-radius: 12px;
+            font-family: var(--font-body);
+            transition: all 0.3s ease;
+            outline: none;
+        }
+        
+        .input-field:focus {
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .input-field::placeholder { color: rgba(255, 255, 255, 0.3); }
+
+        .submit-btn {
+            background: linear-gradient(90deg, var(--accent-crea), var(--accent-dev));
+            color: #000;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.15), 0 10px 20px rgba(0, 255, 204, 0.15);
+        }
+
+        /* Liens Sociaux */
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.25rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            transform: translateY(-3px);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Fond Étoilé Interactif -->
+    <canvas id="starfield"></canvas>
+
+    <!-- Navbar Multi-Pages -->
+    <nav class="fixed top-0 w-full z-50 py-5 px-6 md:px-12 flex justify-between items-center">
+        <a href="index.html" class="font-bold text-2xl tracking-widest uppercase font-title hover:text-gray-300 transition-colors">
+            BASTIEN.
+        </a>
+        
+        <!-- Menu Desktop avec liens HTML réels -->
+        <div class="hidden md:flex gap-8 font-semibold text-sm tracking-wider uppercase">
+            <a href="index.html" class="nav-link">Accueil</a>
+            <a href="communication.html" class="nav-link">Création & Com</a>
+            <a href="developpement.html" class="nav-link">Développement</a>
+            <a href="about.html" class="nav-link">À Propos</a>
+            <a href="contact.html" class="nav-link active">Contact</a>
+        </div>
+
+        <!-- Menu Mobile Toggle -->
+        <div class="md:hidden text-2xl text-white cursor-pointer">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </nav>
+
+    <main class="pt-32 pb-20 px-6 md:px-12 max-w-6xl mx-auto flex-grow flex flex-col justify-center">
+        
+        <div class="text-center mb-16">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 font-title uppercase tracking-widest">
+                Démarrons un <span class="gradient-text">projet</span>
+            </h1>
+            <p class="text-gray-400 text-lg max-w-2xl mx-auto font-light">
+                Une idée de création visuelle, un besoin en développement web, ou simplement l'envie de discuter ? Contactez-moi.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            
+            <!-- Informations de Contact Directes -->
+            <div class="glass-card p-8 md:p-12 h-full flex flex-col justify-between">
+                <div>
+                    <h2 class="text-2xl font-bold mb-8 font-title tracking-wide border-b border-white/10 pb-4">Contact Direct</h2>
+                    
+                    <p class="text-gray-300 font-light mb-10 leading-relaxed">
+                        Le moyen le plus rapide de me joindre est de m'envoyer un e-mail. Je réponds généralement dans les 48 heures ouvrables.
+                    </p>
+
+                    <!-- Bouton Email Direct -->
+                    <a href="mailto:bastienfestor4@gmail.com" class="group flex items-center justify-between p-6 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-all duration-300 mb-10">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-black/50 rounded-full flex items-center justify-center text-xl text-gray-300 group-hover:text-white transition-colors">
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 font-code uppercase tracking-widest mb-1">E-mail</p>
+                                <p class="text-lg font-semibold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-yellow-400 group-hover:to-[#00ffcc] transition-all">
+                                    bastienfestor4@gmail.com
+                                </p>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-arrow-right text-gray-500 group-hover:text-white transform group-hover:translate-x-1 transition-all"></i>
+                    </a>
+                </div>
+
+                <!-- Réseaux Sociaux -->
+                <div>
+                    <h3 class="text-sm font-bold text-gray-500 font-code uppercase tracking-widest mb-4">Ailleurs sur le web</h3>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="https://www.linkedin.com/in/bastien-festor-927277349" target="_blank" class="social-link" title="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://www.instagram.com/_bastien_f/" target="_blank" class="social-link" title="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#" target="_blank" class="social-link" title="Twitter (X)">
+                            <i class="fa-brands fa-x-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formulaire de Contact -->
+            <div class="glass-card p-8 md:p-12">
+                <h2 class="text-2xl font-bold mb-8 font-title tracking-wide border-b border-white/10 pb-4">M'envoyer un message</h2>
+                
+                <!-- NOTE: L'attribut action doit pointer vers ton Webhook (Make, Zapier, Netlify Forms) -->
+                <form id="contactForm" action="#" method="POST" class="space-y-6">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label for="name" class="text-sm text-gray-400 font-code uppercase">Nom complet</label>
+                            <input type="text" id="name" name="name" class="input-field" placeholder="John Doe" required>
+                        </div>
+                        <div class="space-y-2">
+                            <label for="email" class="text-sm text-gray-400 font-code uppercase">Adresse E-mail</label>
+                            <input type="email" id="email" name="email" class="input-field" placeholder="john@example.com" required>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label for="subject" class="text-sm text-gray-400 font-code uppercase">Sujet / Nature du projet</label>
+                        <select id="subject" name="subject" class="input-field appearance-none cursor-pointer">
+                            <option value="creation">Création & Communication Visuelle</option>
+                            <option value="developpement">Développement Web (Site, App)</option>
+                            <option value="autre">Autre demande / Prise de contact</option>
+                        </select>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label for="message" class="text-sm text-gray-400 font-code uppercase">Votre Message</label>
+                        <textarea id="message" name="message" rows="5" class="input-field resize-none" placeholder="Décrivez votre projet ou votre demande ici..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn flex items-center justify-center gap-3">
+                        <span>Envoyer le message</span>
+                        <i class="fa-solid fa-paper-plane text-sm"></i>
+                    </button>
+                    
+                    <p class="text-xs text-gray-500 text-center mt-4">
+                        Vos informations ne seront pas partagées à des tiers.
+                    </p>
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full text-center py-6 text-xs text-gray-600 font-code tracking-widest uppercase mt-auto">
+        © 2026 BASTIEN FESTOR.
+    </footer>
+
+    <script>
+        /* --- GESTION DU FOND ÉTOILÉ (CANVAS) --- */
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let stars = [];
+
+        function initCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            stars = [];
+            for(let i=0; i<250; i++) {
+                stars.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    radius: Math.random() * 1.5,
+                    vx: Math.floor(Math.random() * 50) - 25,
+                    vy: Math.floor(Math.random() * 50) - 25,
+                    alpha: Math.random()
+                });
+            }
+        }
+
+        function drawStars() {
+            ctx.clearRect(0, 0, width, height);
+            for(let i=0; i<stars.length; i++) {
+                let s = stars[i];
+                s.alpha += (Math.random() - 0.5) * 0.1;
+                if(s.alpha < 0.1) s.alpha = 0.1;
+                if(s.alpha > 1) s.alpha = 1;
+
+                ctx.fillStyle = `rgba(255, 255, 255, ${s.alpha})`;
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.radius, 0, Math.PI*2, true);
+                ctx.fill();
+                
+                s.x += s.vx / 150;
+                s.y += s.vy / 150;
+                
+                if(s.x < 0) s.x = width;
+                if(s.x > width) s.x = 0;
+                if(s.y < 0) s.y = height;
+                if(s.y > height) s.y = 0;
+            }
+            requestAnimationFrame(drawStars);
+        }
+
+        window.addEventListener('resize', initCanvas);
+        initCanvas();
+        drawStars();
+
+        /* --- GESTION DU FORMULAIRE (Exemple basique) --- */
+        // Tu devras configurer l'attribut "action" de la balise <form> 
+        // vers ton webhook (ex: Zapier, Make, ou Netlify Forms) pour relier ça à Resend et Notion.
+        
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            // e.preventDefault(); // Décommente cette ligne si tu utilises Fetch API au lieu de l'action form classique
+            
+            const btn = this.querySelector('.submit-btn');
+            const originalText = btn.innerHTML;
+            
+            // Animation de chargement visuelle
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Envoi en cours...';
+            btn.style.opacity = '0.8';
+            btn.style.pointerEvents = 'none';
+
+            // Si tu as un Webhook, c'est ici que tu ferais ton fetch()
+            /*
+            fetch('TON_URL_WEBHOOK', {
+                method: 'POST',
+                body: new FormData(this)
+            }).then(() => {
+                btn.innerHTML = '<i class="fa-solid fa-check"></i> Message Envoyé !';
+                btn.style.background = '#00ffcc';
+                btn.style.color = '#000';
+                this.reset();
+            });
+            */
+            
+            // Simule un envoi pour le visuel (À SUPPRIMER QUAND TU AS TON WEBHOOK)
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fa-solid fa-check"></i> Action requise (Configurer Webhook)';
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.opacity = '1';
+                    btn.style.pointerEvents = 'auto';
+                }, 3000);
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
