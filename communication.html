@@ -338,7 +338,21 @@
         © 2026 BASTIEN FESTOR.
     </footer>
 
-    <script>
+    <script>        // --- FETCH CMS DATA ---
+        fetch('/content/communication.json')
+            .then(response => {
+                if (!response.ok) throw new Error("CMS content not found");
+                return response.json();
+            })
+            .then(data => {
+                document.querySelectorAll('[data-cms]').forEach(el => {
+                    const key = el.getAttribute('data-cms');
+                    if (data[key]) {
+                        el.innerHTML = data[key];
+                    }
+                });
+            })
+            .catch(err => console.log("CMS default fallback:", err));
         /* --- MENU MOBILE --- */
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');

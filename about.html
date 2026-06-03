@@ -122,7 +122,7 @@
     <main class="pt-32 pb-20 px-6 md:px-12 max-w-6xl mx-auto flex-grow flex flex-col justify-center">
         
         <div class="text-center mb-16">
-            <h1 class="text-4xl md:text-6xl font-bold mb-4 font-title uppercase tracking-widest">
+            <h1 data-cms="hero_title" class="text-4xl md:text-6xl font-bold mb-4 font-title uppercase tracking-widest">
                 Derrière l'<span class="gradient-text">écran</span>
             </h1>
             <p class="text-gray-400 text-lg max-w-2xl mx-auto font-light">
@@ -166,10 +166,10 @@
                 <h2 class="text-3xl font-bold mb-6 font-title tracking-wide">Qui suis-je ?</h2>
                 
                 <div class="space-y-6 text-gray-300 font-light leading-relaxed text-lg">
-                    <p>
+                    <p data-cms="para_1">
                         Salut, je suis <span class="text-white font-semibold">Bastien</span>. Étudiant à la Haute École Albert Jacquard (HEAJ) de Namur, j'ai toujours été fasciné par la façon dont le web et le design façonnent notre quotidien.
                     </p>
-                    <p>
+                    <p data-cms="para_2">
                         Très vite, j'ai réalisé qu'avoir une bonne idée ne suffisait pas : il faut savoir la communiquer <span class="text-yellow-400 font-medium">visuellement</span>, mais aussi la construire <span class="text-[#00ffcc] font-medium">techniquement</span>. C'est pourquoi j'ai fait le choix de développer cette double casquette. D'un côté, je conçois des identités graphiques et des stratégies de communication ; de l'autre, je plonge dans le code pour développer des sites et des applications web sur mesure.
                     </p>
                     
@@ -294,6 +294,25 @@
         window.addEventListener('resize', initCanvas);
         initCanvas();
         drawStars();
+    </script>
+    <script>
+        // --- FETCH CMS DATA ---
+        const pageName = "about";
+        const cmsFile = pageName === "index" ? "home" : pageName;
+        fetch(`/content/${cmsFile}.json`)
+            .then(response => {
+                if (!response.ok) throw new Error("CMS content not found");
+                return response.json();
+            })
+            .then(data => {
+                document.querySelectorAll("[data-cms]").forEach(el => {
+                    const key = el.getAttribute("data-cms");
+                    if (data[key]) {
+                        el.innerHTML = data[key];
+                    }
+                });
+            })
+            .catch(err => console.log("CMS default fallback for " + pageName + ":", err));
     </script>
 </body>
 </html>

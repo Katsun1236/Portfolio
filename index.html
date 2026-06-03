@@ -194,28 +194,28 @@
                 <span class="text-xs md:text-sm text-gray-300 uppercase tracking-[0.2em] font-semibold">Namur & Hainaut</span>
             </div>
             
-            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight drop-shadow-2xl">
+            <h1 data-cms="hero_title" class="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight drop-shadow-2xl">
                 BASTIEN FESTOR
             </h1>
             
             <div class="flex flex-col md:flex-row gap-4 md:gap-6 text-xl md:text-2xl font-light text-gray-300 mb-10 items-center">
-                <span class="text-yellow-400 font-semibold tracking-wider uppercase text-sm md:text-base border border-yellow-400/30 px-6 py-3 rounded-full backdrop-blur-sm shadow-[0_0_15px_rgba(255,215,0,0.1)]">
+                <span data-cms="hero_sub_crea" class="text-yellow-400 font-semibold tracking-wider uppercase text-sm md:text-base border border-yellow-400/30 px-6 py-3 rounded-full backdrop-blur-sm shadow-[0_0_15px_rgba(255,215,0,0.1)]">
                     Stratégie & Création
                 </span>
-                <span class="text-[#00ffcc] font-code tracking-wider uppercase text-sm md:text-base border border-[#00ffcc]/30 px-6 py-3 rounded-full backdrop-blur-sm shadow-[0_0_15px_rgba(0,255,204,0.1)]">
+                <span data-cms="hero_sub_dev" class="text-[#00ffcc] font-code tracking-wider uppercase text-sm md:text-base border border-[#00ffcc]/30 px-6 py-3 rounded-full backdrop-blur-sm shadow-[0_0_15px_rgba(0,255,204,0.1)]">
                     &lt;Développeur Web/&gt;
                 </span>
             </div>
             
-            <p class="max-w-2xl text-gray-400 text-lg leading-relaxed mb-12">
+            <p data-cms="hero_desc" class="max-w-2xl text-gray-400 text-lg leading-relaxed mb-12">
                 J'allie une vision créative 360° à une maîtrise technique du web pour construire des marques fortes et des applications performantes.
             </p>
             
             <div class="flex flex-col sm:flex-row gap-6">
-                <a href="communication.html" class="btn-crea px-8 py-4 rounded-full font-bold uppercase tracking-wider inline-block text-center">
+                <a href="communication.html" data-cms="btn_crea" class="btn-crea px-8 py-4 rounded-full font-bold uppercase tracking-wider inline-block text-center">
                     Découvrir mes créas
                 </a>
-                <a href="developpement.html" class="btn-dev px-8 py-4 rounded-full font-bold uppercase tracking-wider font-code inline-block text-center">
+                <a href="developpement.html" data-cms="btn_dev" class="btn-dev px-8 py-4 rounded-full font-bold uppercase tracking-wider font-code inline-block text-center">
                     Voir mon code <i class="fa-solid fa-terminal ml-2"></i>
                 </a>
             </div>
@@ -230,8 +230,8 @@
         <!-- Section 2 : Expertise (Remplit la page) -->
         <section id="expertise" class="max-w-7xl mx-auto px-6 py-24">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold font-title uppercase tracking-widest mb-4">Mon ADN</h2>
-                <p class="text-gray-400 text-lg">Deux expertises complémentaires pour des projets digitaux complets.</p>
+                <h2 data-cms="adn_title" class="text-3xl md:text-5xl font-bold font-title uppercase tracking-widest mb-4">Mon ADN</h2>
+                <p data-cms="adn_desc" class="text-gray-400 text-lg">Deux expertises complémentaires pour des projets digitaux complets.</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -349,6 +349,22 @@
                 }
             });
         }
+
+        // --- FETCH CMS DATA ---
+        fetch('/content/home.json')
+            .then(response => {
+                if (!response.ok) throw new Error("CMS content not found");
+                return response.json();
+            })
+            .then(data => {
+                document.querySelectorAll('[data-cms]').forEach(el => {
+                    const key = el.getAttribute('data-cms');
+                    if (data[key]) {
+                        el.innerHTML = data[key];
+                    }
+                });
+            })
+            .catch(err => console.log("CMS default fallback:", err));
     </script>
 </body>
 </html>

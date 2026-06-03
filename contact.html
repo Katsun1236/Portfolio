@@ -172,10 +172,10 @@
     <main class="pt-32 pb-20 px-6 md:px-12 max-w-6xl mx-auto flex-grow flex flex-col justify-center">
         
         <div class="text-center mb-16">
-            <h1 class="text-4xl md:text-6xl font-bold mb-4 font-title uppercase tracking-widest">
+            <h1 data-cms="hero_title" class="text-4xl md:text-6xl font-bold mb-4 font-title uppercase tracking-widest">
                 Démarrons un <span class="gradient-text">projet</span>
             </h1>
-            <p class="text-gray-400 text-lg max-w-2xl mx-auto font-light">
+            <p data-cms="hero_desc" class="text-gray-400 text-lg max-w-2xl mx-auto font-light">
                 Une idée de création visuelle, un besoin en développement web, ou simplement l'envie de discuter ? Contactez-moi.
             </p>
         </div>
@@ -379,6 +379,25 @@
                 }, 3000);
             }
         });
+    </script>
+    <script>
+        // --- FETCH CMS DATA ---
+        const pageName = "contact";
+        const cmsFile = pageName === "index" ? "home" : pageName;
+        fetch(`/content/${cmsFile}.json`)
+            .then(response => {
+                if (!response.ok) throw new Error("CMS content not found");
+                return response.json();
+            })
+            .then(data => {
+                document.querySelectorAll("[data-cms]").forEach(el => {
+                    const key = el.getAttribute("data-cms");
+                    if (data[key]) {
+                        el.innerHTML = data[key];
+                    }
+                });
+            })
+            .catch(err => console.log("CMS default fallback for " + pageName + ":", err));
     </script>
 </body>
 </html>

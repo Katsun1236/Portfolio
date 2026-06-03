@@ -8,23 +8,51 @@ public_folder: "/assets/uploads"
 collections:
   - name: "pages"
     label: "Textes des Pages"
+    extension: "json"
+    format: "json"
     files:
       - label: "Page d'accueil"
         name: "home"
         file: "content/home.json"
         fields:
-          - {label: "Titre Principal", name: "hero_title", widget: "string"}
-          - {label: "Description", name: "hero_desc", widget: "text"}
-          - {label: "Texte Bouton Créa", name: "btn_crea", widget: "string"}
-          - {label: "Texte Bouton Dev", name: "btn_dev", widget: "string"}
+          - {label: "Titre Principal", name: "hero_title", widget: "string", default: "BASTIEN FESTOR"}
+          - {label: "Sous-Titre Créa", name: "hero_sub_crea", widget: "string", default: "Stratégie & Création"}
+          - {label: "Sous-Titre Dev", name: "hero_sub_dev", widget: "string", default: "<Développeur Web/>"}
+          - {label: "Description", name: "hero_desc", widget: "text", default: "J'allie une vision créative 360° à une maîtrise technique du web pour construire des marques fortes et des applications performantes."}
+          - {label: "Texte Bouton Créa", name: "btn_crea", widget: "string", default: "Découvrir mes créas"}
+          - {label: "Texte Bouton Dev", name: "btn_dev", widget: "string", default: "Voir mon code <i class='fa-solid fa-terminal ml-2'></i>"}
+          - {label: "Titre Section ADN", name: "adn_title", widget: "string", default: "Mon ADN"}
+          - {label: "Description Section ADN", name: "adn_desc", widget: "text", default: "Deux expertises complémentaires pour des projets digitaux complets."}
+
+      - label: "Page Création & Com"
+        name: "communication"
+        file: "content/communication.json"
+        fields:
+          - {label: "Titre Principal", name: "hero_title", widget: "string", default: "Création & Com"}
+          - {label: "Description", name: "hero_desc", widget: "text", default: "Stratégie, identité visuelle et animation de communautés. Je donne vie à vos projets grâce à une communication ciblée et impactante."}
+
+      - label: "Page Développement"
+        name: "developpement"
+        file: "content/developpement.json"
+        fields:
+          - {label: "Titre Principal", name: "hero_title", widget: "string", default: "Développement Web"}
+          - {label: "Description", name: "hero_desc", widget: "text", default: "Des fondations solides pour vos idées. Je développe des sites performants, accessibles et pensés pour le référencement naturel."}
 
       - label: "Page À Propos"
         name: "about"
         file: "content/about.json"
         fields:
-          - {label: "Photo de Profil", name: "profil_pic", widget: "image"}
+          - {label: "Photo de Profil", name: "profil_pic", widget: "image", required: false}
+          - {label: "Titre Principal", name: "hero_title", widget: "string", default: "À Propos"}
           - {label: "Paragraphe 1", name: "para_1", widget: "text"}
           - {label: "Paragraphe 2", name: "para_2", widget: "text"}
+
+      - label: "Page Contact"
+        name: "contact"
+        file: "content/contact.json"
+        fields:
+          - {label: "Titre Principal", name: "hero_title", widget: "string", default: "On discute ?"}
+          - {label: "Description", name: "hero_desc", widget: "text", default: "Un projet en tête ? Une question ? Ou simplement l'envie d'échanger ? N'hésitez pas à m'envoyer un message !"}
 
   - name: "projects"
     label: "Projets (Portfolio)"

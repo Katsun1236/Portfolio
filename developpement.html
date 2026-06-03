@@ -471,5 +471,24 @@
             if(e.target === modalOverlay) closeModal();
         });
     </script>
+    <script>
+        // --- FETCH CMS DATA ---
+        const pageName = "developpement";
+        const cmsFile = pageName === "index" ? "home" : pageName;
+        fetch(`/content/${cmsFile}.json`)
+            .then(response => {
+                if (!response.ok) throw new Error("CMS content not found");
+                return response.json();
+            })
+            .then(data => {
+                document.querySelectorAll("[data-cms]").forEach(el => {
+                    const key = el.getAttribute("data-cms");
+                    if (data[key]) {
+                        el.innerHTML = data[key];
+                    }
+                });
+            })
+            .catch(err => console.log("CMS default fallback for " + pageName + ":", err));
+    </script>
 </body>
 </html>

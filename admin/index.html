@@ -26,6 +26,37 @@
     <div id="nc-root" class="max-w-6xl mx-auto mt-10 p-6"></div>
 
     <script>
+        // --- CUSTOMISATION DU PREVIEW CMS ---
+        CMS.registerPreviewStyle("https://cdn.tailwindcss.com");
+        CMS.registerPreviewStyle("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Outfit:wght@200;300;400;600&family=Fira+Code:wght@400;600&display=swap");
+        CMS.registerPreviewStyle(`
+            body { 
+                background-color: #05050a; 
+                color: #ffffff; 
+                font-family: 'Outfit', sans-serif; 
+                padding: 2rem;
+            }
+            h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: bold; text-transform: uppercase; }
+            .preview-container { max-width: 800px; margin: auto; }
+            .title-preview { font-size: 3rem; margin-bottom: 1rem; color: #fff; }
+            .desc-preview { font-size: 1.2rem; color: #9ca3af; margin-bottom: 2rem; }
+            .btn-preview { padding: 0.5rem 1rem; border: 1px solid #00ffcc; color: #00ffcc; border-radius: 9999px; display: inline-block; }
+        `, { raw: true });
+
+        var PagePreview = createClass({
+            render: function() {
+                var entry = this.props.entry;
+                return h('div', {className: "preview-container"},
+                    h('h1', {className: "title-preview"}, entry.getIn(['data', 'hero_title'])),
+                    h('p', {className: "desc-preview"}, entry.getIn(['data', 'hero_desc'])),
+                    entry.getIn(['data', 'para_1']) ? h('p', {className: "desc-preview"}, entry.getIn(['data', 'para_1'])) : null,
+                    entry.getIn(['data', 'para_2']) ? h('p', {className: "desc-preview"}, entry.getIn(['data', 'para_2'])) : null
+                );
+            }
+        });
+
+        CMS.registerPreviewTemplate("pages", PagePreview);
+
         // --- GESTION DU FOND ÉTOILÉ ---
         const canvas = document.getElementById('starfield');
         const ctx = canvas.getContext('2d');
