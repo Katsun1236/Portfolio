@@ -11,9 +11,9 @@ exports.handler = async function(event, context) {
 
         // Récupération de tes clés secrètes stockées sur Netlify
         // (À configurer dans les paramètres Netlify : Site settings > Environment variables)
-        const RESEND_API_KEY = process.env.RESEND_API_KEY;
-        const NOTION_API_KEY = process.env.NOTION_API_KEY;
-        const NOTION_DATABASE_ID = process.env.NOTION_DATABASE_ID;
+        const RESEND_API_KEY = "re_RfJJcb2r_h9VjZ8Hmax9avKCvC2PfYEcd";
+        const NOTION_API_KEY = "ntn_G8080304948aHHraXO4znTrz6cyv8uFzi5V05iItmPMcrp";
+        const NOTION_DATABASE_ID = "3741e19fab3480bca43ce136c7626801";
 
         if (!RESEND_API_KEY || !NOTION_API_KEY || !NOTION_DATABASE_ID) {
             console.error("Clés API manquantes dans l'environnement Netlify.");

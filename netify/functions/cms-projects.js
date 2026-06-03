@@ -1,7 +1,7 @@
 exports.handler = async function(event, context) {
-    const NOTION_API_KEY = process.env.NOTION_API_KEY;
+    const NOTION_API_KEY = "ntn_G8080304948aHHraXO4znTrz6cyv8uFzi5V05iItmPMcrp";
     // Crée une DEUXIÈME base de données sur Notion dédiée aux projets, et mets son ID dans cette variable Netlify
-    const NOTION_CMS_DB_ID = process.env.NOTION_CMS_DB_ID; 
+    const NOTION_CMS_DB_ID = "3741e19fab3480539047c19f6c88650a"; 
 
     if (!NOTION_API_KEY || !NOTION_CMS_DB_ID) {
         return { statusCode: 500, body: JSON.stringify({ error: "Configuration Notion CMS manquante." }) };
