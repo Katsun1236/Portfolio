@@ -75,8 +75,8 @@
 
         .gradient-text {
             background: linear-gradient(90deg, var(--accent-crea), var(--accent-dev));
-            background-clip: text;
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
@@ -327,43 +327,57 @@
         initCanvas();
         drawStars();
 
-        /* --- GESTION DU FORMULAIRE (Exemple basique) --- */
-        // Tu devras configurer l'attribut "action" de la balise <form> 
-        // vers ton webhook (ex: Zapier, Make, ou Netlify Forms) pour relier ça à Resend et Notion.
-        
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            // e.preventDefault(); // Décommente cette ligne si tu utilises Fetch API au lieu de l'action form classique
+        /* --- GESTION DU FORMULAIRE VIA NETLIFY FUNCTIONS --- */
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault(); // Empêche le rechargement classique de la page
             
             const btn = this.querySelector('.submit-btn');
             const originalText = btn.innerHTML;
             
-            // Animation de chargement visuelle
+            // Récupération des valeurs
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+            
+            // Animation de chargement
             btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Envoi en cours...';
             btn.style.opacity = '0.8';
             btn.style.pointerEvents = 'none';
 
-            // Si tu as un Webhook, c'est ici que tu ferais ton fetch()
-            /*
-            fetch('TON_URL_WEBHOOK', {
-                method: 'POST',
-                body: new FormData(this)
-            }).then(() => {
-                btn.innerHTML = '<i class="fa-solid fa-check"></i> Message Envoyé !';
-                btn.style.background = '#00ffcc';
-                btn.style.color = '#000';
-                this.reset();
-            });
-            */
-            
-            // Simule un envoi pour le visuel (À SUPPRIMER QUAND TU AS TON WEBHOOK)
-            setTimeout(() => {
-                btn.innerHTML = '<i class="fa-solid fa-check"></i> Action requise (Configurer Webhook)';
+            try {
+                // Appel vers notre fonction backend Netlify
+                const response = await fetch('/.netlify/functions/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    btn.innerHTML = '<i class="fa-solid fa-check"></i> Message Envoyé !';
+                    btn.style.background = '#00ffcc';
+                    btn.style.color = '#000';
+                    this.reset(); // On vide le formulaire
+                } else {
+                    throw new Error('Erreur réseau');
+                }
+            } catch (error) {
+                console.error('Erreur:', error);
+                btn.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Erreur lors de l\'envoi';
+                btn.style.background = '#ef4444'; // Rouge
+                btn.style.color = '#fff';
+            } finally {
+                // Remise à l'état initial après 3 secondes
                 setTimeout(() => {
                     btn.innerHTML = originalText;
+                    btn.style.background = '';
+                    btn.style.color = '';
                     btn.style.opacity = '1';
                     btn.style.pointerEvents = 'auto';
                 }, 3000);
-            }, 1000);
+            }
         });
     </script>
 </body>
