@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Bastien Admin | CMS</title>
-    <!-- Decap CMS Script -->
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js" defer></script>
+    <!-- Decap CMS + Netlify Identity (Git Gateway) -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background: #05050a; color: white; font-family: 'Outfit', sans-serif; }
@@ -26,6 +27,16 @@
     <div id="nc-root" class="max-w-6xl mx-auto mt-10 p-6"></div>
 
     <script>
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("init", function (user) {
+                if (!user) {
+                    window.netlifyIdentity.on("login", function () {
+                        document.location.href = "/admin/";
+                    });
+                }
+            });
+        }
+
         // --- CUSTOMISATION DU PREVIEW CMS ---
         CMS.registerPreviewStyle("https://cdn.tailwindcss.com");
         CMS.registerPreviewStyle("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Outfit:wght@200;300;400;600&family=Fira+Code:wght@400;600&display=swap");

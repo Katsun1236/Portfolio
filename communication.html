@@ -98,7 +98,7 @@
         img { user-select: none; pointer-events: none; }
     </style>
 </head>
-<body class="antialiased" oncontextmenu="return false;">
+<body class="antialiased" data-page="communication" oncontextmenu="return false;">
 
     <canvas id="starfield"></canvas>
 
@@ -134,51 +134,16 @@
 
     <main class="pt-32 pb-20 px-6 md:px-12 max-w-7xl mx-auto flex-grow">
         <div class="text-center mb-16">
-            <h1 class="text-4xl md:text-6xl text-yellow-400 font-bold mb-4 font-title uppercase tracking-widest drop-shadow-[0_0_15px_rgba(255,215,0,0.3)]">Création & Com</h1>
-            <p class="text-gray-400 text-lg max-w-2xl mx-auto font-light">Stratégie, identité visuelle et animation de communautés. Je donne vie à vos projets grâce à une communication ciblée et impactante.</p>
+            <h1 data-cms="hero_title" class="text-4xl md:text-6xl text-yellow-400 font-bold mb-4 font-title uppercase tracking-widest drop-shadow-[0_0_15px_rgba(255,215,0,0.3)]">Création & Com</h1>
+            <p data-cms="hero_desc" class="text-gray-400 text-lg max-w-2xl mx-auto font-light">Stratégie, identité visuelle et animation de communautés. Je donne vie à vos projets grâce à une communication ciblée et impactante.</p>
         </div>
 
         <!-- Réalisations Globales -->
         <h2 class="text-2xl font-bold mb-8 font-title uppercase tracking-wider border-b border-white/10 pb-4">Études de Cas</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
-            
-            <!-- Drop the Mic -->
-            <div class="bg-white/5 border border-white/10 rounded-3xl overflow-hidden backdrop-blur-md hover:border-yellow-400/30 transition-all duration-300 group cursor-pointer hover:-translate-y-2 shadow-lg" onclick="openModal('drop-the-mic')">
-                <div class="h-48 bg-gradient-to-br from-purple-900 to-black relative overflow-hidden flex items-center justify-center">
-                    <i class="fa-solid fa-microphone-lines text-5xl text-yellow-400/80 group-hover:scale-110 group-hover:text-yellow-400 transition-all duration-500"></i>
-                    <div class="absolute top-4 right-4 bg-yellow-400 text-black text-xs font-bold px-3 py-1 rounded-full uppercase">Stand-up</div>
-                </div>
-                <div class="p-8">
-                    <h3 class="text-2xl font-bold mb-2">Drop the Mic</h3>
-                    <p class="text-sm text-gray-400 mb-6 line-clamp-2">Stratégie de communication pour un événement de stand-up à La Nef.</p>
-                    <span class="text-yellow-400 text-sm font-semibold flex items-center gap-2 group-hover:gap-4 transition-all">Analyser le projet <i class="fa-solid fa-arrow-right"></i></span>
-                </div>
-            </div>
-
-            <!-- Easy Garden -->
-            <div class="bg-white/5 border border-white/10 rounded-3xl overflow-hidden backdrop-blur-md hover:border-yellow-400/30 transition-all duration-300 group cursor-pointer hover:-translate-y-2 shadow-lg" onclick="openModal('easy-garden')">
-                <div class="h-48 bg-gradient-to-br from-green-900 to-black relative overflow-hidden flex items-center justify-center">
-                    <i class="fa-solid fa-leaf text-5xl text-yellow-400/80 group-hover:scale-110 group-hover:text-yellow-400 transition-all duration-500"></i>
-                    <div class="absolute top-4 right-4 bg-yellow-400 text-black text-xs font-bold px-3 py-1 rounded-full uppercase">Identité Visuelle</div>
-                </div>
-                <div class="p-8">
-                    <h3 class="text-2xl font-bold mb-2">Easy Garden</h3>
-                    <p class="text-sm text-gray-400 mb-6 line-clamp-2">Création de l'identité digitale complète pour un jardinier paysagiste.</p>
-                    <span class="text-yellow-400 text-sm font-semibold flex items-center gap-2 group-hover:gap-4 transition-all">Analyser le projet <i class="fa-solid fa-arrow-right"></i></span>
-                </div>
-            </div>
-
-            <!-- MJ Lierre -->
-            <div class="bg-white/5 border border-white/10 rounded-3xl overflow-hidden backdrop-blur-md hover:border-yellow-400/30 transition-all duration-300 group cursor-pointer hover:-translate-y-2 shadow-lg" onclick="openModal('mj-lierre')">
-                <div class="h-48 bg-gradient-to-br from-orange-900 to-black relative overflow-hidden flex items-center justify-center">
-                    <i class="fa-solid fa-masks-theater text-5xl text-yellow-400/80 group-hover:scale-110 group-hover:text-yellow-400 transition-all duration-500"></i>
-                    <div class="absolute top-4 right-4 bg-white/10 border border-white/20 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">Projet d'étude</div>
-                </div>
-                <div class="p-8">
-                    <h3 class="text-2xl font-bold mb-2">MJ Lierre</h3>
-                    <p class="text-sm text-gray-400 mb-6 line-clamp-2">Identité visuelle Néo-Brutaliste pour le festival "Jeunes Talents".</p>
-                    <span class="text-yellow-400 text-sm font-semibold flex items-center gap-2 group-hover:gap-4 transition-all">Analyser le projet <i class="fa-solid fa-arrow-right"></i></span>
-                </div>
+        <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
+            <div class="col-span-full text-center py-12 text-yellow-400 font-code animate-pulse">
+                <i class="fa-solid fa-circle-notch fa-spin text-3xl mb-4"></i>
+                <p>Chargement des projets...</p>
             </div>
         </div>
 
@@ -306,7 +271,7 @@
     <!-- MODAL POUR LES DÉTAILS DES PROJETS -->
     <div id="project-modal" class="modal-overlay">
         <div class="modal-content">
-            <div class="modal-close" onclick="closeModal()">
+            <div class="modal-close">
                 <i class="fa-solid fa-xmark text-xl"></i>
             </div>
             
@@ -338,35 +303,12 @@
         © 2026 BASTIEN FESTOR.
     </footer>
 
-    <script>        // --- FETCH CMS DATA ---
-        fetch('/content/communication.json')
-            .then(response => {
-                if (!response.ok) throw new Error("CMS content not found");
-                return response.json();
-            })
-            .then(data => {
-                document.querySelectorAll('[data-cms]').forEach(el => {
-                    const key = el.getAttribute('data-cms');
-                    if (data[key]) {
-                        el.innerHTML = data[key];
-                    }
-                });
-            })
-            .catch(err => console.log("CMS default fallback:", err));
-        /* --- MENU MOBILE --- */
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        let isMenuOpen = false;
-
-        mobileMenuBtn.addEventListener('click', () => {
-            isMenuOpen = !isMenuOpen;
-            if(isMenuOpen) {
-                mobileMenu.classList.remove('translate-x-full');
-                mobileMenuBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
-            } else {
-                mobileMenu.classList.add('translate-x-full');
-                mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
-            }
+    <script src="/assets/js/cms.js"></script>
+    <script src="/assets/js/mobile-menu.js"></script>
+    <script src="/assets/js/projects.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            ProjectsLoader.load({ containerId: "projects-container", category: "Créa", theme: "crea" });
         });
 
         /* --- FOND ÉTOILÉ (CANVAS) --- */
@@ -418,78 +360,6 @@
         window.addEventListener('resize', initCanvas);
         initCanvas();
         drawStars();
-
-        /* --- GESTION DES MODALS (Projets) --- */
-        const projectData = {
-            'drop-the-mic': {
-                tag: 'Stand-up & Événementiel',
-                title: 'Drop the Mic',
-                desc: "Développement de la stratégie de communication globale pour un événement de stand-up à La Nef. Création de l'identité visuelle de A à Z, planification des publications et animation de la communauté sur les réseaux sociaux.",
-                tools: ['Stratégie de Marque', 'Canva', 'Premiere Pro', 'Instagram', 'TikTok'],
-                link: 'https://drop-the-mic.netlify.app'
-            },
-            'easy-garden': {
-                tag: 'Identité Graphique',
-                title: 'Easy Garden',
-                desc: "Création de l'identité visuelle, élaboration d'un brandboard complet et développement du site vitrine pour un artisan jardinier paysagiste. Une attention particulière a été portée à l'image de marque pour rassurer la clientèle locale.",
-                tools: ['Photoshop', 'Illustrator', 'Brandboard', 'SEO Local'],
-                link: 'https://easy-garden.eu'
-            },
-            'mj-lierre': {
-                tag: 'Projet d\'étude (Fictif)',
-                title: 'MJ Lierre-sur-Sambre',
-                desc: "Conception d'une identité visuelle au style Néo-Brutaliste assumé pour le festival fictif 'Jeunes Talents'. L'objectif était de cibler un public jeune et hyper-connecté avec des couleurs vives et des typographies percutantes.",
-                tools: ['Recherche Identitaire', 'Photoshop', 'Illustrator', 'UI Design'],
-                link: 'https://mj-lss.netlify.app'
-            }
-        };
-
-        const modalOverlay = document.getElementById('project-modal');
-        const modalTitle = document.getElementById('modal-title');
-        const modalDesc = document.getElementById('modal-desc');
-        const modalTools = document.getElementById('modal-tools');
-        const modalLink = document.getElementById('modal-link');
-        const modalTag = document.getElementById('modal-tag');
-
-        function openModal(projectId) {
-            const data = projectData[projectId];
-            if(!data) return;
-
-            modalTitle.innerText = data.title;
-            modalDesc.innerText = data.desc;
-            modalTag.innerText = data.tag;
-            
-            modalTools.innerHTML = '';
-            data.tools.forEach(tool => {
-                const span = document.createElement('span');
-                span.className = 'px-3 py-1 bg-white/10 border border-white/20 rounded-full text-xs font-semibold text-gray-300';
-                span.innerText = tool;
-                modalTools.appendChild(span);
-            });
-
-            modalLink.href = data.link;
-
-            modalOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; 
-        }
-
-        function closeModal() {
-            modalOverlay.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        modalOverlay.addEventListener('click', function(e) {
-            if(e.target === modalOverlay) closeModal();
-        });
-
-        // Empêcher l'ouverture de la console via raccourcis classiques (Optionnel)
-        document.onkeydown = function(e) {
-            if(e.keyCode == 123) return false;
-            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
-            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
-            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
-            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
-        }
     </script>
 </body>
 </html>

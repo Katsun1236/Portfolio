@@ -43,7 +43,8 @@ collections:
         file: "content/about.json"
         fields:
           - {label: "Photo de Profil", name: "profil_pic", widget: "image", required: false}
-          - {label: "Titre Principal", name: "hero_title", widget: "string", default: "À Propos"}
+          - {label: "Titre Principal", name: "hero_title", widget: "string", default: "Derrière l'écran"}
+          - {label: "Sous-titre", name: "hero_desc", widget: "text", default: "Le pont entre la créativité visuelle et la rigueur technique."}
           - {label: "Paragraphe 1", name: "para_1", widget: "text"}
           - {label: "Paragraphe 2", name: "para_2", widget: "text"}
 
@@ -51,19 +52,28 @@ collections:
         name: "contact"
         file: "content/contact.json"
         fields:
-          - {label: "Titre Principal", name: "hero_title", widget: "string", default: "On discute ?"}
-          - {label: "Description", name: "hero_desc", widget: "text", default: "Un projet en tête ? Une question ? Ou simplement l'envie d'échanger ? N'hésitez pas à m'envoyer un message !"}
+          - {label: "Titre Principal", name: "hero_title", widget: "string", default: "Démarrons un projet"}
+          - {label: "Description", name: "hero_desc", widget: "text", default: "Une idée de création visuelle, un besoin en développement web, ou simplement l'envie de discuter ? Contactez-moi."}
 
   - name: "projects"
     label: "Projets (Portfolio)"
-    folder: "content/projects"
-    create: true
-    extension: "json"
-    format: "json"
-    fields:
-      - {label: "Titre du projet", name: "title", widget: "string"}
-      - {label: "Catégorie", name: "category", widget: "select", options: ["Dev", "Créa"]}
-      - {label: "Image d'aperçu", name: "image", widget: "image"}
-      - {label: "Description détaillée", name: "description", widget: "text"}
-      - {label: "Outils utilisés", name: "stack", widget: "string"}
-      - {label: "Lien vers le site", name: "link", widget: "string", required: false}
+    files:
+      - label: "Liste des projets"
+        name: "portfolio"
+        file: "content/projects.json"
+        fields:
+          - label: "Projets"
+            name: "projects"
+            widget: "list"
+            fields:
+              - {label: "Identifiant (slug)", name: "slug", widget: "string", hint: "Ex: drop-the-mic"}
+              - {label: "Titre", name: "title", widget: "string"}
+              - {label: "Catégorie", name: "category", widget: "select", options: ["Dev", "Créa"]}
+              - {label: "Étiquette", name: "tag", widget: "string", required: false}
+              - {label: "Description courte", name: "short_description", widget: "string"}
+              - {label: "Description détaillée", name: "description", widget: "text"}
+              - {label: "Image d'aperçu", name: "image", widget: "image", required: false}
+              - {label: "Icône Font Awesome (Créa)", name: "icon", widget: "string", required: false, hint: "Ex: fa-leaf"}
+              - {label: "Dégradé Tailwind (Créa)", name: "gradient", widget: "string", required: false, hint: "Ex: from-green-900"}
+              - {label: "Outils / Stack", name: "stack", widget: "string", hint: "Séparés par des virgules"}
+              - {label: "Lien", name: "link", widget: "string", required: false}

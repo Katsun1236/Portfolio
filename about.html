@@ -93,7 +93,7 @@
         }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased" data-page="about">
 
     <!-- Fond Étoilé Interactif -->
     <canvas id="starfield"></canvas>
@@ -114,10 +114,19 @@
         </div>
 
         <!-- Menu Mobile Toggle -->
-        <div class="md:hidden text-2xl text-white cursor-pointer">
+        <div id="mobile-menu-btn" class="md:hidden text-2xl text-white cursor-pointer relative z-50">
             <i class="fa-solid fa-bars"></i>
         </div>
     </nav>
+
+    <!-- Menu Mobile Déroulant -->
+    <div id="mobile-menu" class="fixed top-0 left-0 w-full h-screen bg-[#05050a]/95 backdrop-blur-xl z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8 text-2xl font-title uppercase">
+        <a href="index.html" class="text-gray-400 hover:text-yellow-400 transition">Accueil</a>
+        <a href="communication.html" class="text-gray-400 hover:text-yellow-400 transition">Création & Com</a>
+        <a href="developpement.html" class="text-gray-400 hover:text-[#00ffcc] transition">Développement</a>
+        <a href="about.html" class="text-white transition">À Propos</a>
+        <a href="contact.html" class="text-gray-400 hover:text-white transition">Contact</a>
+    </div>
 
     <main class="pt-32 pb-20 px-6 md:px-12 max-w-6xl mx-auto flex-grow flex flex-col justify-center">
         
@@ -125,7 +134,7 @@
             <h1 data-cms="hero_title" class="text-4xl md:text-6xl font-bold mb-4 font-title uppercase tracking-widest">
                 Derrière l'<span class="gradient-text">écran</span>
             </h1>
-            <p class="text-gray-400 text-lg max-w-2xl mx-auto font-light">
+            <p data-cms="hero_desc" class="text-gray-400 text-lg max-w-2xl mx-auto font-light">
                 Le pont entre la créativité visuelle et la rigueur technique.
             </p>
         </div>
@@ -137,11 +146,10 @@
             <div class="w-full md:w-1/3 flex flex-col items-center">
                 <!-- Emplacement pour la photo -->
                 <div class="w-48 h-64 md:w-full md:h-80 rounded-2xl overflow-hidden mb-6 border border-white/20 relative group">
-                    <!-- REMPLACER LE SRC CI-DESSOUS PAR UNE VRAIE PHOTO DE TOI -->
-                    <div class="absolute inset-0 photo-placeholder flex items-center justify-center text-gray-500 font-code text-xs uppercase tracking-widest text-center px-4">
+                    <div id="profile-placeholder" class="absolute inset-0 photo-placeholder flex items-center justify-center text-gray-500 font-code text-xs uppercase tracking-widest text-center px-4">
                         Emplacement Photo<br>(Insérer image)
                     </div>
-                    <!-- <img src="chemin/vers/ta-photo.jpg" alt="Bastien Festor" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 relative z-10"> -->
+                    <img id="profile-image" src="" alt="Bastien Festor" class="hidden w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 relative z-10">
                 </div>
                 
                 <!-- Quick Stats -->
@@ -244,6 +252,8 @@
         © 2026 BASTIEN FESTOR.
     </footer>
 
+    <script src="/assets/js/cms.js"></script>
+    <script src="/assets/js/mobile-menu.js"></script>
     <script>
         /* --- GESTION DU FOND ÉTOILÉ (CANVAS) --- */
         const canvas = document.getElementById('starfield');
@@ -294,25 +304,6 @@
         window.addEventListener('resize', initCanvas);
         initCanvas();
         drawStars();
-    </script>
-    <script>
-        // --- FETCH CMS DATA ---
-        const pageName = "about";
-        const cmsFile = pageName === "index" ? "home" : pageName;
-        fetch(`/content/${cmsFile}.json`)
-            .then(response => {
-                if (!response.ok) throw new Error("CMS content not found");
-                return response.json();
-            })
-            .then(data => {
-                document.querySelectorAll("[data-cms]").forEach(el => {
-                    const key = el.getAttribute("data-cms");
-                    if (data[key]) {
-                        el.innerHTML = data[key];
-                    }
-                });
-            })
-            .catch(err => console.log("CMS default fallback for " + pageName + ":", err));
     </script>
 </body>
 </html>

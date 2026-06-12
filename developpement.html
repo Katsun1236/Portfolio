@@ -116,7 +116,7 @@
         img { user-select: none; pointer-events: none; }
     </style>
 </head>
-<body class="antialiased" oncontextmenu="return false;">
+<body class="antialiased" data-page="developpement" oncontextmenu="return false;">
 
     <!-- Fond Étoilé Interactif -->
     <canvas id="starfield"></canvas>
@@ -152,6 +152,11 @@
     </div>
 
     <main class="pt-32 pb-20 px-6 md:px-12 max-w-7xl mx-auto flex-grow">
+
+        <div class="text-center mb-12">
+            <h1 data-cms="hero_title" class="text-4xl md:text-6xl font-bold mb-4 font-title uppercase tracking-widest text-[#00ffcc] drop-shadow-[0_0_15px_rgba(0,255,204,0.3)]">Développement Web</h1>
+            <p data-cms="hero_desc" class="text-gray-400 text-lg max-w-2xl mx-auto font-light">Des fondations solides pour vos idées. Je développe des sites performants, accessibles et pensés pour le référencement naturel.</p>
+        </div>
         
         <!-- Hero Terminal Dev -->
         <div class="mb-20">
@@ -175,55 +180,13 @@
             </div>
         </div>
 
-        <!-- Réalisations Dev (Visual Gallery) -->
+        <!-- Projets chargés depuis le CMS (content/projects.json) -->
         <h2 class="text-2xl font-bold mb-8 font-title uppercase tracking-wider border-b border-[#00ffcc]/20 pb-4 text-[#00ffcc]">Projets Déployés</h2>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
-            
-            <!-- Projet : Articbase -->
-            <div class="bg-white/5 border border-[#00ffcc]/20 rounded-3xl overflow-hidden backdrop-blur-md hover:border-[#00ffcc]/70 transition-all duration-300 group cursor-pointer hover:-translate-y-2 shadow-lg" onclick="openModal('articbase')">
-                <div class="h-48 relative overflow-hidden bg-black">
-                    <!-- Remplacer par un vrai screenshot de la landing page Articbase -->
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop" alt="Articbase Preview" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100">
-                    <!-- Overlay Tech -->
-                    <div class="absolute inset-0 bg-[#00ffcc]/20 group-hover:bg-transparent transition-colors duration-500"></div>
-                    <div class="absolute top-4 right-4 bg-[#00ffcc] text-black text-xs font-bold px-3 py-1 rounded-full uppercase font-code">Landing Page</div>
-                </div>
-                <div class="p-8">
-                    <h3 class="text-2xl font-bold mb-2 font-code">Articbase</h3>
-                    <p class="text-sm text-gray-400 mb-6 line-clamp-2">Page de capture (Landing Page) optimisée pour une campagne SEA.</p>
-                    <span class="text-[#00ffcc] text-sm font-code flex items-center gap-2 group-hover:gap-4 transition-all">>_ Analyser l'app <i class="fa-solid fa-arrow-right"></i></span>
-                </div>
-            </div>
 
-            <!-- Projet : Easy Garden -->
-            <div class="bg-white/5 border border-[#00ffcc]/20 rounded-3xl overflow-hidden backdrop-blur-md hover:border-[#00ffcc]/70 transition-all duration-300 group cursor-pointer hover:-translate-y-2 shadow-lg" onclick="openModal('easy-garden')">
-                <div class="h-48 relative overflow-hidden bg-black">
-                    <!-- Remplacer par un vrai screenshot de Easy Garden -->
-                    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop" alt="Easy Garden Preview" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100">
-                    <div class="absolute inset-0 bg-[#00ffcc]/20 group-hover:bg-transparent transition-colors duration-500"></div>
-                    <div class="absolute top-4 right-4 bg-[#00ffcc] text-black text-xs font-bold px-3 py-1 rounded-full uppercase font-code">Site Vitrine</div>
-                </div>
-                <div class="p-8">
-                    <h3 class="text-2xl font-bold mb-2 font-code">Easy Garden</h3>
-                    <p class="text-sm text-gray-400 mb-6 line-clamp-2">Site web vitrine professionnel, full responsive avec optimisation SEO.</p>
-                    <span class="text-[#00ffcc] text-sm font-code flex items-center gap-2 group-hover:gap-4 transition-all">>_ Analyser l'app <i class="fa-solid fa-arrow-right"></i></span>
-                </div>
-            </div>
-
-            <!-- Projet : Projet Blocus -->
-            <div class="bg-white/5 border border-[#00ffcc]/20 rounded-3xl overflow-hidden backdrop-blur-md hover:border-[#00ffcc]/70 transition-all duration-300 group cursor-pointer hover:-translate-y-2 shadow-lg" onclick="openModal('blocus')">
-                <div class="h-48 relative overflow-hidden bg-black">
-                    <!-- Remplacer par un vrai screenshot du Dashboard Blocus -->
-        <!-- Réalisations Dev -->
-        <h2 class="text-2xl font-bold mb-8 font-title uppercase tracking-wider border-b border-[#00ffcc]/20 pb-4 text-[#00ffcc]">Projets Déployés</h2>
-        
-        <!-- C'est ici que les projets Notion s'afficheront -->
-        <div id="notion-projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-            <!-- Animation de chargement en attendant la réponse de Notion -->
+        <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
             <div class="col-span-full text-center py-12 text-[#00ffcc] font-code animate-pulse">
                 <i class="fa-solid fa-circle-notch fa-spin text-3xl mb-4"></i>
-                <p>Connexion à la base de données Notion en cours...</p>
+                <p>Chargement des projets...</p>
             </div>
         </div>
 
@@ -265,7 +228,7 @@
     <!-- MODAL POUR LES DÉTAILS DES PROJETS DEV -->
     <div id="project-modal" class="modal-overlay">
         <div class="modal-content">
-            <div class="modal-close" onclick="closeModal()">
+            <div class="modal-close">
                 <i class="fa-solid fa-xmark text-xl"></i>
             </div>
             
@@ -297,21 +260,12 @@
         © 2026 BASTIEN FESTOR.
     </footer>
 
+    <script src="/assets/js/cms.js"></script>
+    <script src="/assets/js/mobile-menu.js"></script>
+    <script src="/assets/js/projects.js"></script>
     <script>
-        /* --- 1. GESTION DU FOND ÉTOILÉ (CANVAS) --- */
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        let isMenuOpen = false;
-
-        mobileMenuBtn.addEventListener('click', () => {
-            isMenuOpen = !isMenuOpen;
-            if(isMenuOpen) {
-                mobileMenu.classList.remove('translate-x-full');
-                mobileMenuBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
-            } else {
-                mobileMenu.classList.add('translate-x-full');
-                mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
-            }
+        document.addEventListener("DOMContentLoaded", function () {
+            ProjectsLoader.load({ containerId: "projects-container", category: "Dev", theme: "dev" });
         });
 
         /* --- FOND ÉTOILÉ (CANVAS) --- */
@@ -364,131 +318,6 @@
         window.addEventListener('resize', initCanvas);
         initCanvas();
         drawStars();
-
-        /* --- 2. RÉCUPÉRATION DES PROJETS DEPUIS NOTION (CMS) --- */
-        async function fetchNotionProjects() {
-            const container = document.getElementById('notion-projects-container');
-            
-            try {
-                // Appel vers notre fonction backend
-                const response = await fetch('/.netlify/functions/cms-projects');
-                if(!response.ok) throw new Error('Erreur de chargement');
-                
-                const projects = await response.json();
-                
-                // Vider le container de chargement
-                container.innerHTML = '';
-                
-                // Si la base Notion est vide
-                if(projects.length === 0) {
-                    container.innerHTML = '<p class="text-gray-500 font-code col-span-full">Aucun projet trouvé dans la base de données.</p>';
-                    return;
-                }
-
-                // Générer le HTML pour chaque projet reçu de Notion
-                projects.forEach(project => {
-                    // On ne filtre ici que les projets de type "Dev" (pour cette page)
-                    if(project.categorie !== 'Dev') return;
-
-                    const projectHTML = `
-                        <div class="bg-white/5 border border-white/10 rounded-xl overflow-hidden backdrop-blur-md hover:border-[#00ffcc]/50 transition-all duration-300 group cursor-pointer hover:-translate-y-2" onclick="openNotionModal('${project.id}')">
-                            <!-- Fausse arborescence ou Image -->
-                            <div class="h-48 code-window border-b border-[#00ffcc]/20 p-0 text-xs md:text-sm text-gray-300 relative overflow-hidden bg-black">
-                                <img src="${project.image}" alt="${project.titre}" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500">
-                                <div class="absolute inset-0 bg-[#00ffcc]/10 group-hover:bg-transparent transition-colors duration-500 pointer-events-none"></div>
-                                <div class="absolute top-4 right-4 bg-[#00ffcc]/90 text-black text-[10px] font-bold px-2 py-1 rounded uppercase z-10">Web App</div>
-                            </div>
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold mb-2 font-code">${project.titre}</h3>
-                                <p class="text-sm text-gray-400 mb-4 line-clamp-2">${project.description}</p>
-                                <span class="text-[#00ffcc] text-xs font-code flex items-center gap-2 group-hover:gap-4 transition-all">sudo inspect <i class="fa-solid fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    `;
-                    container.innerHTML += projectHTML;
-                });
-                
-                // Sauvegarder les données globalement pour la Modale
-                window.notionData = projects;
-
-            } catch (error) {
-                console.error(error);
-                container.innerHTML = '<p class="text-red-400 font-code col-span-full border border-red-500/30 p-4 rounded bg-red-500/10">Erreur de connexion à Notion CMS. Vérifiez vos clés API.</p>';
-            }
-        }
-
-        // Charger les projets au démarrage de la page
-        document.addEventListener('DOMContentLoaded', fetchNotionProjects);
-
-        /* --- 3. GESTION DES MODALS DYNAMIQUES --- */
-        const modalOverlay = document.getElementById('project-modal');
-        const modalTitle = document.getElementById('modal-title');
-        const modalDesc = document.getElementById('modal-desc');
-        const modalTools = document.getElementById('modal-tools');
-        const modalLink = document.getElementById('modal-link');
-        const modalTag = document.getElementById('modal-tag');
-
-        function openNotionModal(projectId) {
-            // Trouver le projet dans nos données Notion chargées
-            const data = window.notionData.find(p => p.id === projectId);
-            if(!data) return;
-
-            modalTitle.innerText = data.titre;
-            modalDesc.innerText = data.description;
-            modalTag.innerText = data.categorie;
-            
-            modalTools.innerHTML = '';
-            // Notion renvoie une string (ex: "React, Tailwind, Supabase"), on la coupe
-            const toolsArray = data.stack.split(',').map(item => item.trim()).filter(i => i);
-            toolsArray.forEach(tool => {
-                const span = document.createElement('span');
-                span.className = 'px-3 py-1 bg-white/5 border border-white/10 rounded text-xs text-gray-300 font-code';
-                span.innerText = tool;
-                modalTools.appendChild(span);
-            });
-
-            if(data.lien === '#' || !data.lien) {
-                modalLink.innerHTML = "Déploiement en cours <i class='fa-solid fa-spinner fa-spin'></i>";
-                modalLink.style.pointerEvents = 'none';
-                modalLink.style.opacity = '0.5';
-            } else {
-                modalLink.href = data.lien;
-                modalLink.innerHTML = "Lancer l'application <i class='fa-solid fa-arrow-up-right-from-square'></i>";
-                modalLink.style.pointerEvents = 'auto';
-                modalLink.style.opacity = '1';
-            }
-
-            modalOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; 
-        }
-
-        function closeModal() {
-            modalOverlay.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        modalOverlay.addEventListener('click', function(e) {
-            if(e.target === modalOverlay) closeModal();
-        });
-    </script>
-    <script>
-        // --- FETCH CMS DATA ---
-        const pageName = "developpement";
-        const cmsFile = pageName === "index" ? "home" : pageName;
-        fetch(`/content/${cmsFile}.json`)
-            .then(response => {
-                if (!response.ok) throw new Error("CMS content not found");
-                return response.json();
-            })
-            .then(data => {
-                document.querySelectorAll("[data-cms]").forEach(el => {
-                    const key = el.getAttribute("data-cms");
-                    if (data[key]) {
-                        el.innerHTML = data[key];
-                    }
-                });
-            })
-            .catch(err => console.log("CMS default fallback for " + pageName + ":", err));
     </script>
 </body>
 </html>

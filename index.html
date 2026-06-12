@@ -147,7 +147,7 @@
         }
     </style>
 </head>
-<body class="antialiased flex flex-col min-h-screen">
+<body class="antialiased flex flex-col min-h-screen" data-page="index">
 
     <!-- Fond Étoilé Interactif -->
     <canvas id="starfield"></canvas>
@@ -282,6 +282,8 @@
         © 2026 BASTIEN FESTOR.
     </footer>
 
+    <script src="/assets/js/cms.js"></script>
+    <script src="/assets/js/mobile-menu.js"></script>
     <script>
         // --- GESTION DE NETLIFY IDENTITY (CMS) ---
         if (window.netlifyIdentity) {
@@ -294,21 +296,6 @@
             });
         }
 
-        /* --- 1. GESTION DU MENU MOBILE --- */
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        let isMenuOpen = false;
-
-        mobileMenuBtn.addEventListener('click', () => {
-            isMenuOpen = !isMenuOpen;
-            if(isMenuOpen) {
-                mobileMenu.classList.remove('translate-x-full');
-                mobileMenuBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
-            } else {
-                mobileMenu.classList.add('translate-x-full');
-                mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
-            }
-        });
         /* --- Logic des Étoiles (Canvas) --- */
         const canvas = document.getElementById('starfield');
         const ctx = canvas.getContext('2d');
@@ -333,38 +320,6 @@
             requestAnimationFrame(drawStars);
         }
         window.addEventListener('resize', initCanvas); initCanvas(); drawStars();
-
-        /* --- Router SPA --- */
-        function navigate(pageId, event = null) {
-            if (event) event.preventDefault();
-            document.querySelectorAll('.page-section').forEach(p => p.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-        }
-
-        /* --- Init Netlify Identity --- */
-        if (window.netlifyIdentity) {
-            window.netlifyIdentity.on("init", user => {
-                if (!user) {
-                    window.netlifyIdentity.on("login", () => { document.location.href = "/admin/"; });
-                }
-            });
-        }
-
-        // --- FETCH CMS DATA ---
-        fetch('/content/home.json')
-            .then(response => {
-                if (!response.ok) throw new Error("CMS content not found");
-                return response.json();
-            })
-            .then(data => {
-                document.querySelectorAll('[data-cms]').forEach(el => {
-                    const key = el.getAttribute('data-cms');
-                    if (data[key]) {
-                        el.innerHTML = data[key];
-                    }
-                });
-            })
-            .catch(err => console.log("CMS default fallback:", err));
     </script>
 </body>
 </html>

@@ -101,6 +101,15 @@
 
         .input-field::placeholder { color: rgba(255, 255, 255, 0.3); }
 
+        .hp-field {
+            position: absolute;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
         .submit-btn {
             background: linear-gradient(90deg, var(--accent-crea), var(--accent-dev));
             color: #000;
@@ -143,7 +152,7 @@
         }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased" data-page="contact">
 
     <!-- Fond Étoilé Interactif -->
     <canvas id="starfield"></canvas>
@@ -164,10 +173,19 @@
         </div>
 
         <!-- Menu Mobile Toggle -->
-        <div class="md:hidden text-2xl text-white cursor-pointer">
+        <div id="mobile-menu-btn" class="md:hidden text-2xl text-white cursor-pointer relative z-50">
             <i class="fa-solid fa-bars"></i>
         </div>
     </nav>
+
+    <!-- Menu Mobile Déroulant -->
+    <div id="mobile-menu" class="fixed top-0 left-0 w-full h-screen bg-[#05050a]/95 backdrop-blur-xl z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8 text-2xl font-title uppercase">
+        <a href="index.html" class="text-gray-400 hover:text-yellow-400 transition">Accueil</a>
+        <a href="communication.html" class="text-gray-400 hover:text-yellow-400 transition">Création & Com</a>
+        <a href="developpement.html" class="text-gray-400 hover:text-[#00ffcc] transition">Développement</a>
+        <a href="about.html" class="text-gray-400 hover:text-white transition">À Propos</a>
+        <a href="contact.html" class="text-white transition">Contact</a>
+    </div>
 
     <main class="pt-32 pb-20 px-6 md:px-12 max-w-6xl mx-auto flex-grow flex flex-col justify-center">
         
@@ -230,7 +248,11 @@
                 <h2 class="text-2xl font-bold mb-8 font-title tracking-wide border-b border-white/10 pb-4">M'envoyer un message</h2>
                 
                 <!-- NOTE: L'attribut action doit pointer vers ton Webhook (Make, Zapier, Netlify Forms) -->
-                <form id="contactForm" action="#" method="POST" class="space-y-6">
+                <form id="contactForm" action="#" method="POST" class="space-y-6 relative" novalidate>
+
+                    <!-- Honeypot anti-spam (caché) -->
+                    <label for="website" class="hp-field" aria-hidden="true">Ne pas remplir</label>
+                    <input type="text" id="website" name="website" class="hp-field" tabindex="-1" autocomplete="off">
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="space-y-2">
@@ -262,7 +284,7 @@
                         <i class="fa-solid fa-paper-plane text-sm"></i>
                     </button>
                     
-                    <p class="text-xs text-gray-500 text-center mt-4">
+                    <p id="form-status" class="text-xs text-gray-500 text-center mt-4">
                         Vos informations ne seront pas partagées à des tiers.
                     </p>
                 </form>
@@ -276,6 +298,9 @@
         © 2026 BASTIEN FESTOR.
     </footer>
 
+    <script src="/assets/js/cms.js"></script>
+    <script src="/assets/js/mobile-menu.js"></script>
+    <script src="/assets/js/contact-form.js"></script>
     <script>
         /* --- GESTION DU FOND ÉTOILÉ (CANVAS) --- */
         const canvas = document.getElementById('starfield');
@@ -326,78 +351,6 @@
         window.addEventListener('resize', initCanvas);
         initCanvas();
         drawStars();
-
-        /* --- GESTION DU FORMULAIRE VIA NETLIFY FUNCTIONS --- */
-        document.getElementById('contactForm').addEventListener('submit', async function(e) {
-            e.preventDefault(); // Empêche le rechargement classique de la page
-            
-            const btn = this.querySelector('.submit-btn');
-            const originalText = btn.innerHTML;
-            
-            // Récupération des valeurs
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                subject: document.getElementById('subject').value,
-                message: document.getElementById('message').value
-            };
-            
-            // Animation de chargement
-            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Envoi en cours...';
-            btn.style.opacity = '0.8';
-            btn.style.pointerEvents = 'none';
-
-            try {
-                // Appel vers notre fonction backend Netlify
-                const response = await fetch('/.netlify/functions/contact', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(formData)
-                });
-
-                if (response.ok) {
-                    btn.innerHTML = '<i class="fa-solid fa-check"></i> Message Envoyé !';
-                    btn.style.background = '#00ffcc';
-                    btn.style.color = '#000';
-                    this.reset(); // On vide le formulaire
-                } else {
-                    throw new Error('Erreur réseau');
-                }
-            } catch (error) {
-                console.error('Erreur:', error);
-                btn.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Erreur lors de l\'envoi';
-                btn.style.background = '#ef4444'; // Rouge
-                btn.style.color = '#fff';
-            } finally {
-                // Remise à l'état initial après 3 secondes
-                setTimeout(() => {
-                    btn.innerHTML = originalText;
-                    btn.style.background = '';
-                    btn.style.color = '';
-                    btn.style.opacity = '1';
-                    btn.style.pointerEvents = 'auto';
-                }, 3000);
-            }
-        });
-    </script>
-    <script>
-        // --- FETCH CMS DATA ---
-        const pageName = "contact";
-        const cmsFile = pageName === "index" ? "home" : pageName;
-        fetch(`/content/${cmsFile}.json`)
-            .then(response => {
-                if (!response.ok) throw new Error("CMS content not found");
-                return response.json();
-            })
-            .then(data => {
-                document.querySelectorAll("[data-cms]").forEach(el => {
-                    const key = el.getAttribute("data-cms");
-                    if (data[key]) {
-                        el.innerHTML = data[key];
-                    }
-                });
-            })
-            .catch(err => console.log("CMS default fallback for " + pageName + ":", err));
     </script>
 </body>
 </html>
