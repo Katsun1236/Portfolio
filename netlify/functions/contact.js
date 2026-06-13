@@ -13,6 +13,10 @@ function truncate(str, max) {
     return str.length > max ? str.slice(0, max) : str;
 }
 
+function stripNewlines(str) {
+    return typeof str === "string" ? str.replace(/[\r\n]+/g, " ").trim() : "";
+}
+
 function isValidEmail(email) {
     return typeof email === "string" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
@@ -111,7 +115,7 @@ exports.handler = async function (event) {
                 from: RESEND_FROM,
                 to: CONTACT_TO,
                 reply_to: email,
-                subject: `Nouveau message de ${name} : ${subject}`,
+                subject: `Nouveau message de ${stripNewlines(name)} : ${stripNewlines(subject)}`,
                 html: `
                     <h2>Nouveau contact depuis le portfolio</h2>
                     <p><strong>Nom :</strong> ${safeName}</p>

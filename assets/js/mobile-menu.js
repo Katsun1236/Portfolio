@@ -5,22 +5,23 @@
 
     var isOpen = false;
 
+    function setOpen(open) {
+        isOpen = open;
+        menu.classList.toggle("translate-x-full", !open);
+        btn.innerHTML = open
+            ? '<i class="fa-solid fa-xmark"></i>'
+            : '<i class="fa-solid fa-bars"></i>';
+        btn.setAttribute("aria-expanded", String(open));
+        btn.setAttribute("aria-label", open ? "Fermer le menu" : "Ouvrir le menu");
+    }
+
     btn.addEventListener("click", function () {
-        isOpen = !isOpen;
-        if (isOpen) {
-            menu.classList.remove("translate-x-full");
-            btn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
-        } else {
-            menu.classList.add("translate-x-full");
-            btn.innerHTML = '<i class="fa-solid fa-bars"></i>';
-        }
+        setOpen(!isOpen);
     });
 
     menu.querySelectorAll("a").forEach(function (link) {
         link.addEventListener("click", function () {
-            isOpen = false;
-            menu.classList.add("translate-x-full");
-            btn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+            setOpen(false);
         });
     });
 })();
