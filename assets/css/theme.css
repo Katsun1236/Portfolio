@@ -301,3 +301,44 @@ a { color: inherit; }
     margin-top: auto;
     border-top: 1px solid var(--line);
 }
+.mesh-background {
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    pointer-events: none;
+    background-image: radial-gradient(circle at 20% 20%, rgba(0,0,0,0.02), transparent 10%),
+                      radial-gradient(circle at 80% 80%, rgba(0,0,0,0.02), transparent 10%);
+    opacity: 0.9;
+}
+.grain-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    background-image: url('/assets/images/grain.png');
+    background-repeat: repeat;
+    opacity: 0.06;
+}
+
+.title-reveal {
+    position: relative;
+    z-index: 50;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    color: var(--ink);
+    font-weight: 800;
+    margin: 0 0 12px 0;
+    line-height: 0.95;
+    font-size: clamp(2.5rem, 6vw, 5.5rem);
+    -webkit-font-smoothing: antialiased;
+}
+
+.title-reveal span {
+    display: inline-block;
+    padding: 6px 10px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0.2));
+    border-radius: 6px;
+}
+
+.sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
