@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bastien Festor | Création & Com</title>
-    
-    <meta name="description" content="Découvrez mes réalisations en stratégie de communication, identité visuelle, et animation de communautés.">
+    <title>Créa & Com | B-Impact Studio</title>
+
+    <meta name="description" content="Identité visuelle, stratégie de communication et animation de communautés par B-Impact Studio : études de cas et réalisations.">
     <link rel="canonical" href="https://www.b-impact.be/communication.html">
 
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
@@ -14,309 +14,221 @@
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.b-impact.be/communication.html">
-    <meta property="og:title" content="Bastien Festor | Création & Com">
-    <meta property="og:description" content="Découvrez mes réalisations en stratégie de communication, identité visuelle, et animation de communautés.">
+    <meta property="og:title" content="Créa & Com | B-Impact Studio">
+    <meta property="og:description" content="Identité visuelle, stratégie de communication et animation de communautés.">
     <meta property="og:image" content="https://www.b-impact.be/assets/og-image.jpg">
 
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Outfit:wght@200;300;400;600&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    
+    <link rel="stylesheet" href="/assets/css/theme.css">
     <style>
-        :root {
-            --accent-crea: #ffd700;
-            --bg-dark: #05050a;
-            --font-title: 'Space Grotesk', sans-serif;
-            --font-body: 'Outfit', sans-serif;
-            --font-code: 'Fira Code', monospace;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: #ffffff;
-            font-family: var(--font-body);
-            overflow-x: hidden;
-            min-height: 100vh;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-        }
-
-        h1, h2, h3, h4, .font-title { font-family: var(--font-title); }
-        .font-code { font-family: var(--font-code); }
-
-        /* --- BACKGROUND ÉTOILÉ (CANVAS) --- */
-        #starfield {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            z-index: -1;
-            background: radial-gradient(circle at center, #0a0a1a 0%, #020205 100%);
-        }
-
-        /* --- NAVIGATION --- */
-        nav {
-            background: rgba(5, 5, 10, 0.7);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .nav-link {
-            position: relative;
-            color: rgba(255,255,255,0.6);
-            transition: color 0.3s ease;
-            text-decoration: none;
-        }
-        .nav-link:hover { color: #fff; }
-        .nav-link.active { color: #fff; font-weight: 600; }
-        .nav-link::after {
-            content: ''; position: absolute; bottom: -4px; left: 0;
-            width: 0%; height: 2px; background: var(--accent-crea);
-            transition: width 0.3s ease;
-        }
-        .nav-link.active::after { width: 100%; }
-
-        /* --- MODAL (FENÊTRE DÉTAILS) --- */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px);
-            z-index: 100; opacity: 0; visibility: hidden;
-            transition: all 0.4s ease;
-            display: flex; justify-content: center; align-items: center; padding: 20px;
-        }
-        .modal-overlay.active { opacity: 1; visibility: visible; }
-        
-        .modal-content {
-            background: #0a0a1a; border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 24px; max-width: 600px; width: 100%; padding: 40px;
-            transform: translateY(30px); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            max-height: 90vh; overflow-y: auto;
-        }
-        .modal-overlay.active .modal-content { transform: translateY(0); }
-        
-        .modal-close {
-            position: absolute; top: 20px; right: 20px;
-            width: 40px; height: 40px; border-radius: 50%;
-            background: rgba(255,255,255,0.1); display: flex;
-            align-items: center; justify-content: center;
-            cursor: pointer; transition: 0.3s;
-            z-index: 10;
-        }
-        .modal-close:hover { background: rgba(255,255,255,0.2); transform: rotate(90deg); }
-
-        /* Protection du code image */
-        img { user-select: none; pointer-events: none; }
+        img { user-select: none; }
     </style>
 </head>
-<body class="antialiased" data-page="communication" oncontextmenu="return false;">
+<body class="antialiased" data-page="communication">
 
-    <canvas id="starfield" aria-hidden="true"></canvas>
+    <canvas id="grain-field" aria-hidden="true"></canvas>
 
-    <!-- Navbar Multi-Pages -->
-    <nav class="fixed top-0 w-full z-50 py-5 px-6 md:px-12 flex justify-between items-center">
-        <a href="index.html" class="font-bold text-2xl tracking-widest uppercase font-title hover:text-gray-300 transition-colors relative z-50">
-            BASTIEN.
+    <nav class="site-nav fixed top-0 w-full z-50 py-5 px-6 md:px-12 flex justify-between items-center">
+        <a href="index.html" class="brand-mark text-xl md:text-2xl tracking-tight uppercase relative z-50">
+            B-IMPACT<span class="text-[var(--red)]">.</span>
         </a>
-        
-        <!-- Menu Desktop -->
-        <div class="hidden md:flex gap-8 font-semibold text-sm tracking-wider uppercase">
+
+        <div class="hidden md:flex gap-8 font-semibold text-sm tracking-wider uppercase font-title">
             <a href="index.html" class="nav-link">Accueil</a>
-            <a href="communication.html" class="nav-link active">Création & Com</a>
+            <a href="communication.html" class="nav-link active">Créa & Com</a>
             <a href="developpement.html" class="nav-link">Développement</a>
-            <a href="about.html" class="nav-link">À Propos</a>
+            <a href="about.html" class="nav-link">Studio</a>
             <a href="contact.html" class="nav-link">Contact</a>
         </div>
 
-        <!-- Menu Mobile Toggle -->
-        <button type="button" id="mobile-menu-btn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden text-2xl text-white cursor-pointer relative z-50 bg-transparent border-0">
+        <button type="button" id="mobile-menu-btn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden text-2xl text-[var(--ink)] cursor-pointer relative z-50 bg-transparent border-0">
             <i class="fa-solid fa-bars"></i>
         </button>
     </nav>
 
-    <!-- Menu Mobile Déroulant -->
-    <div id="mobile-menu" class="fixed top-0 left-0 w-full h-screen bg-[#05050a]/95 backdrop-blur-xl z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8 text-2xl font-title uppercase">
-        <a href="index.html" class="text-gray-400 hover:text-yellow-400 transition">Accueil</a>
-        <a href="communication.html" class="text-yellow-400 transition">Création & Com</a>
-        <a href="developpement.html" class="text-gray-400 hover:text-[#00ffcc] transition">Développement</a>
-        <a href="about.html" class="text-gray-400 hover:text-white transition">À Propos</a>
-        <a href="contact.html" class="text-gray-400 hover:text-white transition">Contact</a>
+    <div id="mobile-menu" class="fixed top-0 left-0 w-full h-screen z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8 text-2xl font-title uppercase">
+        <a href="index.html">Accueil</a>
+        <a href="communication.html" class="active">Créa & Com</a>
+        <a href="developpement.html">Développement</a>
+        <a href="about.html">Studio</a>
+        <a href="contact.html">Contact</a>
     </div>
 
-    <main class="pt-32 pb-20 px-6 md:px-12 max-w-7xl mx-auto flex-grow">
+    <main class="pt-32 pb-20 px-6 md:px-12 max-w-6xl mx-auto flex-grow">
         <div class="text-center mb-16">
-            <h1 data-cms="hero_title" class="text-4xl md:text-6xl text-yellow-400 font-bold mb-4 font-title uppercase tracking-widest drop-shadow-[0_0_15px_rgba(255,215,0,0.3)]">Création & Com</h1>
-            <p data-cms="hero_desc" class="text-gray-400 text-lg max-w-2xl mx-auto font-light">Stratégie, identité visuelle et animation de communautés. Je donne vie à vos projets grâce à une communication ciblée et impactante.</p>
+            <span class="tag-stamp tag-stamp--crea mb-6 inline-flex">Créa & Com</span>
+            <h1 data-cms="hero_title" class="stamp font-display text-4xl md:text-6xl mb-4 uppercase">Créa & Com</h1>
+            <p data-cms="hero_desc" class="text-[var(--ink-soft)] text-lg max-w-2xl mx-auto">Stratégie, identité visuelle et animation de communautés. Une communication ciblée, pensée pour donner de l'impact à votre projet.</p>
         </div>
 
-        <!-- Réalisations Globales -->
-        <h2 class="text-2xl font-bold mb-8 font-title uppercase tracking-wider border-b border-white/10 pb-4">Études de Cas</h2>
+        <h2 class="text-2xl mb-8 uppercase tracking-wider divider pt-8">Études de cas</h2>
         <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
-            <div class="col-span-full text-center py-12 text-yellow-400 font-code animate-pulse">
+            <div class="col-span-full text-center py-12 text-[var(--red-deep)] font-mono animate-pulse">
                 <i class="fa-solid fa-circle-notch fa-spin text-3xl mb-4"></i>
                 <p>Chargement des projets...</p>
             </div>
         </div>
 
-        <h2 class="text-2xl font-bold mb-8 font-title uppercase tracking-wider border-b border-white/10 pb-4">Galerie Visuelle</h2>
+        <h2 class="text-2xl mb-8 uppercase tracking-wider divider pt-8">Galerie visuelle</h2>
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-24">
-            
-            <!-- Carte Photoshop / Illustrator -->
-            <div class="bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-md">
+
+            <div class="panel p-8">
                 <div class="flex items-center justify-between mb-6">
-                    <h3 class="text-xl font-bold flex items-center gap-3">
-                        <i class="fa-solid fa-image text-blue-400 text-2xl"></i> Créations Adobe
+                    <h3 class="text-xl flex items-center gap-3">
+                        <i class="fa-solid fa-image text-[var(--blue-deep)] text-2xl"></i> Créations Adobe
                     </h3>
                     <div class="flex gap-2">
-                        <span class="px-2 py-1 bg-blue-500/20 text-blue-400 text-[10px] font-bold rounded uppercase">Ps</span>
-                        <span class="px-2 py-1 bg-orange-500/20 text-orange-400 text-[10px] font-bold rounded uppercase">Ai</span>
+                        <span class="px-2 py-1 bg-[var(--paper-strong)] text-[var(--ink-soft)] text-[10px] font-bold rounded uppercase font-mono">Ps</span>
+                        <span class="px-2 py-1 bg-[var(--paper-strong)] text-[var(--ink-soft)] text-[10px] font-bold rounded uppercase font-mono">Ai</span>
                     </div>
                 </div>
-                <p class="text-gray-400 text-sm mb-6">Retouche photo, compositions graphiques complexes et création de vecteurs.</p>
-                
-                <!-- Grille d'images pour Photoshop (À remplacer par tes images dans le dossier assets) -->
+                <p class="text-[var(--ink-soft)] text-sm mb-6">Retouche photo, compositions graphiques complexes et création de vecteurs.</p>
+
                 <div class="grid grid-cols-2 gap-4">
-                    <div class="aspect-square rounded-xl overflow-hidden border border-white/10 group bg-black/50">
-                        <img src="https://placehold.co/400x400/0a0a1a/ffd700?text=Image+PS+1" alt="Création Photoshop 1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="aspect-square rounded-xl overflow-hidden border border-[var(--line)] bg-[var(--paper-strong)]">
+                        <img src="https://placehold.co/400x400/E3DECF/17130F?text=Image+PS+1" alt="Création Photoshop 1" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
                     </div>
-                    <div class="aspect-square rounded-xl overflow-hidden border border-white/10 group bg-black/50">
-                        <img src="https://placehold.co/400x400/0a0a1a/ffd700?text=Image+PS+2" alt="Création Photoshop 2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="aspect-square rounded-xl overflow-hidden border border-[var(--line)] bg-[var(--paper-strong)]">
+                        <img src="https://placehold.co/400x400/E3DECF/17130F?text=Image+PS+2" alt="Création Photoshop 2" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
                     </div>
                 </div>
             </div>
 
-            <!-- Carte Canva / Brandboards -->
-            <div class="bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-md">
+            <div class="panel p-8">
                 <div class="flex items-center justify-between mb-6">
-                    <h3 class="text-xl font-bold flex items-center gap-3">
-                        <i class="fa-solid fa-swatchbook text-purple-400 text-2xl"></i> Brandboards & Réseaux
+                    <h3 class="text-xl flex items-center gap-3">
+                        <i class="fa-solid fa-swatchbook text-[var(--red-deep)] text-2xl"></i> Brandboards & Réseaux
                     </h3>
                     <div class="flex gap-2">
-                        <span class="px-2 py-1 bg-gradient-to-tr from-cyan-400/20 to-purple-500/20 text-white text-[10px] font-bold rounded uppercase">Canva</span>
+                        <span class="px-2 py-1 bg-[var(--paper-strong)] text-[var(--ink-soft)] text-[10px] font-bold rounded uppercase font-mono">Canva</span>
                     </div>
                 </div>
-                <p class="text-gray-400 text-sm mb-6">Déclinaison de chartes graphiques, templates pour réseaux sociaux et brandboards.</p>
-                
-                <!-- Grille d'images pour Canva (À remplacer par tes images) -->
+                <p class="text-[var(--ink-soft)] text-sm mb-6">Déclinaison de chartes graphiques, templates pour réseaux sociaux et brandboards.</p>
+
                 <div class="grid grid-cols-2 gap-4">
-                    <div class="aspect-video col-span-2 rounded-xl overflow-hidden border border-white/10 group bg-black/50">
-                        <img src="https://placehold.co/800x400/0a0a1a/ffd700?text=Brandboard+Client" alt="Brandboard" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="aspect-video col-span-2 rounded-xl overflow-hidden border border-[var(--line)] bg-[var(--paper-strong)]">
+                        <img src="https://placehold.co/800x400/E3DECF/17130F?text=Brandboard+Client" alt="Brandboard" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
                     </div>
-                    <div class="aspect-square rounded-xl overflow-hidden border border-white/10 group bg-black/50">
-                        <img src="https://placehold.co/400x400/0a0a1a/ffd700?text=Post+Insta" alt="Post Réseaux Sociaux" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="aspect-square rounded-xl overflow-hidden border border-[var(--line)] bg-[var(--paper-strong)]">
+                        <img src="https://placehold.co/400x400/E3DECF/17130F?text=Post+Insta" alt="Post réseaux sociaux" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
                     </div>
-                    <div class="aspect-square rounded-xl overflow-hidden border border-white/10 group bg-black/50">
-                        <img src="https://placehold.co/400x400/0a0a1a/ffd700?text=Story+Promo" alt="Story Promotionnelle" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="aspect-square rounded-xl overflow-hidden border border-[var(--line)] bg-[var(--paper-strong)]">
+                        <img src="https://placehold.co/400x400/E3DECF/17130F?text=Story+Promo" alt="Story promotionnelle" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
                     </div>
                 </div>
             </div>
 
         </div>
 
-        <h2 class="text-2xl font-bold mb-8 font-title uppercase tracking-wider border-b border-white/10 pb-4">Certifications & Formations</h2>
+        <h2 class="text-2xl mb-8 uppercase tracking-wider divider pt-8">Certifications & formations</h2>
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-24">
-            
-            <!-- Google Ads Créa -->
-            <div class="bg-white/5 border border-white/10 p-6 rounded-2xl flex flex-col items-center text-center hover:bg-white/10 transition-colors">
-                <div class="w-16 h-16 mb-4 rounded-full bg-white flex items-center justify-center shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+
+            <div class="panel p-6 flex flex-col items-center text-center">
+                <div class="w-16 h-16 mb-4 rounded-full bg-[var(--paper)] border border-[var(--line)] flex items-center justify-center">
                     <i class="fa-brands fa-google text-2xl text-[#4285F4]"></i>
                 </div>
                 <h4 class="font-bold text-sm mb-2">Google Ads</h4>
-                <p class="text-xs text-gray-400">Certification pour les Créations</p>
+                <p class="text-xs text-[var(--ink-soft)]">Certification pour les créations</p>
             </div>
 
-            <!-- Google Ads Vidéo -->
-            <div class="bg-white/5 border border-white/10 p-6 rounded-2xl flex flex-col items-center text-center hover:bg-white/10 transition-colors">
-                <div class="w-16 h-16 mb-4 rounded-full bg-white flex items-center justify-center shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+            <div class="panel p-6 flex flex-col items-center text-center">
+                <div class="w-16 h-16 mb-4 rounded-full bg-[var(--paper)] border border-[var(--line)] flex items-center justify-center">
                     <i class="fa-brands fa-youtube text-2xl text-[#EA4335]"></i>
                 </div>
                 <h4 class="font-bold text-sm mb-2">Google Ads</h4>
-                <p class="text-xs text-gray-400">Publicité Vidéo</p>
+                <p class="text-xs text-[var(--ink-soft)]">Publicité vidéo</p>
             </div>
 
-            <!-- Google Ads Display -->
-            <div class="bg-white/5 border border-white/10 p-6 rounded-2xl flex flex-col items-center text-center hover:bg-white/10 transition-colors">
-                <div class="w-16 h-16 mb-4 rounded-full bg-white flex items-center justify-center shadow-[0_0_15px_rgba(255,255,255,0.2)]">
-                    <i class="fa-solid fa-rectangle-ad text-2xl text-[#FBBC05]"></i>
+            <div class="panel p-6 flex flex-col items-center text-center">
+                <div class="w-16 h-16 mb-4 rounded-full bg-[var(--paper)] border border-[var(--line)] flex items-center justify-center">
+                    <i class="fa-solid fa-rectangle-ad text-2xl text-[#B7860B]"></i>
                 </div>
                 <h4 class="font-bold text-sm mb-2">Google Ads</h4>
-                <p class="text-xs text-gray-400">Réseau Display</p>
+                <p class="text-xs text-[var(--ink-soft)]">Réseau Display</p>
             </div>
 
-            <!-- Formation IA Technofutur -->
-            <div class="bg-white/5 border border-white/10 p-6 rounded-2xl flex flex-col items-center text-center hover:bg-white/10 transition-colors border-t-2 border-t-yellow-400">
-                <div class="w-16 h-16 mb-4 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center shadow-[0_0_15px_rgba(168,85,247,0.4)]">
-                    <i class="fa-solid fa-robot text-2xl text-white"></i>
+            <div class="panel p-6 flex flex-col items-center text-center border-t-2 border-t-[var(--red)]">
+                <div class="w-16 h-16 mb-4 rounded-full bg-[var(--paper)] border border-[var(--line)] flex items-center justify-center">
+                    <i class="fa-solid fa-robot text-2xl text-[var(--ink)]"></i>
                 </div>
                 <h4 class="font-bold text-sm mb-2">Technofutur TIC</h4>
-                <p class="text-xs text-gray-400">Formation Utilisation d'IA</p>
+                <p class="text-xs text-[var(--ink-soft)]">Formation utilisation d'IA</p>
             </div>
 
         </div>
 
-        <h2 class="text-2xl font-bold mb-8 font-title uppercase tracking-wider border-b border-white/10 pb-4">Plateformes de diffusion</h2>
-        <div class="flex flex-wrap gap-6 justify-center md:justify-start">
-            <div class="group flex flex-col items-center gap-3 w-24">
-                <div class="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-3xl group-hover:bg-[#1877F2] group-hover:border-[#1877F2] transition-all duration-300"><i class="fa-brands fa-facebook-f"></i></div>
-                <span class="text-[10px] uppercase tracking-widest font-semibold text-gray-500 group-hover:text-white transition-colors">Facebook</span>
+        <h2 class="text-2xl mb-8 uppercase tracking-wider divider pt-8">Plateformes de diffusion</h2>
+        <div class="flex flex-wrap gap-6 justify-center md:justify-start pb-4">
+            <div class="flex flex-col items-center gap-3 w-24">
+                <div class="w-16 h-16 rounded-2xl bg-[var(--paper-dim)] border border-[var(--line)] flex items-center justify-center text-2xl">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </div>
+                <span class="text-[10px] uppercase tracking-widest font-semibold text-[var(--ink-soft)] font-mono">Facebook</span>
             </div>
-            <div class="group flex flex-col items-center gap-3 w-24">
-                <div class="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-3xl group-hover:bg-gradient-to-tr group-hover:from-[#f09433] group-hover:via-[#dc2743] group-hover:to-[#bc1888] group-hover:border-transparent transition-all duration-300"><i class="fa-brands fa-instagram"></i></div>
-                <span class="text-[10px] uppercase tracking-widest font-semibold text-gray-500 group-hover:text-white transition-colors">Instagram</span>
+            <div class="flex flex-col items-center gap-3 w-24">
+                <div class="w-16 h-16 rounded-2xl bg-[var(--paper-dim)] border border-[var(--line)] flex items-center justify-center text-2xl">
+                    <i class="fa-brands fa-instagram"></i>
+                </div>
+                <span class="text-[10px] uppercase tracking-widest font-semibold text-[var(--ink-soft)] font-mono">Instagram</span>
             </div>
-            <div class="group flex flex-col items-center gap-3 w-24">
-                <div class="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-3xl group-hover:bg-[#FF0000] group-hover:border-[#FF0000] transition-all duration-300"><i class="fa-brands fa-youtube"></i></div>
-                <span class="text-[10px] uppercase tracking-widest font-semibold text-gray-500 group-hover:text-white transition-colors">YouTube</span>
+            <div class="flex flex-col items-center gap-3 w-24">
+                <div class="w-16 h-16 rounded-2xl bg-[var(--paper-dim)] border border-[var(--line)] flex items-center justify-center text-2xl">
+                    <i class="fa-brands fa-youtube"></i>
+                </div>
+                <span class="text-[10px] uppercase tracking-widest font-semibold text-[var(--ink-soft)] font-mono">YouTube</span>
             </div>
-            <div class="group flex flex-col items-center gap-3 w-24">
-                <div class="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-3xl group-hover:bg-white group-hover:text-black group-hover:border-white transition-all duration-300"><i class="fa-brands fa-x-twitter"></i></div>
-                <span class="text-[10px] uppercase tracking-widest font-semibold text-gray-500 group-hover:text-white transition-colors">X (Twitter)</span>
+            <div class="flex flex-col items-center gap-3 w-24">
+                <div class="w-16 h-16 rounded-2xl bg-[var(--paper-dim)] border border-[var(--line)] flex items-center justify-center text-2xl">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </div>
+                <span class="text-[10px] uppercase tracking-widest font-semibold text-[var(--ink-soft)] font-mono">X (Twitter)</span>
             </div>
-            <div class="group flex flex-col items-center gap-3 w-24">
-                <div class="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-3xl group-hover:bg-[#00f2fe] group-hover:text-black group-hover:border-[#00f2fe] group-hover:shadow-[2px_2px_0px_#ff0050] transition-all duration-300"><i class="fa-brands fa-tiktok"></i></div>
-                <span class="text-[10px] uppercase tracking-widest font-semibold text-gray-500 group-hover:text-white transition-colors">TikTok</span>
+            <div class="flex flex-col items-center gap-3 w-24">
+                <div class="w-16 h-16 rounded-2xl bg-[var(--paper-dim)] border border-[var(--line)] flex items-center justify-center text-2xl">
+                    <i class="fa-brands fa-tiktok"></i>
+                </div>
+                <span class="text-[10px] uppercase tracking-widest font-semibold text-[var(--ink-soft)] font-mono">TikTok</span>
             </div>
         </div>
     </main>
 
-    <!-- MODAL POUR LES DÉTAILS DES PROJETS -->
     <div id="project-modal" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-close">
                 <i class="fa-solid fa-xmark text-xl"></i>
             </div>
-            
+
             <div class="flex items-center gap-3 mb-4 mt-2">
-                <span id="modal-tag" class="bg-yellow-400 text-black text-xs font-bold px-3 py-1 rounded-full uppercase">Catégorie</span>
+                <span id="modal-tag" class="tag-stamp tag-stamp--crea">Catégorie</span>
             </div>
-            
-            <h3 id="modal-title" class="text-3xl font-bold mb-4 font-title">Titre du Projet</h3>
-            
-            <p id="modal-desc" class="text-gray-300 text-base leading-relaxed mb-8">
+
+            <h3 id="modal-title" class="text-3xl mb-4 uppercase">Titre du projet</h3>
+
+            <p id="modal-desc" class="text-[var(--ink-soft)] text-base leading-relaxed mb-8">
                 Description détaillée du projet.
             </p>
-            
+
             <div class="mb-8">
-                <h4 class="text-sm uppercase tracking-widest text-gray-500 mb-3 font-semibold">Méthodologie & Outils</h4>
-                <div id="modal-tools" class="flex flex-wrap gap-2">
-                    <!-- Rempli dynamiquement en JS -->
-                </div>
+                <h4 class="text-xs uppercase tracking-widest text-[var(--ink-faint)] mb-3 font-semibold font-mono">Méthodologie & outils</h4>
+                <div id="modal-tools" class="flex flex-wrap gap-2"></div>
             </div>
-            
-            <a id="modal-link" href="#" target="_blank" class="inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-bold hover:bg-yellow-400 transition-colors">
+
+            <a id="modal-link" href="#" target="_blank" class="btn-ink">
                 Visiter le site en ligne <i class="fa-solid fa-arrow-up-right-from-square"></i>
             </a>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="w-full text-center py-6 text-xs text-gray-600 font-code tracking-widest uppercase mt-auto z-10">
-        © 2026 BASTIEN FESTOR.
+    <footer class="site-footer">
+        © 2026 B-Impact Studio — Bastien Festor
     </footer>
 
     <script src="/assets/js/cms.js"></script>
     <script src="/assets/js/mobile-menu.js"></script>
-    <script src="/assets/js/starfield.js"></script>
+    <script src="/assets/js/grain.js"></script>
     <script src="/assets/js/projects.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {

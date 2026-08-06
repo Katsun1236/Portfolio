@@ -3,288 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Améliorations SEO Primaires -->
-    <title>Bastien Festor | Stratégie Créative & Développement Web</title>
-    <meta name="description" content="Portfolio de Bastien Festor. J'allie une vision créative 360° à une maîtrise technique du web pour construire des marques fortes et des applications performantes. Basé à Namur & Hainaut.">
-    <meta name="keywords" content="Bastien Festor, Développeur Web, Création Visuelle, Communication, Namur, Hainaut, HEAJ, Portfolio, React, Tailwind, Identité Graphique">
-    <meta name="author" content="Bastien Festor">
+
+    <title>B-Impact Studio | Sites web, identité visuelle & communication</title>
+    <meta name="description" content="B-Impact Studio, basé à Namur & Hainaut : sites vitrines et applications web, identité graphique et stratégie de communication pour marques et indépendants.">
+    <meta name="keywords" content="B-Impact Studio, Bastien Festor, agence web, développeur web, identité graphique, communication, Namur, Hainaut, Belgique">
+    <meta name="author" content="B-Impact Studio">
     <link rel="canonical" href="https://www.b-impact.be/">
 
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
     <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
     <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 
-    <!-- Open Graph / Réseaux Sociaux (Pour de beaux aperçus sur LinkedIn, X, Facebook) -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.b-impact.be/">
-    <meta property="og:title" content="Bastien Festor | Créatif & Développeur Web">
-    <meta property="og:description" content="Découvrez mes réalisations en développement web et stratégie de communication.">
-    <!-- Remplace l'URL ci-dessous par une vraie image de couverture (ex: logo ou photo de toi) -->
+    <meta property="og:title" content="B-Impact Studio | Sites web, identité visuelle & communication">
+    <meta property="og:description" content="Sites vitrines, applications web, identité graphique et communication, pensés et construits par un même studio.">
     <meta property="og:image" content="https://www.b-impact.be/assets/og-image.jpg">
 
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Outfit:wght@200;300;400;600&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    
-    <style>
-        :root {
-            --accent-crea: #ffd700;
-            --accent-dev: #00ffcc;
-            --bg-dark: #05050a;
-            --font-title: 'Space Grotesk', sans-serif;
-            --font-body: 'Outfit', sans-serif;
-            --font-code: 'Fira Code', monospace;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: #ffffff;
-            font-family: var(--font-body);
-            overflow-x: hidden;
-            min-height: 100vh;
-            margin: 0;
-        }
-
-        h1, h2, h3, h4, .font-title { font-family: var(--font-title); }
-        .font-code { font-family: var(--font-code); }
-
-        /* --- BACKGROUND ÉTOILÉ (CANVAS) --- */
-        #starfield {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            z-index: -1;
-            background: radial-gradient(circle at center, #0a0a1a 0%, #020205 100%);
-        }
-
-        /* --- NAVIGATION SPA --- */
-        nav {
-            background: rgba(5, 5, 10, 0.7);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .nav-link {
-            position: relative;
-            color: rgba(255,255,255,0.6);
-            transition: color 0.3s ease;
-            text-decoration: none;
-        }
-        .nav-link:hover { color: #fff; }
-        .nav-link.active { color: #fff; font-weight: 600; }
-        .nav-link::after {
-            content: ''; position: absolute; bottom: -4px; left: 0;
-            width: 0%; height: 2px; background: var(--accent-crea);
-            transition: width 0.3s ease;
-        }
-        .nav-link.active::after { width: 100%; }
-
-        /* --- BOUTONS --- */
-        .btn-crea {
-            background: #fff; color: #000;
-            transition: all 0.3s ease;
-        }
-        .btn-crea:hover { background: var(--accent-crea); transform: translateY(-2px); box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2); }
-        
-        .btn-dev {
-            border: 1px solid rgba(255,255,255,0.2); color: #fff;
-            transition: all 0.3s ease;
-        }
-        .btn-dev:hover { border-color: var(--accent-dev); color: var(--accent-dev); transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0, 255, 204, 0.1); }
-
-        /* --- MODAL (FENÊTRE DÉTAILS) --- */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px);
-            z-index: 100; opacity: 0; visibility: hidden;
-            transition: all 0.4s ease;
-            display: flex; justify-content: center; align-items: center; padding: 20px;
-        }
-        .modal-overlay.active { opacity: 1; visibility: visible; }
-        
-        .modal-content {
-            background: #0a0a1a; border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 24px; max-width: 600px; width: 100%; padding: 40px;
-            transform: translateY(30px); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-        }
-        .modal-overlay.active .modal-content { transform: translateY(0); }
-        
-        .modal-close {
-            position: absolute; top: 20px; right: 20px;
-            width: 40px; height: 40px; border-radius: 50%;
-            background: rgba(255,255,255,0.1); display: flex;
-            align-items: center; justify-content: center;
-            cursor: pointer; transition: 0.3s;
-        }
-        .modal-close:hover { background: rgba(255,255,255,0.2); transform: rotate(90deg); }
-        
-        /* Animation pour la bannière défilante */
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-    </style>
+    <link rel="stylesheet" href="/assets/css/theme.css">
 </head>
-<body class="antialiased flex flex-col min-h-screen" data-page="index">
+<body class="antialiased" data-page="index">
 
-    <!-- Fond Étoilé Interactif -->
-    <canvas id="starfield" aria-hidden="true"></canvas>
+    <canvas id="grain-field" aria-hidden="true"></canvas>
 
-    <!-- Navbar SPA -->
-    <nav class="fixed top-0 w-full z-50 py-5 px-6 md:px-12 flex justify-between items-center">
-        <a href="index.html" class="font-bold text-2xl tracking-widest uppercase font-title cursor-pointer hover:text-gray-300 transition-colors relative z-50">
-            BASTIEN.
+    <nav class="site-nav fixed top-0 w-full z-50 py-5 px-6 md:px-12 flex justify-between items-center">
+        <a href="index.html" class="brand-mark text-xl md:text-2xl tracking-tight uppercase relative z-50">
+            B-IMPACT<span class="text-[var(--red)]">.</span>
         </a>
-        
-        <!-- Menu Desktop -->
-        <div class="hidden md:flex gap-8 font-semibold text-sm tracking-wider uppercase">
+
+        <div class="hidden md:flex gap-8 font-semibold text-sm tracking-wider uppercase font-title">
             <a href="index.html" class="nav-link active">Accueil</a>
-            <a href="communication.html" class="nav-link">Création & Com</a>
+            <a href="communication.html" class="nav-link">Créa & Com</a>
             <a href="developpement.html" class="nav-link">Développement</a>
-            <a href="about.html" class="nav-link">À Propos</a>
+            <a href="about.html" class="nav-link">Studio</a>
             <a href="contact.html" class="nav-link">Contact</a>
         </div>
 
-        <!-- Menu Mobile Toggle -->
-        <button type="button" id="mobile-menu-btn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden text-2xl text-white cursor-pointer relative z-50 bg-transparent border-0">
+        <button type="button" id="mobile-menu-btn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden text-2xl text-[var(--ink)] cursor-pointer relative z-50 bg-transparent border-0">
             <i class="fa-solid fa-bars"></i>
         </button>
     </nav>
 
-    <!-- Menu Mobile Déroulant -->
-    <div id="mobile-menu" class="fixed top-0 left-0 w-full h-screen bg-[#05050a]/95 backdrop-blur-xl z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8 text-2xl font-title uppercase">
-        <a href="index.html" class="text-white hover:text-yellow-400 transition">Accueil</a>
-        <a href="communication.html" class="text-gray-400 hover:text-yellow-400 transition">Création & Com</a>
-        <a href="developpement.html" class="text-gray-400 hover:text-[#00ffcc] transition">Développement</a>
-        <a href="about.html" class="text-gray-400 hover:text-white transition">À Propos</a>
-        <a href="contact.html" class="text-gray-400 hover:text-white transition">Contact</a>
+    <div id="mobile-menu" class="fixed top-0 left-0 w-full h-screen z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8 text-2xl font-title uppercase">
+        <a href="index.html" class="active">Accueil</a>
+        <a href="communication.html">Créa & Com</a>
+        <a href="developpement.html">Développement</a>
+        <a href="about.html">Studio</a>
+        <a href="contact.html">Contact</a>
     </div>
 
-    <!-- ========================================== -->
-    <!-- CONTENU DE LA PAGE D'ACCUEIL               -->
-    <!-- ========================================== -->
     <main class="flex-grow w-full">
-        
-        <!-- Section 1 : Hero -->
-        <section class="flex flex-col justify-center items-center text-center px-4 min-h-screen pt-20">
-            <div class="mb-6 flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2 rounded-full backdrop-blur-md">
-                <i class="fa-solid fa-location-dot text-gray-400"></i>
-                <span class="text-xs md:text-sm text-gray-300 uppercase tracking-[0.2em] font-semibold">Namur & Hainaut</span>
+
+        <section class="flex flex-col justify-center items-center text-center px-4 min-h-screen pt-28 pb-16">
+            <div class="ticket mb-10 rounded-lg">
+                <div class="ticket-row">
+                    <div class="ticket-item">
+                        <span class="ticket-label">Studio</span>
+                        <span class="ticket-value">Sites · Graphisme · Com</span>
+                    </div>
+                    <div class="ticket-item">
+                        <span class="ticket-label">Basé à</span>
+                        <span class="ticket-value">Namur & Hainaut</span>
+                    </div>
+                    <div class="ticket-item">
+                        <span class="ticket-label">Fondé par</span>
+                        <span class="ticket-value">Bastien Festor</span>
+                    </div>
+                </div>
             </div>
-            
-            <h1 data-cms="hero_title" class="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight drop-shadow-2xl">
-                BASTIEN FESTOR
+
+            <h1 data-cms="hero_title" class="stamp font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl mb-6 leading-[0.95] uppercase">
+                B-Impact Studio
             </h1>
-            
-            <div class="flex flex-col md:flex-row gap-4 md:gap-6 text-xl md:text-2xl font-light text-gray-300 mb-10 items-center">
-                <span data-cms="hero_sub_crea" class="text-yellow-400 font-semibold tracking-wider uppercase text-sm md:text-base border border-yellow-400/30 px-6 py-3 rounded-full backdrop-blur-sm shadow-[0_0_15px_rgba(255,215,0,0.1)]">
-                    Stratégie & Création
+
+            <div class="flex flex-col md:flex-row gap-4 md:gap-6 mb-10 items-center">
+                <span data-cms="hero_sub_crea" class="tag-stamp tag-stamp--crea text-sm">
+                    Identité & Communication
                 </span>
-                <span data-cms="hero_sub_dev" class="text-[#00ffcc] font-code tracking-wider uppercase text-sm md:text-base border border-[#00ffcc]/30 px-6 py-3 rounded-full backdrop-blur-sm shadow-[0_0_15px_rgba(0,255,204,0.1)]">
-                    &lt;Développeur Web/&gt;
+                <span data-cms="hero_sub_dev" class="tag-stamp tag-stamp--dev text-sm font-mono">
+                    &lt;Développement Web/&gt;
                 </span>
             </div>
-            
-            <p data-cms="hero_desc" class="max-w-2xl text-gray-400 text-lg leading-relaxed mb-12">
-                J'allie une vision créative 360° à une maîtrise technique du web pour construire des marques fortes et des applications performantes.
+
+            <p data-cms="hero_desc" class="max-w-2xl text-[var(--ink-soft)] text-lg leading-relaxed mb-12">
+                Un seul studio pour concevoir votre image et construire le site qui la porte. Identité visuelle, communication et développement web, pensés ensemble plutôt qu'en silos.
             </p>
-            
-            <div class="flex flex-col sm:flex-row gap-6">
-                <a href="communication.html" data-cms="btn_crea" class="btn-crea px-8 py-4 rounded-full font-bold uppercase tracking-wider inline-block text-center">
-                    Découvrir mes créas
+
+            <div class="flex flex-col sm:flex-row gap-5">
+                <a href="communication.html" data-cms="btn_crea" class="btn-ink">
+                    Découvrir la créa
                 </a>
-                <a href="developpement.html" data-cms="btn_dev" class="btn-dev px-8 py-4 rounded-full font-bold uppercase tracking-wider font-code inline-block text-center">
-                    Voir mon code <i class="fa-solid fa-terminal ml-2"></i>
+                <a href="developpement.html" data-cms="btn_dev" class="btn-outline">
+                    Voir le code <i class="fa-solid fa-terminal ml-1"></i>
                 </a>
             </div>
 
-            <!-- Indicateur de Scroll -->
-            <div class="mt-20 animate-bounce cursor-pointer opacity-70" onclick="document.getElementById('expertise').scrollIntoView({behavior: 'smooth'})">
-                <span class="text-[10px] font-code text-gray-500 uppercase tracking-widest block mb-2">Scroll</span>
-                <i class="fa-solid fa-arrow-down text-gray-400"></i>
+            <div class="mt-16 animate-bounce cursor-pointer opacity-60" onclick="document.getElementById('expertise').scrollIntoView({behavior: 'smooth'})">
+                <span class="text-[10px] font-mono text-[var(--ink-faint)] uppercase tracking-widest block mb-2">Scroll</span>
+                <i class="fa-solid fa-arrow-down text-[var(--ink-faint)]"></i>
             </div>
         </section>
 
-        <!-- Section 2 : Expertise (Remplit la page) -->
-        <section id="expertise" class="max-w-7xl mx-auto px-6 py-24">
+        <section id="expertise" class="max-w-6xl mx-auto px-6 py-24">
             <div class="text-center mb-16">
-                <h2 data-cms="adn_title" class="text-3xl md:text-5xl font-bold font-title uppercase tracking-widest mb-4">Mon ADN</h2>
-                <p data-cms="adn_desc" class="text-gray-400 text-lg">Deux expertises complémentaires pour des projets digitaux complets.</p>
+                <h2 data-cms="adn_title" class="stamp-sm text-3xl md:text-5xl uppercase mb-4">Deux métiers, un studio</h2>
+                <p data-cms="adn_desc" class="text-[var(--ink-soft)] text-lg max-w-2xl mx-auto">Chaque projet a besoin d'une image forte et d'un site qui la sert vraiment. B-Impact Studio fait les deux, sans passer le relais entre prestataires.</p>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Hub Créa -->
-                <a href="communication.html" class="group bg-white/5 border border-white/10 p-10 rounded-3xl backdrop-blur-sm hover:bg-white/10 transition-all duration-300 relative overflow-hidden">
-                    <div class="absolute -right-10 -top-10 w-40 h-40 bg-yellow-400/20 blur-[50px] rounded-full group-hover:bg-yellow-400/40 transition-all"></div>
-                    <i class="fa-solid fa-pen-nib text-4xl text-yellow-400 mb-6"></i>
-                    <h3 class="text-2xl font-bold mb-4 font-title uppercase tracking-wider">Création & Communication</h3>
-                    <p class="text-gray-400 leading-relaxed mb-8">Stratégie de marque, identité visuelle, animation de communautés et gestion d'événements. Je conçois l'image qui fera résonner votre projet.</p>
-                    <span class="text-yellow-400 font-code text-sm flex items-center gap-2 group-hover:gap-4 transition-all">Explorer les créations <i class="fa-solid fa-arrow-right"></i></span>
+                <a href="communication.html" class="group panel p-10 relative overflow-hidden">
+                    <span class="tag-stamp tag-stamp--crea mb-6 inline-flex">Créa & Com</span>
+                    <i class="fa-solid fa-pen-nib text-3xl text-[var(--red-deep)] mb-6 block"></i>
+                    <h3 class="text-2xl mb-4 uppercase tracking-wide">Création & Communication</h3>
+                    <p class="text-[var(--ink-soft)] leading-relaxed mb-8">Stratégie de marque, identité visuelle, animation de communautés et gestion d'événements. L'image qui fera reconnaître votre projet au premier coup d'œil.</p>
+                    <span class="text-[var(--red-deep)] font-mono text-sm flex items-center gap-2 group-hover:gap-4 transition-all">Explorer les créations <i class="fa-solid fa-arrow-right"></i></span>
                 </a>
 
-                <!-- Hub Dev -->
-                <a href="developpement.html" class="group bg-white/5 border border-white/10 p-10 rounded-3xl backdrop-blur-sm hover:bg-white/10 transition-all duration-300 relative overflow-hidden">
-                    <div class="absolute -right-10 -top-10 w-40 h-40 bg-[#00ffcc]/20 blur-[50px] rounded-full group-hover:bg-[#00ffcc]/40 transition-all"></div>
-                    <i class="fa-solid fa-code text-4xl text-[#00ffcc] mb-6"></i>
-                    <h3 class="text-2xl font-bold mb-4 font-title uppercase tracking-wider">Développement Web</h3>
-                    <p class="text-gray-400 leading-relaxed mb-8">Sites vitrines optimisés SEO, Landing pages performantes et Applications Web sur-mesure. Je construis les fondations techniques de vos idées.</p>
-                    <span class="text-[#00ffcc] font-code text-sm flex items-center gap-2 group-hover:gap-4 transition-all">Inspecter le code <i class="fa-solid fa-arrow-right"></i></span>
+                <a href="developpement.html" class="group panel p-10 relative overflow-hidden">
+                    <span class="tag-stamp tag-stamp--dev mb-6 inline-flex">Développement</span>
+                    <i class="fa-solid fa-code text-3xl text-[var(--blue-deep)] mb-6 block"></i>
+                    <h3 class="text-2xl mb-4 uppercase tracking-wide font-mono">Développement Web</h3>
+                    <p class="text-[var(--ink-soft)] leading-relaxed mb-8">Sites vitrines optimisés SEO, landing pages orientées conversion et applications web sur mesure. Les fondations techniques de vos idées.</p>
+                    <span class="text-[var(--blue-deep)] font-mono text-sm flex items-center gap-2 group-hover:gap-4 transition-all">Inspecter le code <i class="fa-solid fa-arrow-right"></i></span>
                 </a>
             </div>
         </section>
 
-        <!-- Section 3 : Bannière Défilante (Marquee) -->
-        <div class="w-full bg-white/5 border-y border-white/10 py-5 overflow-hidden mb-20 relative">
-            <div class="flex whitespace-nowrap animate-[scroll_30s_linear_infinite] opacity-60 font-code text-sm tracking-widest uppercase items-center gap-8 w-max">
-                <span>Photoshop</span><i class="fa-solid fa-star text-[8px] text-yellow-400"></i>
-                <span>React.js</span><i class="fa-solid fa-star text-[8px] text-[#00ffcc]"></i>
-                <span>Tailwind CSS</span><i class="fa-solid fa-star text-[8px] text-[#00ffcc]"></i>
-                <span>Premiere Pro</span><i class="fa-solid fa-star text-[8px] text-yellow-400"></i>
-                <span>SEO Local</span><i class="fa-solid fa-star text-[8px] text-[#00ffcc]"></i>
-                <span>Canva</span><i class="fa-solid fa-star text-[8px] text-yellow-400"></i>
-                <span>Supabase</span><i class="fa-solid fa-star text-[8px] text-[#00ffcc]"></i>
-                <span>Notion</span><i class="fa-solid fa-star text-[8px] text-yellow-400"></i>
-                <span>JavaScript</span><i class="fa-solid fa-star text-[8px] text-[#00ffcc]"></i>
-                <span>Photoshop</span><i class="fa-solid fa-star text-[8px] text-yellow-400"></i>
-                <span>React.js</span><i class="fa-solid fa-star text-[8px] text-[#00ffcc]"></i>
-                <span>Tailwind CSS</span><i class="fa-solid fa-star text-[8px] text-[#00ffcc]"></i>
-                <span>Premiere Pro</span><i class="fa-solid fa-star text-[8px] text-yellow-400"></i>
-                <span>SEO Local</span><i class="fa-solid fa-star text-[8px] text-[#00ffcc]"></i>
+        <section class="max-w-5xl mx-auto px-6 pb-24">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="mark mb-4"></div>
+                    <h3 class="text-sm font-title uppercase tracking-widest mb-2">01 — Cadrer</h3>
+                    <p class="text-sm text-[var(--ink-soft)] leading-relaxed">On part de votre activité réelle : qui vous adressez, ce que vous vendez, ce qui doit changer.</p>
+                </div>
+                <div>
+                    <div class="mark mb-4"></div>
+                    <h3 class="text-sm font-title uppercase tracking-widest mb-2">02 — Créer & Coder</h3>
+                    <p class="text-sm text-[var(--ink-soft)] leading-relaxed">Identité visuelle et site avancent de front, pour que le design et le code racontent la même histoire.</p>
+                </div>
+                <div>
+                    <div class="mark mb-4"></div>
+                    <h3 class="text-sm font-title uppercase tracking-widest mb-2">03 — Livrer</h3>
+                    <p class="text-sm text-[var(--ink-soft)] leading-relaxed">Un site en ligne, optimisé SEO, et une charte graphique que vous pouvez réutiliser partout.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="press-strip py-5 mb-20">
+            <div class="press-strip-track font-mono text-sm tracking-widest uppercase items-center gap-8 flex">
+                <span>Identité de marque</span><i class="fa-solid fa-star text-[8px] text-[var(--red)]"></i>
+                <span>React.js</span><i class="fa-solid fa-star text-[8px] text-[var(--blue)]"></i>
+                <span>Tailwind CSS</span><i class="fa-solid fa-star text-[8px] text-[var(--blue)]"></i>
+                <span>Communication digitale</span><i class="fa-solid fa-star text-[8px] text-[var(--red)]"></i>
+                <span>SEO Local</span><i class="fa-solid fa-star text-[8px] text-[var(--blue)]"></i>
+                <span>Photoshop / Illustrator</span><i class="fa-solid fa-star text-[8px] text-[var(--red)]"></i>
+                <span>Supabase</span><i class="fa-solid fa-star text-[8px] text-[var(--blue)]"></i>
+                <span>Gestion de communauté</span><i class="fa-solid fa-star text-[8px] text-[var(--red)]"></i>
+                <span>Identité de marque</span><i class="fa-solid fa-star text-[8px] text-[var(--red)]"></i>
+                <span>React.js</span><i class="fa-solid fa-star text-[8px] text-[var(--blue)]"></i>
+                <span>Tailwind CSS</span><i class="fa-solid fa-star text-[8px] text-[var(--blue)]"></i>
+                <span>Communication digitale</span><i class="fa-solid fa-star text-[8px] text-[var(--red)]"></i>
+                <span>SEO Local</span><i class="fa-solid fa-star text-[8px] text-[var(--blue)]"></i>
             </div>
         </div>
 
     </main>
 
-    <!-- Footer -->
-    <footer class="w-full text-center py-6 text-xs text-gray-600 font-code tracking-widest uppercase mt-auto relative z-10 pointer-events-none">
-        © 2026 BASTIEN FESTOR.
+    <footer class="site-footer">
+        © 2026 B-Impact Studio — Bastien Festor
     </footer>
 
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Bastien Festor",
+        "@type": "ProfessionalService",
+        "name": "B-Impact Studio",
         "url": "https://www.b-impact.be/",
         "image": "https://www.b-impact.be/assets/og-image.jpg",
-        "jobTitle": "Créatif & Développeur Web",
-        "address": { "@type": "PostalAddress", "addressRegion": "Namur & Hainaut", "addressCountry": "BE" },
+        "founder": { "@type": "Person", "name": "Bastien Festor" },
+        "areaServed": { "@type": "Place", "name": "Namur & Hainaut, Belgique" },
         "email": "mailto:bastienfestor4@gmail.com"
     }
     </script>
 
     <script src="/assets/js/cms.js"></script>
     <script src="/assets/js/mobile-menu.js"></script>
-    <script src="/assets/js/starfield.js"></script>
+    <script src="/assets/js/grain.js"></script>
     <script>
-        // --- GESTION DE NETLIFY IDENTITY (CMS) ---
         if (window.netlifyIdentity) {
-            window.netlifyIdentity.on("init", user => {
+            window.netlifyIdentity.on("init", function (user) {
                 if (!user) {
-                    window.netlifyIdentity.on("login", () => {
+                    window.netlifyIdentity.on("login", function () {
                         document.location.href = "/admin/";
                     });
                 }

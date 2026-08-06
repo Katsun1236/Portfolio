@@ -89,7 +89,7 @@ exports.handler = async function (event) {
         const RESEND_API_KEY = process.env.RESEND_API_KEY;
         const NOTION_API_KEY = process.env.NOTION_API_KEY;
         const NOTION_DATABASE_ID = process.env.NOTION_DATABASE_ID;
-        const RESEND_FROM = process.env.RESEND_FROM_EMAIL || "Contact Portfolio <onboarding@resend.dev>";
+        const RESEND_FROM = process.env.RESEND_FROM_EMAIL || "B-Impact Studio <onboarding@resend.dev>";
         const CONTACT_TO = process.env.CONTACT_TO_EMAIL || "bastienfestor4@gmail.com";
 
         if (!RESEND_API_KEY || !NOTION_API_KEY || !NOTION_DATABASE_ID) {
@@ -117,7 +117,7 @@ exports.handler = async function (event) {
                 reply_to: email,
                 subject: `Nouveau message de ${stripNewlines(name)} : ${stripNewlines(subject)}`,
                 html: `
-                    <h2>Nouveau contact depuis le portfolio</h2>
+                    <h2>Nouveau contact depuis le site B-Impact Studio</h2>
                     <p><strong>Nom :</strong> ${safeName}</p>
                     <p><strong>Email :</strong> ${safeEmail}</p>
                     <p><strong>Sujet :</strong> ${safeSubject}</p>

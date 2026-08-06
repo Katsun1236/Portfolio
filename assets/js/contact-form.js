@@ -71,7 +71,7 @@
             var status = document.getElementById("form-status");
             if (status) {
                 status.textContent = "Veuillez patienter une minute avant de renvoyer un message.";
-                status.className = "text-yellow-400 text-sm text-center mt-4 font-code";
+                status.className = "text-[var(--red-deep)] text-sm text-center mt-4 font-mono";
             }
             return;
         }
@@ -112,8 +112,8 @@
             if (response.ok) {
                 sessionStorage.setItem(STORAGE_KEY, String(Date.now()));
                 btn.innerHTML = '<i class="fa-solid fa-check"></i> Message envoyé !';
-                btn.style.background = "#00ffcc";
-                btn.style.color = "#000";
+                btn.style.background = "#1E33C7";
+                btn.style.color = "#EEEAE0";
                 form.reset();
             } else {
                 var msg = result.error || "Erreur lors de l'envoi. Réessayez plus tard.";
@@ -122,11 +122,11 @@
         } catch (error) {
             console.error("Erreur:", error);
             btn.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Échec de l\'envoi';
-            btn.style.background = "#ef4444";
-            btn.style.color = "#fff";
+            btn.style.background = "#E0431F";
+            btn.style.color = "#EEEAE0";
             if (statusEl) {
                 statusEl.textContent = error.message || "Une erreur est survenue.";
-                statusEl.className = "text-red-400 text-sm text-center mt-4 font-code";
+                statusEl.className = "text-[var(--red-deep)] text-sm text-center mt-4 font-mono";
             }
         } finally {
             setTimeout(function () {

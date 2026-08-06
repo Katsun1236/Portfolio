@@ -2,29 +2,50 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Bastien Admin | CMS</title>
-    <!-- Decap CMS + Netlify Identity (Git Gateway) -->
+    <title>B-Impact Admin | CMS</title>
+    <meta name="robots" content="noindex, nofollow">
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        body { background: #05050a; color: white; font-family: 'Outfit', sans-serif; }
-        #starfield { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; }
-        /* On injecte le style du CMS pour qu'il s'adapte à ton look */
-        .cms-container { background: rgba(10, 10, 15, 0.8); backdrop-filter: blur(15px); border: 1px solid rgba(0, 255, 204, 0.2); border-radius: 16px; }
+        body {
+            background: #EEEAE0;
+            color: #17130F;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+        }
+        header {
+            padding: 24px;
+            border-bottom: 1px solid rgba(23, 19, 15, 0.16);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 {
+            font-family: 'Archivo', sans-serif;
+            font-weight: 800;
+            font-size: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin: 0;
+        }
+        header a {
+            color: rgba(23, 19, 15, 0.6);
+            text-decoration: none;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+        }
+        header a:hover { color: #17130F; }
+        #nc-root { max-width: 1200px; margin: 0 auto; }
     </style>
 </head>
 <body>
-    <canvas id="starfield"></canvas>
-    
-    <!-- Design custom en haut -->
-    <header class="p-6 border-b border-[#00ffcc]/20 flex justify-between items-center">
-        <h1 class="font-bold text-2xl uppercase tracking-widest text-[#00ffcc]">B-Impact Admin</h1>
-        <a href="/" class="text-gray-400 hover:text-white">Retour au site</a>
+    <header>
+        <h1>B-Impact Admin</h1>
+        <a href="/">Retour au site</a>
     </header>
 
-    <!-- Le CMS s'injectera ici -->
-    <div id="nc-root" class="max-w-6xl mx-auto mt-10 p-6"></div>
+    <div id="nc-root"></div>
 
     <script>
         if (window.netlifyIdentity) {
@@ -37,51 +58,33 @@
             });
         }
 
-        // --- CUSTOMISATION DU PREVIEW CMS ---
-        CMS.registerPreviewStyle("https://cdn.tailwindcss.com");
-        CMS.registerPreviewStyle("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Outfit:wght@200;300;400;600&family=Fira+Code:wght@400;600&display=swap");
+        CMS.registerPreviewStyle("https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Inter:wght@400;500&display=swap", { raw: false });
         CMS.registerPreviewStyle(`
-            body { 
-                background-color: #05050a; 
-                color: #ffffff; 
-                font-family: 'Outfit', sans-serif; 
+            body {
+                background-color: #EEEAE0;
+                color: #17130F;
+                font-family: 'Inter', sans-serif;
                 padding: 2rem;
             }
-            h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: bold; text-transform: uppercase; }
+            h1, h2, h3 { font-family: 'Archivo', sans-serif; font-weight: 800; text-transform: uppercase; }
             .preview-container { max-width: 800px; margin: auto; }
-            .title-preview { font-size: 3rem; margin-bottom: 1rem; color: #fff; }
-            .desc-preview { font-size: 1.2rem; color: #9ca3af; margin-bottom: 2rem; }
-            .btn-preview { padding: 0.5rem 1rem; border: 1px solid #00ffcc; color: #00ffcc; border-radius: 9999px; display: inline-block; }
+            .title-preview { font-size: 2.5rem; margin-bottom: 1rem; }
+            .desc-preview { font-size: 1.1rem; color: rgba(23, 19, 15, 0.62); margin-bottom: 1.5rem; }
         `, { raw: true });
 
         var PagePreview = createClass({
-            render: function() {
+            render: function () {
                 var entry = this.props.entry;
-                return h('div', {className: "preview-container"},
-                    h('h1', {className: "title-preview"}, entry.getIn(['data', 'hero_title'])),
-                    h('p', {className: "desc-preview"}, entry.getIn(['data', 'hero_desc'])),
-                    entry.getIn(['data', 'para_1']) ? h('p', {className: "desc-preview"}, entry.getIn(['data', 'para_1'])) : null,
-                    entry.getIn(['data', 'para_2']) ? h('p', {className: "desc-preview"}, entry.getIn(['data', 'para_2'])) : null
+                return h('div', { className: "preview-container" },
+                    h('h1', { className: "title-preview" }, entry.getIn(['data', 'hero_title'])),
+                    h('p', { className: "desc-preview" }, entry.getIn(['data', 'hero_desc'])),
+                    entry.getIn(['data', 'para_1']) ? h('p', { className: "desc-preview" }, entry.getIn(['data', 'para_1'])) : null,
+                    entry.getIn(['data', 'para_2']) ? h('p', { className: "desc-preview" }, entry.getIn(['data', 'para_2'])) : null
                 );
             }
         });
 
         CMS.registerPreviewTemplate("pages", PagePreview);
-
-        // --- GESTION DU FOND ÉTOILÉ ---
-        const canvas = document.getElementById('starfield');
-        const ctx = canvas.getContext('2d');
-        let width, height; let stars = [];
-        function initCanvas() {
-            width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight;
-            for(let i=0; i<100; i++) stars.push({ x: Math.random()*width, y: Math.random()*height, r: Math.random()*1.5, a: Math.random() });
-        }
-        function draw() {
-            ctx.clearRect(0,0,width,height);
-            stars.forEach(s => { ctx.fillStyle = `rgba(0, 255, 204, ${s.a})`; ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI*2); ctx.fill(); });
-            requestAnimationFrame(draw);
-        }
-        window.addEventListener('resize', initCanvas); initCanvas(); draw();
     </script>
 </body>
 </html>

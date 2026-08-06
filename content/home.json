@@ -1,10 +1,10 @@
 {
-  "hero_title": "BASTIEN FESTOR",
-  "hero_sub_crea": "Stratégie & Création",
-  "hero_sub_dev": "&lt;Développeur Web/&gt;",
-  "hero_desc": "J'allie une vision créative 360° à une maîtrise technique du web pour construire des marques fortes et des applications performantes.",
-  "btn_crea": "Découvrir mes créas",
-  "btn_dev": "Voir mon code <i class=\"fa-solid fa-terminal ml-2\"></i>",
-  "adn_title": "Mon ADN",
-  "adn_desc": "Deux expertises complémentaires pour des projets digitaux complets."
+  "hero_title": "B-Impact Studio",
+  "hero_sub_crea": "Identité & Communication",
+  "hero_sub_dev": "&lt;Développement Web/&gt;",
+  "hero_desc": "Un seul studio pour concevoir votre image et construire le site qui la porte. Identité visuelle, communication et développement web, pensés ensemble plutôt qu'en silos.",
+  "btn_crea": "Découvrir la créa",
+  "btn_dev": "Voir le code <i class=\"fa-solid fa-terminal ml-2\"></i>",
+  "adn_title": "Deux métiers, un studio",
+  "adn_desc": "Chaque projet a besoin d'une image forte et d'un site qui la sert vraiment. B-Impact Studio fait les deux, sans passer le relais entre prestataires."
 }

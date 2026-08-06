@@ -15,14 +15,14 @@ collections:
         name: "home"
         file: "content/home.json"
         fields:
-          - {label: "Titre Principal", name: "hero_title", widget: "string", default: "BASTIEN FESTOR"}
+          - {label: "Titre Principal", name: "hero_title", widget: "string", default: "B-Impact Studio"}
           - {label: "Sous-Titre Créa", name: "hero_sub_crea", widget: "string", default: "Stratégie & Création"}
           - {label: "Sous-Titre Dev", name: "hero_sub_dev", widget: "string", default: "<Développeur Web/>"}
-          - {label: "Description", name: "hero_desc", widget: "text", default: "J'allie une vision créative 360° à une maîtrise technique du web pour construire des marques fortes et des applications performantes."}
-          - {label: "Texte Bouton Créa", name: "btn_crea", widget: "string", default: "Découvrir mes créas"}
-          - {label: "Texte Bouton Dev", name: "btn_dev", widget: "string", default: "Voir mon code <i class='fa-solid fa-terminal ml-2'></i>"}
-          - {label: "Titre Section ADN", name: "adn_title", widget: "string", default: "Mon ADN"}
-          - {label: "Description Section ADN", name: "adn_desc", widget: "text", default: "Deux expertises complémentaires pour des projets digitaux complets."}
+          - {label: "Description", name: "hero_desc", widget: "text", default: "Un seul studio pour concevoir votre image et construire le site qui la porte."}
+          - {label: "Texte Bouton Créa", name: "btn_crea", widget: "string", default: "Découvrir la créa"}
+          - {label: "Texte Bouton Dev", name: "btn_dev", widget: "string", default: "Voir le code <i class='fa-solid fa-terminal ml-2'></i>"}
+          - {label: "Titre Section ADN", name: "adn_title", widget: "string", default: "Deux métiers, un studio"}
+          - {label: "Description Section ADN", name: "adn_desc", widget: "text", default: "Chaque projet a besoin d'une image forte et d'un site qui la sert vraiment."}
 
       - label: "Page Création & Com"
         name: "communication"
@@ -43,7 +43,7 @@ collections:
         file: "content/about.json"
         fields:
           - {label: "Photo de Profil", name: "profil_pic", widget: "image", required: false}
-          - {label: "Titre Principal", name: "hero_title", widget: "string", default: "Derrière l'écran"}
+          - {label: "Titre Principal", name: "hero_title", widget: "string", default: "Derrière le studio"}
           - {label: "Sous-titre", name: "hero_desc", widget: "text", default: "Le pont entre la créativité visuelle et la rigueur technique."}
           - {label: "Paragraphe 1", name: "para_1", widget: "text"}
           - {label: "Paragraphe 2", name: "para_2", widget: "text"}
@@ -74,6 +74,5 @@ collections:
               - {label: "Description détaillée", name: "description", widget: "text"}
               - {label: "Image d'aperçu", name: "image", widget: "image", required: false}
               - {label: "Icône Font Awesome (Créa)", name: "icon", widget: "string", required: false, hint: "Ex: fa-leaf"}
-              - {label: "Dégradé Tailwind (Créa)", name: "gradient", widget: "string", required: false, hint: "Ex: from-green-900"}
               - {label: "Outils / Stack", name: "stack", widget: "string", hint: "Séparés par des virgules"}
               - {label: "Lien", name: "link", widget: "string", required: false}

@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bastien Festor | Contact</title>
+    <title>Contact | B-Impact Studio</title>
 
-    <meta name="description" content="Contactez Bastien Festor pour un projet de création visuelle, de communication ou de développement web.">
+    <meta name="description" content="Contactez B-Impact Studio pour un projet de création visuelle, de communication ou de développement web.">
     <link rel="canonical" href="https://www.b-impact.be/contact.html">
 
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
@@ -14,290 +14,168 @@
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.b-impact.be/contact.html">
-    <meta property="og:title" content="Bastien Festor | Contact">
-    <meta property="og:description" content="Contactez Bastien Festor pour un projet de création visuelle, de communication ou de développement web.">
+    <meta property="og:title" content="Contact | B-Impact Studio">
+    <meta property="og:description" content="Contactez B-Impact Studio pour un projet de création visuelle, de communication ou de développement web.">
     <meta property="og:image" content="https://www.b-impact.be/assets/og-image.jpg">
 
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Outfit:wght@200;300;400;600&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    
+    <link rel="stylesheet" href="/assets/css/theme.css">
     <style>
-        :root {
-            --accent-crea: #ffd700;
-            --accent-dev: #00ffcc;
-            --bg-dark: #05050a;
-            --font-title: 'Space Grotesk', sans-serif;
-            --font-body: 'Outfit', sans-serif;
-            --font-code: 'Fira Code', monospace;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: #ffffff;
-            font-family: var(--font-body);
-            overflow-x: hidden;
-            min-height: 100vh;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-        }
-
-        h1, h2, h3, h4, .font-title { font-family: var(--font-title); }
-        .font-code { font-family: var(--font-code); }
-
-        /* --- BACKGROUND ÉTOILÉ (CANVAS) --- */
-        #starfield {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            z-index: -1;
-            background: radial-gradient(circle at center, #0a0a1a 0%, #020205 100%);
-        }
-
-        /* --- NAVIGATION --- */
-        nav {
-            background: rgba(5, 5, 10, 0.7);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .nav-link {
-            position: relative;
-            color: rgba(255,255,255,0.6);
-            transition: color 0.3s ease;
-            text-decoration: none;
-        }
-        .nav-link:hover { color: #fff; }
-        .nav-link.active { color: #fff; font-weight: 600; }
-        
-        /* Soulignement double couleur (Or & Cyan) pour la page Contact */
-        .nav-link.active::after { 
-            content: ''; position: absolute; bottom: -4px; left: 0;
-            width: 100%; height: 2px; 
-            background: linear-gradient(90deg, var(--accent-crea), var(--accent-dev));
-        }
-
-        /* --- STYLES SPÉCIFIQUES CONTACT --- */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-        }
-
-        .gradient-text {
-            background: linear-gradient(90deg, var(--accent-crea), var(--accent-dev));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Formulaire */
-        .input-field {
-            width: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #fff;
-            padding: 1rem 1.2rem;
-            border-radius: 12px;
-            font-family: var(--font-body);
-            transition: all 0.3s ease;
-            outline: none;
-        }
-        
-        .input-field:focus {
-            border-color: rgba(255, 255, 255, 0.4);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
-            background: rgba(0, 0, 0, 0.7);
-        }
-
-        .input-field::placeholder { color: rgba(255, 255, 255, 0.3); }
-
-        .hp-field {
-            position: absolute;
-            left: -9999px;
-            width: 1px;
-            height: 1px;
-            opacity: 0;
-            pointer-events: none;
-        }
-
         .submit-btn {
-            background: linear-gradient(90deg, var(--accent-crea), var(--accent-dev));
-            color: #000;
+            background: var(--ink);
+            color: var(--paper);
             font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.04em;
             padding: 1rem 2rem;
             border-radius: 12px;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
             border: none;
             cursor: pointer;
             width: 100%;
         }
-
         .submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.15), 0 10px 20px rgba(0, 255, 204, 0.15);
+            box-shadow: 3px 3px 0 var(--red), -3px -3px 0 var(--blue);
         }
-
-        /* Liens Sociaux */
         .social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 3rem;
-            height: 3rem;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 1.25rem;
-            transition: all 0.3s ease;
+            display: flex; align-items: center; justify-content: center;
+            width: 3rem; height: 3rem; border-radius: 50%;
+            background: var(--paper-dim);
+            border: 1px solid var(--line);
+            color: var(--ink-soft);
+            font-size: 1.1rem;
+            transition: all 0.25s ease;
         }
-        
         .social-link:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
+            color: var(--ink);
+            border-color: var(--line-strong);
             transform: translateY(-3px);
-            border-color: rgba(255, 255, 255, 0.3);
         }
     </style>
 </head>
 <body class="antialiased" data-page="contact">
 
-    <!-- Fond Étoilé Interactif -->
-    <canvas id="starfield" aria-hidden="true"></canvas>
+    <canvas id="grain-field" aria-hidden="true"></canvas>
 
-    <!-- Navbar Multi-Pages -->
-    <nav class="fixed top-0 w-full z-50 py-5 px-6 md:px-12 flex justify-between items-center">
-        <a href="index.html" class="font-bold text-2xl tracking-widest uppercase font-title hover:text-gray-300 transition-colors">
-            BASTIEN.
+    <nav class="site-nav fixed top-0 w-full z-50 py-5 px-6 md:px-12 flex justify-between items-center">
+        <a href="index.html" class="brand-mark text-xl md:text-2xl tracking-tight uppercase relative z-50">
+            B-IMPACT<span class="text-[var(--red)]">.</span>
         </a>
-        
-        <!-- Menu Desktop avec liens HTML réels -->
-        <div class="hidden md:flex gap-8 font-semibold text-sm tracking-wider uppercase">
+
+        <div class="hidden md:flex gap-8 font-semibold text-sm tracking-wider uppercase font-title">
             <a href="index.html" class="nav-link">Accueil</a>
-            <a href="communication.html" class="nav-link">Création & Com</a>
+            <a href="communication.html" class="nav-link">Créa & Com</a>
             <a href="developpement.html" class="nav-link">Développement</a>
-            <a href="about.html" class="nav-link">À Propos</a>
+            <a href="about.html" class="nav-link">Studio</a>
             <a href="contact.html" class="nav-link active">Contact</a>
         </div>
 
-        <!-- Menu Mobile Toggle -->
-        <button type="button" id="mobile-menu-btn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden text-2xl text-white cursor-pointer relative z-50 bg-transparent border-0">
+        <button type="button" id="mobile-menu-btn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden text-2xl text-[var(--ink)] cursor-pointer relative z-50 bg-transparent border-0">
             <i class="fa-solid fa-bars"></i>
         </button>
     </nav>
 
-    <!-- Menu Mobile Déroulant -->
-    <div id="mobile-menu" class="fixed top-0 left-0 w-full h-screen bg-[#05050a]/95 backdrop-blur-xl z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8 text-2xl font-title uppercase">
-        <a href="index.html" class="text-gray-400 hover:text-yellow-400 transition">Accueil</a>
-        <a href="communication.html" class="text-gray-400 hover:text-yellow-400 transition">Création & Com</a>
-        <a href="developpement.html" class="text-gray-400 hover:text-[#00ffcc] transition">Développement</a>
-        <a href="about.html" class="text-gray-400 hover:text-white transition">À Propos</a>
-        <a href="contact.html" class="text-white transition">Contact</a>
+    <div id="mobile-menu" class="fixed top-0 left-0 w-full h-screen z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8 text-2xl font-title uppercase">
+        <a href="index.html">Accueil</a>
+        <a href="communication.html">Créa & Com</a>
+        <a href="developpement.html">Développement</a>
+        <a href="about.html">Studio</a>
+        <a href="contact.html" class="active">Contact</a>
     </div>
 
     <main class="pt-32 pb-20 px-6 md:px-12 max-w-6xl mx-auto flex-grow flex flex-col justify-center">
-        
+
         <div class="text-center mb-16">
-            <h1 data-cms="hero_title" class="text-4xl md:text-6xl font-bold mb-4 font-title uppercase tracking-widest">
-                Démarrons un <span class="gradient-text">projet</span>
+            <h1 data-cms="hero_title" class="stamp font-display text-4xl md:text-6xl mb-4 uppercase">
+                Démarrons un projet
             </h1>
-            <p data-cms="hero_desc" class="text-gray-400 text-lg max-w-2xl mx-auto font-light">
-                Une idée de création visuelle, un besoin en développement web, ou simplement l'envie de discuter ? Contactez-moi.
+            <p data-cms="hero_desc" class="text-[var(--ink-soft)] text-lg max-w-2xl mx-auto">
+                Une idée de création visuelle, un besoin en développement web, ou simplement l'envie de discuter ? Contactez B-Impact Studio.
             </p>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            
-            <!-- Informations de Contact Directes -->
-            <div class="glass-card p-8 md:p-12 h-full flex flex-col justify-between">
+
+            <div class="panel p-8 md:p-12 h-full flex flex-col justify-between">
                 <div>
-                    <h2 class="text-2xl font-bold mb-8 font-title tracking-wide border-b border-white/10 pb-4">Contact Direct</h2>
-                    
-                    <p class="text-gray-300 font-light mb-10 leading-relaxed">
-                        Le moyen le plus rapide de me joindre est de m'envoyer un e-mail. Je réponds généralement dans les 48 heures ouvrables.
+                    <h2 class="text-2xl mb-8 uppercase tracking-wide divider pb-4">Contact direct</h2>
+
+                    <p class="text-[var(--ink-soft)] mb-10 leading-relaxed">
+                        Le moyen le plus rapide de nous joindre est l'e-mail. Réponse généralement sous 48 heures ouvrables.
                     </p>
 
-                    <!-- Bouton Email Direct -->
-                    <a href="mailto:bastienfestor4@gmail.com" class="group flex items-center justify-between p-6 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-all duration-300 mb-10">
+                    <a href="mailto:bastienfestor4@gmail.com" class="group flex items-center justify-between p-6 bg-[var(--paper)] border border-[var(--line)] rounded-2xl hover:border-[var(--line-strong)] transition-all duration-300 mb-10">
                         <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-black/50 rounded-full flex items-center justify-center text-xl text-gray-300 group-hover:text-white transition-colors">
+                            <div class="w-12 h-12 bg-[var(--paper-dim)] rounded-full flex items-center justify-center text-xl text-[var(--ink-soft)]">
                                 <i class="fa-solid fa-paper-plane"></i>
                             </div>
                             <div>
-                                <p class="text-xs text-gray-500 font-code uppercase tracking-widest mb-1">E-mail</p>
-                                <p class="text-lg font-semibold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-yellow-400 group-hover:to-[#00ffcc] transition-all">
+                                <p class="text-xs text-[var(--ink-faint)] font-mono uppercase tracking-widest mb-1">E-mail</p>
+                                <p class="text-lg font-semibold text-[var(--ink)]">
                                     bastienfestor4@gmail.com
                                 </p>
                             </div>
                         </div>
-                        <i class="fa-solid fa-arrow-right text-gray-500 group-hover:text-white transform group-hover:translate-x-1 transition-all"></i>
+                        <i class="fa-solid fa-arrow-right text-[var(--ink-faint)] group-hover:translate-x-1 transition-transform"></i>
                     </a>
                 </div>
 
-                <!-- Réseaux Sociaux -->
                 <div>
-                    <h3 class="text-sm font-bold text-gray-500 font-code uppercase tracking-widest mb-4">Ailleurs sur le web</h3>
+                    <h3 class="text-sm font-bold text-[var(--ink-faint)] font-mono uppercase tracking-widest mb-4">Ailleurs sur le web</h3>
                     <div class="flex flex-wrap gap-4">
-                        <a href="https://www.linkedin.com/in/bastien-festor-927277349" target="_blank" class="social-link" title="LinkedIn">
+                        <a href="https://www.linkedin.com/in/bastien-festor-927277349" target="_blank" rel="noopener" class="social-link" title="LinkedIn">
                             <i class="fa-brands fa-linkedin-in"></i>
                         </a>
-                        <a href="https://www.instagram.com/_bastien_f/" target="_blank" class="social-link" title="Instagram">
+                        <a href="https://www.instagram.com/_bastien_f/" target="_blank" rel="noopener" class="social-link" title="Instagram">
                             <i class="fa-brands fa-instagram"></i>
-                        </a>
-                        <a href="#" target="_blank" class="social-link" title="Twitter (X)">
-                            <i class="fa-brands fa-x-twitter"></i>
                         </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Formulaire de Contact -->
-            <div class="glass-card p-8 md:p-12">
-                <h2 class="text-2xl font-bold mb-8 font-title tracking-wide border-b border-white/10 pb-4">M'envoyer un message</h2>
-                
-                <!-- NOTE: L'attribut action doit pointer vers ton Webhook (Make, Zapier, Netlify Forms) -->
+            <div class="panel p-8 md:p-12">
+                <h2 class="text-2xl mb-8 uppercase tracking-wide divider pb-4">Envoyer un message</h2>
+
                 <form id="contactForm" action="#" method="POST" class="space-y-6 relative" novalidate>
 
-                    <!-- Honeypot anti-spam (caché) -->
                     <label for="website" class="hp-field" aria-hidden="true">Ne pas remplir</label>
                     <input type="text" id="website" name="website" class="hp-field" tabindex="-1" autocomplete="off">
-                    
+
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="space-y-2">
-                            <label for="name" class="text-sm text-gray-400 font-code uppercase">Nom complet</label>
-                            <input type="text" id="name" name="name" class="input-field" placeholder="John Doe" required>
+                            <label for="name" class="field-label">Nom complet</label>
+                            <input type="text" id="name" name="name" class="field" placeholder="Jean Dupont" required>
                         </div>
                         <div class="space-y-2">
-                            <label for="email" class="text-sm text-gray-400 font-code uppercase">Adresse E-mail</label>
-                            <input type="email" id="email" name="email" class="input-field" placeholder="john@example.com" required>
+                            <label for="email" class="field-label">Adresse e-mail</label>
+                            <input type="email" id="email" name="email" class="field" placeholder="jean@exemple.com" required>
                         </div>
                     </div>
 
                     <div class="space-y-2">
-                        <label for="subject" class="text-sm text-gray-400 font-code uppercase">Sujet / Nature du projet</label>
-                        <select id="subject" name="subject" class="input-field appearance-none cursor-pointer">
-                            <option value="creation">Création & Communication Visuelle</option>
-                            <option value="developpement">Développement Web (Site, App)</option>
-                            <option value="autre">Autre demande / Prise de contact</option>
+                        <label for="subject" class="field-label">Sujet / Nature du projet</label>
+                        <select id="subject" name="subject" class="field appearance-none cursor-pointer">
+                            <option value="creation">Création & Communication visuelle</option>
+                            <option value="developpement">Développement web (site, app)</option>
+                            <option value="autre">Autre demande / prise de contact</option>
                         </select>
                     </div>
 
                     <div class="space-y-2">
-                        <label for="message" class="text-sm text-gray-400 font-code uppercase">Votre Message</label>
-                        <textarea id="message" name="message" rows="5" class="input-field resize-none" placeholder="Décrivez votre projet ou votre demande ici..." required></textarea>
+                        <label for="message" class="field-label">Votre message</label>
+                        <textarea id="message" name="message" rows="5" class="field resize-none" placeholder="Décrivez votre projet ou votre demande ici..." required></textarea>
                     </div>
 
                     <button type="submit" class="submit-btn flex items-center justify-center gap-3">
                         <span>Envoyer le message</span>
                         <i class="fa-solid fa-paper-plane text-sm"></i>
                     </button>
-                    
-                    <p id="form-status" class="text-xs text-gray-500 text-center mt-4">
+
+                    <p id="form-status" class="text-xs text-[var(--ink-faint)] text-center mt-4">
                         Vos informations ne seront pas partagées à des tiers.
                     </p>
                 </form>
@@ -306,14 +184,13 @@
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="w-full text-center py-6 text-xs text-gray-600 font-code tracking-widest uppercase mt-auto">
-        © 2026 BASTIEN FESTOR.
+    <footer class="site-footer">
+        © 2026 B-Impact Studio — Bastien Festor
     </footer>
 
     <script src="/assets/js/cms.js"></script>
     <script src="/assets/js/mobile-menu.js"></script>
-    <script src="/assets/js/starfield.js"></script>
+    <script src="/assets/js/grain.js"></script>
     <script src="/assets/js/contact-form.js"></script>
 </body>
 </html>
