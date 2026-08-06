@@ -11,8 +11,8 @@
       "icon": "fa-leaf",
       "gradient": "from-green-900 to-black",
       "stack": "Photoshop, Illustrator, Brandboard, SEO Local",
-      "link": "/assets/uploads/easy-garden-brandboard-identite-visuelle-1.png",
-      "link_label": "Voir le brandboard"
+      "link": "https://canva.link/uh38uxvrpw5ztzhg",
+      "link_label": "Voir la carte"
     },
     {
       "slug": "carte-visite-parcs-jardins",
@@ -25,7 +25,8 @@
       "icon": "fa-tree",
       "gradient": "from-emerald-900 to-black",
       "stack": "Photoshop, Illustrator",
-      "link": "https://canva.link/eshl8ebbnckkn6j"
+      "link": "https://canva.link/eshl8ebbnckkn6j",
+      "link_label": "Voir la carte"
     },
     {
       "slug": "articbase",
