@@ -21,11 +21,11 @@
       "tag": "Carte de Visite",
       "short_description": "Création d'une carte de visite recto pour un indépendant en parcs et jardins.",
       "description": "Conception graphique d'une carte de visite (une face) pour un indépendant du secteur parcs et jardins, pensée pour être simple, lisible et directement utilisable sur le terrain auprès des clients.",
-      "image": "/assets/uploads/carteraph.png",
+      "image": "/assets/uploads/carte-de-visite-jardinier-independant-parc-jardin.png",
       "icon": "fa-tree",
       "gradient": "from-emerald-900 to-black",
       "stack": "Photoshop, Illustrator",
-      "link": "#"
+      "link": "https://canva.link/eshl8ebbnckkn6j"
     },
     {
       "slug": "articbase",
@@ -38,7 +38,7 @@
       "icon": "",
       "gradient": "",
       "stack": "HTML, CSS, JavaScript, SEO, Google Ads",
-      "link": "#"
+      "link": "https://articbase.netlify.app"
     },
     {
       "slug": "drop-the-mic-dev",
