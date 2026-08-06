@@ -1,19 +1,6 @@
 {
   "projects": [
     {
-      "slug": "drop-the-mic",
-      "title": "Drop the Mic",
-      "category": "Créa",
-      "tag": "Stand-up & Événementiel",
-      "short_description": "Stratégie de communication pour un événement de stand-up à La Nef.",
-      "description": "Développement de la stratégie de communication globale pour un événement de stand-up à La Nef. Création de l'identité visuelle de A à Z, planification des publications et animation de la communauté sur les réseaux sociaux.",
-      "image": "/assets/uploads/drop-the-mic-identite-visuelle-evenement-standup.png",
-      "icon": "fa-microphone-lines",
-      "gradient": "from-purple-900 to-black",
-      "stack": "Stratégie de Marque, Canva, Premiere Pro, Instagram, TikTok",
-      "link": "#"
-    },
-    {
       "slug": "easy-garden-crea",
       "title": "Easy Garden",
       "category": "Créa",
@@ -24,21 +11,8 @@
       "icon": "fa-leaf",
       "gradient": "from-green-900 to-black",
       "stack": "Photoshop, Illustrator, Brandboard, SEO Local",
-      "link": "/assets/uploads/easy-garden-brandboard-identite-visuelle.pdf",
-      "link_label": "Voir le brandboard (PDF)"
-    },
-    {
-      "slug": "mj-lierre",
-      "title": "MJ Lierre-sur-Sambre",
-      "category": "Créa",
-      "tag": "Projet d'étude (Fictif)",
-      "short_description": "Identité visuelle Néo-Brutaliste pour le festival \"Jeunes Talents\".",
-      "description": "Conception d'une identité visuelle au style Néo-Brutaliste assumé pour le festival fictif 'Jeunes Talents'. L'objectif était de cibler un public jeune et hyper-connecté avec des couleurs vives et des typographies percutantes.",
-      "image": "/assets/uploads/mj-lierre-sur-sambre-identite-visuelle-festival-fictif.png",
-      "icon": "fa-masks-theater",
-      "gradient": "from-orange-900 to-black",
-      "stack": "Recherche Identitaire, Photoshop, Illustrator, UI Design",
-      "link": "#"
+      "link": "/assets/uploads/easy-garden-brandboard-identite-visuelle-1.png",
+      "link_label": "Voir le brandboard"
     },
     {
       "slug": "carte-visite-parcs-jardins",
@@ -47,7 +21,7 @@
       "tag": "Carte de Visite",
       "short_description": "Création d'une carte de visite recto pour un indépendant en parcs et jardins.",
       "description": "Conception graphique d'une carte de visite (une face) pour un indépendant du secteur parcs et jardins, pensée pour être simple, lisible et directement utilisable sur le terrain auprès des clients.",
-      "image": "/assets/uploads/carte-de-visite-jardinier-independant-parc-jardin.png",
+      "image": "/assets/uploads/carteraph.png",
       "icon": "fa-tree",
       "gradient": "from-emerald-900 to-black",
       "stack": "Photoshop, Illustrator",
@@ -104,19 +78,6 @@
       "gradient": "",
       "stack": "HTML, CSS, JavaScript",
       "link": "https://mj-lss.netlify.app"
-    },
-    {
-      "slug": "blocus",
-      "title": "Projet Blocus",
-      "category": "Dev",
-      "tag": "Web App",
-      "short_description": "Application web de gestion avec tableau de bord et authentification.",
-      "description": "Application web sur mesure avec tableau de bord, gestion de données et authentification utilisateur. Architecture front-end moderne couplée à une base de données cloud.",
-      "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop",
-      "icon": "",
-      "gradient": "",
-      "stack": "React, Supabase, Tailwind CSS, Netlify",
-      "link": "#"
     }
   ]
 }
