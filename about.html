@@ -6,6 +6,7 @@
     <title>Le studio | B-Impact Studio</title>
 
     <meta name="description" content="B-Impact Studio est porté par Bastien Festor, étudiant à la HEAJ (Namur), qui relie créativité visuelle et rigueur technique pour le web.">
+    <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.b-impact.be/about.html">
 
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
@@ -29,16 +30,16 @@
     <canvas id="grain-field" aria-hidden="true"></canvas>
 
     <nav class="site-nav fixed top-0 w-full z-50 py-5 px-6 md:px-12 flex justify-between items-center">
-        <a href="index.html" class="brand-mark text-xl md:text-2xl tracking-tight uppercase relative z-50">
+        <a href="/" class="brand-mark text-xl md:text-2xl tracking-tight uppercase relative z-50">
             B-IMPACT<span class="text-[var(--red)]">.</span>
         </a>
 
         <div class="hidden md:flex gap-8 font-semibold text-sm tracking-wider uppercase font-title">
-            <a href="index.html" class="nav-link">Accueil</a>
-            <a href="communication.html" class="nav-link">Créa & Com</a>
-            <a href="developpement.html" class="nav-link">Développement</a>
-            <a href="about.html" class="nav-link active">Studio</a>
-            <a href="contact.html" class="nav-link">Contact</a>
+            <a href="/" class="nav-link">Accueil</a>
+            <a href="/communication.html" class="nav-link">Créa & Com</a>
+            <a href="/developpement.html" class="nav-link">Développement</a>
+            <a href="/about.html" class="nav-link active">Studio</a>
+            <a href="/contact.html" class="nav-link">Contact</a>
         </div>
 
         <button type="button" id="mobile-menu-btn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden text-2xl text-[var(--ink)] cursor-pointer relative z-50 bg-transparent border-0">
@@ -47,11 +48,11 @@
     </nav>
 
     <div id="mobile-menu" class="fixed top-0 left-0 w-full h-screen z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8 text-2xl font-title uppercase">
-        <a href="index.html">Accueil</a>
-        <a href="communication.html">Créa & Com</a>
-        <a href="developpement.html">Développement</a>
-        <a href="about.html" class="active">Studio</a>
-        <a href="contact.html">Contact</a>
+        <a href="/">Accueil</a>
+        <a href="/communication.html">Créa & Com</a>
+        <a href="/developpement.html">Développement</a>
+        <a href="/about.html" class="active">Studio</a>
+        <a href="/contact.html">Contact</a>
     </div>
 
     <main class="pt-32 pb-20 px-6 md:px-12 max-w-6xl mx-auto flex-grow flex flex-col justify-center">
@@ -60,7 +61,7 @@
             <h1 data-cms="hero_title" class="stamp font-display mb-4 uppercase">
                 Derrière le studio
             </h1>
-            <p data-cms="hero_desc" class="text-[var(--ink-soft)] text-lg">Le pont entre la créativité visuelle et la rigueur technique.</p>
+            <p data-cms="hero_desc" class="text-[var(--ink-soft)] text-lg">Le pont entre la <strong>créativité visuelle</strong> et la <strong>rigueur technique</strong>.</p>
         </div>
 
         <div class="panel about-overview p-6 md:p-12 mb-12 gap-12 items-start">
@@ -92,10 +93,10 @@
 
                 <div class="space-y-6 text-[var(--ink-soft)] leading-relaxed text-lg">
                     <p data-cms="para_1">
-                        Salut, je suis <span class="text-[var(--ink)] font-semibold">Bastien</span>, fondateur de B-Impact Studio. Étudiant à la Haute École Albert Jacquard (HEAJ) de Namur, j'ai toujours été fasciné par la façon dont le web et le design façonnent notre quotidien.
+                        Salut, je suis <span class="text-[var(--ink)] font-semibold">Bastien</span>, fondateur de <strong>B-Impact Studio</strong>. Étudiant à la Haute École Albert Jacquard (HEAJ) de Namur, j'ai toujours été fasciné par la façon dont le web et le design façonnent notre quotidien et nos interactions numériques.
                     </p>
                     <p data-cms="para_2">
-                        Très vite, j'ai réalisé qu'avoir une bonne idée ne suffisait pas : il faut savoir la communiquer <span class="text-[var(--red-deep)] font-medium">visuellement</span>, mais aussi la construire <span class="text-[var(--blue-deep)] font-medium">techniquement</span>. C'est pourquoi B-Impact Studio réunit les deux : d'un côté je conçois des identités graphiques et des stratégies de communication, de l'autre je développe des sites et des applications web sur mesure.
+                        Très vite, j'ai réalisé qu'avoir une bonne idée ne suffisait pas : il faut savoir la communiquer <span class="text-[var(--red-deep)] font-medium">visuellement</span>, mais aussi la construire <span class="text-[var(--blue-deep)] font-medium">techniquement</span>. C'est pourquoi <strong>B-Impact Studio réunit les deux</strong> : d'un côté je conçois des identités graphiques et des stratégies de communication, de l'autre je développe des <a href="/developpement.html" class="text-[var(--ink)] underline hover:text-[var(--red-deep)] transition-colors">sites et des applications web sur mesure</a>.
                     </p>
 
                     <div class="bg-[var(--paper)] border-l-4 border-[var(--red)] p-6 rounded-r-xl mt-8">
@@ -104,7 +105,7 @@
                             <h3 class="text-[var(--ink)] font-bold uppercase text-sm tracking-wider">Projet de fin d'études (TFE)</h3>
                         </div>
                         <p class="text-sm text-[var(--ink-soft)]">
-                            Actuellement en dernière année, je consacre mon mémoire aux stratégies de communication et d'influence dans le secteur du jeu vidéo. Une analyse qui nourrit directement l'expertise communication de B-Impact Studio.
+                            Actuellement en dernière année, je consacre mon mémoire aux stratégies de communication et d'influence dans le secteur du jeu vidéo. Une analyse qui nourrit directement l'expertise en <a href="/communication.html" class="text-[var(--ink)] underline hover:text-[var(--red-deep)] transition-colors">communication de B-Impact Studio</a>.
                         </p>
                     </div>
                 </div>

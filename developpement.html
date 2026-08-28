@@ -6,6 +6,7 @@
     <title>Développement Web | B-Impact Studio</title>
 
     <meta name="description" content="Sites vitrines, applications web (React, Supabase) et landing pages optimisées, développés par B-Impact Studio.">
+    <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.b-impact.be/developpement.html">
 
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
@@ -54,16 +55,16 @@
     <canvas id="grain-field" aria-hidden="true"></canvas>
 
     <nav class="site-nav fixed top-0 w-full z-50 py-5 px-6 md:px-12 flex justify-between items-center">
-        <a href="index.html" class="brand-mark text-xl md:text-2xl tracking-tight uppercase relative z-50">
+        <a href="/" class="brand-mark text-xl md:text-2xl tracking-tight uppercase relative z-50">
             B-IMPACT<span class="text-[var(--red)]">.</span>
         </a>
 
         <div class="hidden md:flex gap-8 font-semibold text-sm tracking-wider uppercase font-title">
-            <a href="index.html" class="nav-link">Accueil</a>
-            <a href="communication.html" class="nav-link">Créa & Com</a>
-            <a href="developpement.html" class="nav-link active">Développement</a>
-            <a href="about.html" class="nav-link">Studio</a>
-            <a href="contact.html" class="nav-link">Contact</a>
+            <a href="/" class="nav-link">Accueil</a>
+            <a href="/communication.html" class="nav-link">Créa & Com</a>
+            <a href="/developpement.html" class="nav-link active">Développement</a>
+            <a href="/about.html" class="nav-link">Studio</a>
+            <a href="/contact.html" class="nav-link">Contact</a>
         </div>
 
         <button type="button" id="mobile-menu-btn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden text-2xl text-[var(--ink)] cursor-pointer relative z-50 bg-transparent border-0">
@@ -72,11 +73,11 @@
     </nav>
 
     <div id="mobile-menu" class="fixed top-0 left-0 w-full h-screen z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8 text-2xl font-title uppercase">
-        <a href="index.html">Accueil</a>
-        <a href="communication.html">Créa & Com</a>
-        <a href="developpement.html" class="active">Développement</a>
-        <a href="about.html">Studio</a>
-        <a href="contact.html">Contact</a>
+        <a href="/">Accueil</a>
+        <a href="/communication.html">Créa & Com</a>
+        <a href="/developpement.html" class="active">Développement</a>
+        <a href="/about.html">Studio</a>
+        <a href="/contact.html">Contact</a>
     </div>
 
     <main class="pt-32 pb-20 px-6 md:px-12 max-w-6xl mx-auto flex-grow">
@@ -84,7 +85,7 @@
         <div class="text-center mb-12">
             <span class="tag-stamp tag-stamp--dev mb-6 inline-flex">Développement</span>
             <h1 data-cms="hero_title" class="stamp font-display text-4xl md:text-6xl mb-4 uppercase">Développement Web</h1>
-            <p data-cms="hero_desc" class="text-[var(--ink-soft)] text-lg max-w-2xl mx-auto">Des fondations solides pour vos idées. Des sites performants, accessibles et pensés pour le référencement naturel.</p>
+            <p data-cms="hero_desc" class="text-[var(--ink-soft)] text-lg max-w-2xl mx-auto"><strong>Des fondations solides pour vos idées.</strong> Des sites performants, accessibles et pensés pour le référencement naturel.</p>
         </div>
 
         <div class="mb-20">
@@ -102,8 +103,7 @@
                     &nbsp;&nbsp;expertise: [<span style="color:#c3e88d">'Sites Vitrines'</span>, <span style="color:#c3e88d">'Landing Pages'</span>, <span style="color:#c3e88d">'Web Apps'</span>],<br>
                     &nbsp;&nbsp;location: <span style="color:#c3e88d">'Namur & Hainaut'</span><br>
                     };<br><br>
-                    <span style="color:#8a8578" class="italic">// Initialisation des projets...</span><br>
-                    <span style="color:#c792ea">await</span> <span style="color:#82aaff">studio</span>.<span style="color:#82aaff">buildProject</span>();<span class="cursor-blink"></span>
+                    <span style="color:#8a8578" class="italic">await studio.buildProject();</span><span class="cursor-blink"></span>
                 </div>
             </div>
         </div>
