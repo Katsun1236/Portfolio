@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>B-Impact Studio | Sites web, identité visuelle & communication</title>
-    <meta name="description" content="B-Impact Studio, basé à Namur & Hainaut : sites vitrines et applications web, identité graphique et stratégie de communication pour marques et indépendants.">
-    <meta name="keywords" content="B-Impact Studio, Bastien Festor, agence web, développeur web, identité graphique, communication, Namur, Hainaut, Belgique">
+    
+    <title>B-Impact Studio | Agence Web & Design Graphique Namur — Sites Vitrines React, Supabase</title>
+    <meta name="description" content="Agence web Namur spécialisée en développement React/Supabase et identité graphique. Sites vitrines SEO, landing pages conversion, communication stratégique pour PME & indépendants.">
+    <meta name="keywords" content="agence web Namur, développement React, Supabase, sites vitrines, landing pages, identité visuelle, communication stratégique, freelance web, design graphique, Hainaut, Belgique, développeur full-stack, Tailwind CSS">
     <meta name="author" content="B-Impact Studio">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.b-impact.be/">
@@ -21,6 +21,15 @@
     <meta property="og:title" content="B-Impact Studio | Sites web, identité visuelle & communication">
     <meta property="og:description" content="Sites vitrines, applications web, identité graphique et communication, pensés ensemble plutôt qu'en silos.">
     <meta property="og:image" content="https://www.b-impact.be/assets/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:locale" content="fr_FR">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@b_impact_studio">
+    <meta name="twitter:title" content="B-Impact Studio | Agence Web & Design Namur">
+    <meta name="twitter:description" content="Agence créative & technique. Sites vitrines, apps web, identité graphique.">
+    <meta name="twitter:image" content="https://www.b-impact.be/assets/og-image.jpg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -28,6 +37,15 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <link rel="stylesheet" href="/assets/css/theme.css">
+    <meta name="theme-color" content="#EE2E3C">
+    <meta name="google-site-verification" content="VOTRE_CODE_GOOGLE_ICI">
+    <link rel="canonical" href="https://www.b-impact.be/">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="preload" href="/assets/fonts/archivo-black.woff2" as="font" type="font/woff2" crossorigin>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
 </head>
 <body class="antialiased" data-page="index">
 
@@ -81,7 +99,7 @@
             </div>
 
             <h1 data-cms="hero_title" class="stamp font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl mb-6 leading-[0.95] uppercase">
-                B-Impact Studio
+                Agence Web & Design Graphique à Namur — Sites Vitrines, React & Communication
             </h1>
 
             <div class="flex flex-col md:flex-row gap-4 md:gap-6 mb-10 items-center">
@@ -114,7 +132,7 @@
 
         <section id="expertise" class="max-w-6xl mx-auto px-6 py-24">
             <div class="text-center mb-16">
-                <h2 data-cms="adn_title" class="stamp-sm text-3xl md:text-5xl uppercase mb-4">Deux métiers, un studio</h2>
+                <h2 data-cms="adn_title" class="stamp-sm text-3xl md:text-5xl uppercase mb-4">Deux domaines d'expertise combinés</h2>
                 <p data-cms="adn_desc" class="text-[var(--ink-soft)] text-lg max-w-2xl mx-auto">Chaque projet a besoin d'une <strong>image forte et d'un site performant</strong> qui la sert vraiment. B-Impact Studio fait les deux, sans passer le relais entre prestataires.</p>
             </div>
 
@@ -122,7 +140,13 @@
                 <a href="/communication.html" class="group panel p-10 relative overflow-hidden">
                     <span class="tag-stamp tag-stamp--crea mb-6 inline-flex">Créa & Com</span>
                     <i class="fa-solid fa-pen-nib text-3xl text-[var(--red-deep)] mb-6 block"></i>
-                    <h3 class="text-2xl mb-4 uppercase tracking-wide">Création & Communication</h3>
+                    <h3 class="text-2xl mb-4 uppercase tracking-wide">Identité Visuelle & Communication Stratégique</h3>
+                    <ul 
+                        class="list-disc ml-5 text-sm">
+                        <li>Branding et identité visuelle</li>
+                        <li>Stratégie de communication digitale</li>
+                        <li>Animation de communautés</li> 
+                    </ul>
                     <p class="text-[var(--ink-soft)] leading-relaxed mb-8">Stratégie de marque, identité visuelle, animation de communautés et gestion d'événements. L'image qui fera reconnaître votre projet au premier coup d'œil.</p>
                     <span class="text-[var(--red-deep)] font-mono text-sm flex items-center gap-2 group-hover:gap-4 transition-all">Explorer les créations <i class="fa-solid fa-arrow-right"></i></span>
                 </a>
@@ -130,7 +154,13 @@
                 <a href="/developpement.html" class="group panel p-10 relative overflow-hidden">
                     <span class="tag-stamp tag-stamp--dev mb-6 inline-flex">Développement</span>
                     <i class="fa-solid fa-code text-3xl text-[var(--blue-deep)] mb-6 block"></i>
-                    <h3 class="text-2xl mb-4 uppercase tracking-wide font-mono">Développement Web</h3>
+                    <h3 class="text-2xl mb-4 uppercase tracking-wide font-mono">Développement Web Modern (React, Supabase)</h3>
++               <ul 
+                    class="list-disc ml-5 text-sm">
++                   <li>Sites vitrines optimisés SEO</li>
++                   <li>Applications web sur React.js</li>
++                   <li>Landing pages orientées conversion</li>
++               </ul>
                     <p class="text-[var(--ink-soft)] leading-relaxed mb-8">Sites vitrines optimisés SEO, landing pages orientées conversion et applications web sur mesure. Les fondations techniques de vos idées.</p>
                     <span class="text-[var(--blue-deep)] font-mono text-sm flex items-center gap-2 group-hover:gap-4 transition-all">Inspecter le code <i class="fa-solid fa-arrow-right"></i></span>
                 </a>
@@ -181,19 +211,46 @@
         © 2026 B-Impact Studio — Bastien Festor
     </footer>
 
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "name": "B-Impact Studio",
-        "url": "https://www.b-impact.be/",
-        "image": "https://www.b-impact.be/assets/og-image.jpg",
-        "founder": { "@type": "Person", "name": "Bastien Festor" },
-        "areaServed": { "@type": "Place", "name": "Namur & Hainaut, Belgique" },
-        "email": "mailto:bastienfestor4@gmail.com",
-        "serviceType": "Web Design and Development"
-    }
-    </script>
+   <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+   "@id": "https://www.b-impact.be/",
+    "name": "B-Impact Studio",
+    "url": "https://www.b-impact.be/",
+    "image": "https://www.b-impact.be/assets/og-image.jpg",
+  "logo": {
+     "@type": "ImageObject",
+     "url": "https://www.b-impact.be/assets/favicon.svg",
+     "width": 256,
+     "height": 256
+   },
+    "founder": { 
+      "@type": "Person", 
+      "name": "Bastien Festor",
+    "url": "https://www.b-impact.be/about.html"
+    },
+    "areaServed": { 
+      "@type": "Place", 
+      "name": "Namur & Hainaut, Belgique",
+     "geo": {
+       "@type": "GeoShape",
+       "addressCountry": "BE"
+     }
+    },
+    "email": "mailto:bastienfestor4@gmail.com",
+   "serviceType": ["Web Design", "Web Development", "Graphic Design", "Communication"],
+   "knowsAbout": ["React.js", "Supabase", "Tailwind CSS", "WordPress", "SEO", "UX Design", "Branding"],
+   "sameAs": [
+     "https://www.linkedin.com/in/bastien-festor-927277349",
+    "https://www.instagram.com/_bastien_f/"
+   ],
+   "aggregateRating": {
+     "@type": "AggregateRating",
+     "@comment": ""
+   }
+  }
+  </script>
 
     <script src="/assets/js/cms.js"></script>
     <script src="/assets/js/mobile-menu.js"></script>
