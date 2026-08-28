@@ -1,0 +1,39 @@
+{
+  "name": "B-Impact Studio",
+  "short_name": "B-Impact",
+  "description": "Agence web et design graphique à Namur. Sites vitrines, applications React, identité visuelle.",
+  "start_url": "https://www.b-impact.be/",
+  "display": "standalone",
+  "background_color": "#EEEAE0",
+  "theme_color": "#EE2E3C",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/assets/favicon.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/assets/og-image.jpg",
+      "sizes": "540x720",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["business", "productivity"],
+  "screenshots_mobile": [
+    {
+      "src": "/assets/og-image.jpg",
+      "sizes": "540x720",
+      "type": "image/jpeg"
+    }
+  ]
+}
