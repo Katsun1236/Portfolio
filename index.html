@@ -1,13 +1,15 @@
+
 <!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>B-Impact Studio | Sites web, identité visuelle & communication</title>
-    <meta name="description" content="B-Impact Studio, basé à Namur & Hainaut : sites vitrines et applications web, identité graphique et stratégie de communication pour marques et indépendants.">
-    <meta name="keywords" content="B-Impact Studio, Bastien Festor, agence web, développeur web, identité graphique, communication, Namur, Hainaut, Belgique">
-    <meta name="author" content="B-Impact Studio">
+    
+    <title>Click&amp;Craft Studio | Agence Web & Design Graphique Namur — Sites Vitrines React, Supabase</title>
+    <meta name="description" content="Agence web Namur spécialisée en développement React/Supabase et identité graphique. Sites vitrines SEO, landing pages conversion, communication stratégique pour PME & indépendants.">
+    <meta name="keywords" content="agence web Namur, développement React, Supabase, sites vitrines, landing pages, identité visuelle, communication stratégique, freelance web, design graphique, Hainaut, Belgique, développeur full-stack, Tailwind CSS">
+    <meta name="author" content="Click&amp;Craft Studio">
+    <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.b-impact.be/">
 
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
@@ -16,32 +18,63 @@
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.b-impact.be/">
-    <meta property="og:title" content="B-Impact Studio | Sites web, identité visuelle & communication">
-    <meta property="og:description" content="Sites vitrines, applications web, identité graphique et communication, pensés et construits par un même studio.">
+    <meta property="og:title" content="Click&amp;Craft Studio | Sites web, identité visuelle & communication">
+    <meta property="og:description" content="Sites vitrines, applications web, identité graphique et communication, pensés ensemble plutôt qu'en silos.">
     <meta property="og:image" content="https://www.b-impact.be/assets/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:locale" content="fr_FR">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@b_impact_studio">
+    <meta name="twitter:title" content="Click&amp;Craft Studio | Agence Web & Design Namur">
+    <meta name="twitter:description" content="Agence créative & technique. Sites vitrines, apps web, identité graphique.">
+    <meta name="twitter:image" content="https://www.b-impact.be/assets/og-image.jpg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lato:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <link rel="stylesheet" href="/assets/css/theme.css">
+    <meta name="theme-color" content="#C98F52">
+    <meta name="google-site-verification" content="VOTRE_CODE_GOOGLE_ICI">
+    <link rel="canonical" href="https://www.b-impact.be/">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="/site.webmanifest">
+
+    
+    <script
+         async src="https://www.googletagmanager.com/gtag/js?id=GTM-NSTM84XV">
+    </script>
+
+    <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+     gtag('config', 'GTM-NSTM84XV');
+    </script>
+
 </head>
 <body class="antialiased" data-page="index">
 
     <canvas id="grain-field" aria-hidden="true"></canvas>
+    <div class="registration-marks" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
 
     <nav class="site-nav fixed top-0 w-full z-50 py-5 px-6 md:px-12 flex justify-between items-center">
-        <a href="index.html" class="brand-mark text-xl md:text-2xl tracking-tight uppercase relative z-50">
-            B-IMPACT<span class="text-[var(--red)]">.</span>
+        <a href="/" class="brand-mark text-xl md:text-2xl relative z-50 lowercase">
+            click<span class="amp">&amp;</span>craft
         </a>
 
         <div class="hidden md:flex gap-8 font-semibold text-sm tracking-wider uppercase font-title">
-            <a href="index.html" class="nav-link active">Accueil</a>
-            <a href="communication.html" class="nav-link">Créa & Com</a>
-            <a href="developpement.html" class="nav-link">Développement</a>
-            <a href="about.html" class="nav-link">Studio</a>
-            <a href="contact.html" class="nav-link">Contact</a>
+            <a href="/" class="nav-link active">Accueil</a>
+            <a href="/communication.html" class="nav-link">Créa & Com</a>
+            <a href="/developpement.html" class="nav-link">Développement</a>
+            <a href="/about.html" class="nav-link">Studio</a>
+            <a href="/contact.html" class="nav-link">Contact</a>
         </div>
 
         <button type="button" id="mobile-menu-btn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden text-2xl text-[var(--ink)] cursor-pointer relative z-50 bg-transparent border-0">
@@ -50,11 +83,11 @@
     </nav>
 
     <div id="mobile-menu" class="fixed top-0 left-0 w-full h-screen z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8 text-2xl font-title uppercase">
-        <a href="index.html" class="active">Accueil</a>
-        <a href="communication.html">Créa & Com</a>
-        <a href="developpement.html">Développement</a>
-        <a href="about.html">Studio</a>
-        <a href="contact.html">Contact</a>
+        <a href="/">Accueil</a>
+        <a href="/communication.html">Créa & Com</a>
+        <a href="/developpement.html">Développement</a>
+        <a href="/about.html">Studio</a>
+        <a href="/contact.html">Contact</a>
     </div>
 
     <main class="flex-grow w-full">
@@ -78,7 +111,7 @@
             </div>
 
             <h1 data-cms="hero_title" class="stamp font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl mb-6 leading-[0.95] uppercase">
-                B-Impact Studio
+                Agence Web & Design Graphique à Namur — Sites Vitrines, React & Communication
             </h1>
 
             <div class="flex flex-col md:flex-row gap-4 md:gap-6 mb-10 items-center">
@@ -91,14 +124,14 @@
             </div>
 
             <p data-cms="hero_desc" class="max-w-2xl text-[var(--ink-soft)] text-lg leading-relaxed mb-12">
-                Un seul studio pour concevoir votre image et construire le site qui la porte. Identité visuelle, communication et développement web, pensés ensemble plutôt qu'en silos.
+                Un seul <strong>studio de création et développement web</strong> pour concevoir votre image et construire le site qui la porte. Identité visuelle, communication et développement web, pensés ensemble plutôt qu'en silos.
             </p>
 
             <div class="flex flex-col sm:flex-row gap-5">
-                <a href="communication.html" data-cms="btn_crea" class="btn-ink">
+                <a href="/communication.html" data-cms="btn_crea" class="btn-ink">
                     Découvrir la créa
                 </a>
-                <a href="developpement.html" data-cms="btn_dev" class="btn-outline">
+                <a href="/developpement.html" data-cms="btn_dev" class="btn-outline">
                     Voir le code <i class="fa-solid fa-terminal ml-1"></i>
                 </a>
             </div>
@@ -111,23 +144,35 @@
 
         <section id="expertise" class="max-w-6xl mx-auto px-6 py-24">
             <div class="text-center mb-16">
-                <h2 data-cms="adn_title" class="stamp-sm text-3xl md:text-5xl uppercase mb-4">Deux métiers, un studio</h2>
-                <p data-cms="adn_desc" class="text-[var(--ink-soft)] text-lg max-w-2xl mx-auto">Chaque projet a besoin d'une image forte et d'un site qui la sert vraiment. B-Impact Studio fait les deux, sans passer le relais entre prestataires.</p>
+                <h2 data-cms="adn_title" class="stamp-sm text-3xl md:text-5xl uppercase mb-4">Deux domaines d'expertise combinés</h2>
+                <p data-cms="adn_desc" class="text-[var(--ink-soft)] text-lg max-w-2xl mx-auto">Chaque projet a besoin d'une <strong>image forte et d'un site performant</strong> qui la sert vraiment. Click&amp;Craft Studio fait les deux, sans passer le relais entre prestataires.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <a href="communication.html" class="group panel p-10 relative overflow-hidden">
+                <a href="/communication.html" class="group panel p-10 relative overflow-hidden">
                     <span class="tag-stamp tag-stamp--crea mb-6 inline-flex">Créa & Com</span>
                     <i class="fa-solid fa-pen-nib text-3xl text-[var(--red-deep)] mb-6 block"></i>
-                    <h3 class="text-2xl mb-4 uppercase tracking-wide">Création & Communication</h3>
+                    <h3 class="text-2xl mb-4 uppercase tracking-wide">Identité Visuelle & Communication Stratégique</h3>
+                    <ul 
+                        class="list-disc ml-5 text-sm">
+                        <li>Branding et identité visuelle</li>
+                        <li>Stratégie de communication digitale</li>
+                        <li>Animation de communautés</li> 
+                    </ul>
                     <p class="text-[var(--ink-soft)] leading-relaxed mb-8">Stratégie de marque, identité visuelle, animation de communautés et gestion d'événements. L'image qui fera reconnaître votre projet au premier coup d'œil.</p>
                     <span class="text-[var(--red-deep)] font-mono text-sm flex items-center gap-2 group-hover:gap-4 transition-all">Explorer les créations <i class="fa-solid fa-arrow-right"></i></span>
                 </a>
 
-                <a href="developpement.html" class="group panel p-10 relative overflow-hidden">
+                <a href="/developpement.html" class="group panel p-10 relative overflow-hidden">
                     <span class="tag-stamp tag-stamp--dev mb-6 inline-flex">Développement</span>
                     <i class="fa-solid fa-code text-3xl text-[var(--blue-deep)] mb-6 block"></i>
-                    <h3 class="text-2xl mb-4 uppercase tracking-wide font-mono">Développement Web</h3>
+                    <h3 class="text-2xl mb-4 uppercase tracking-wide font-mono">Développement Web Modern (React, Supabase)</h3>
++               <ul 
+                    class="list-disc ml-5 text-sm">
++                   <li>Sites vitrines optimisés SEO</li>
++                   <li>Applications web sur React.js</li>
++                   <li>Landing pages orientées conversion</li>
++               </ul>
                     <p class="text-[var(--ink-soft)] leading-relaxed mb-8">Sites vitrines optimisés SEO, landing pages orientées conversion et applications web sur mesure. Les fondations techniques de vos idées.</p>
                     <span class="text-[var(--blue-deep)] font-mono text-sm flex items-center gap-2 group-hover:gap-4 transition-all">Inspecter le code <i class="fa-solid fa-arrow-right"></i></span>
                 </a>
@@ -175,21 +220,49 @@
     </main>
 
     <footer class="site-footer">
-        © 2026 B-Impact Studio — Bastien Festor
+        © 2026 Click&amp;Craft Studio — Bastien Festor
     </footer>
 
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "name": "B-Impact Studio",
-        "url": "https://www.b-impact.be/",
-        "image": "https://www.b-impact.be/assets/og-image.jpg",
-        "founder": { "@type": "Person", "name": "Bastien Festor" },
-        "areaServed": { "@type": "Place", "name": "Namur & Hainaut, Belgique" },
-        "email": "mailto:bastienfestor4@gmail.com"
-    }
-    </script>
+   <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+   "@id": "https://www.b-impact.be/",
+    "name": "Click&Craft Studio",
+    "url": "https://www.b-impact.be/",
+    "image": "https://www.b-impact.be/assets/og-image.jpg",
+  "logo": {
+     "@type": "ImageObject",
+     "url": "https://www.b-impact.be/assets/favicon.svg",
+     "width": 256,
+     "height": 256
+   },
+    "founder": { 
+      "@type": "Person", 
+      "name": "Bastien Festor",
+    "url": "https://www.b-impact.be/about.html"
+    },
+    "areaServed": { 
+      "@type": "Place", 
+      "name": "Namur & Hainaut, Belgique",
+     "geo": {
+       "@type": "GeoShape",
+       "addressCountry": "BE"
+     }
+    },
+    "email": "mailto:bastienfestor4@gmail.com",
+   "serviceType": ["Web Design", "Web Development", "Graphic Design", "Communication"],
+   "knowsAbout": ["React.js", "Supabase", "Tailwind CSS", "WordPress", "SEO", "UX Design", "Branding"],
+   "sameAs": [
+     "https://www.linkedin.com/in/bastien-festor-927277349",
+    "https://www.instagram.com/_bastien_f/"
+   ],
+   "aggregateRating": {
+     "@type": "AggregateRating",
+     "@comment": ""
+   }
+  }
+  </script>
 
     <script src="/assets/js/cms.js"></script>
     <script src="/assets/js/mobile-menu.js"></script>

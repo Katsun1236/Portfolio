@@ -1,11 +1,11 @@
 {
-  "name": "B-Impact Studio",
-  "short_name": "B-Impact",
+  "name": "Click&Craft Studio",
+  "short_name": "Click&Craft",
   "description": "Agence web et design graphique à Namur. Sites vitrines, applications React, identité visuelle.",
   "start_url": "https://www.b-impact.be/",
   "display": "standalone",
-  "background_color": "#EEEAE0",
-  "theme_color": "#EE2E3C",
+  "background_color": "#F7F3EE",
+  "theme_color": "#C98F52",
   "orientation": "portrait-primary",
   "icons": [
     {

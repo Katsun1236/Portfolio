@@ -31,7 +31,7 @@
         ctx.clearRect(0, 0, width, height);
         for (var i = 0; i < dots.length; i++) {
             var d = dots[i];
-            ctx.fillStyle = "rgba(23, 19, 15, 0.05)";
+            ctx.fillStyle = "rgba(23, 19, 15, 0.09)";
             ctx.beginPath();
             ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
             ctx.fill();
@@ -42,7 +42,7 @@
         ctx.clearRect(0, 0, width, height);
         for (var i = 0; i < dots.length; i++) {
             var d = dots[i];
-            var alpha = 0.03 + Math.abs(Math.sin(t / 4000 + d.phase)) * 0.045;
+            var alpha = 0.05 + Math.abs(Math.sin(t / 4000 + d.phase)) * 0.07;
             ctx.fillStyle = "rgba(23, 19, 15, " + alpha.toFixed(3) + ")";
             ctx.beginPath();
             ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);

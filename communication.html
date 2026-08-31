@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Créa & Com | B-Impact Studio</title>
+    <title>Identité Visuelle & Communication Stratégique | Click&amp;Craft Studio Namur</title>
 
-    <meta name="description" content="Identité visuelle, stratégie de communication et animation de communautés par B-Impact Studio : études de cas et réalisations.">
+    <meta name="description" content="Agence créative Namur : branding, identité visuelle, stratégie de communication digitale. Logos, brandboards, gestion réseaux sociaux pour PME & indépendants.">
+    <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.b-impact.be/communication.html">
 
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
@@ -14,34 +15,48 @@
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.b-impact.be/communication.html">
-    <meta property="og:title" content="Créa & Com | B-Impact Studio">
+    <meta property="og:title" content="Créa & Com | Click&amp;Craft Studio">
     <meta property="og:description" content="Identité visuelle, stratégie de communication et animation de communautés.">
     <meta property="og:image" content="https://www.b-impact.be/assets/og-image.jpg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lato:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com" defer></script>
     <link rel="stylesheet" href="/assets/css/theme.css">
     <style>
         img { user-select: none; }
     </style>
+     <script
+         async src="https://www.googletagmanager.com/gtag/js?id=GTM-NSTM84XV">
+    </script>
+
+    <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+     gtag('config', 'GTM-NSTM84XV');
+    </script>
+    
 </head>
 <body class="antialiased" data-page="communication">
 
     <canvas id="grain-field" aria-hidden="true"></canvas>
+    <div class="registration-marks" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
 
     <nav class="site-nav fixed top-0 w-full z-50 py-5 px-6 md:px-12 flex justify-between items-center">
-        <a href="index.html" class="brand-mark text-xl md:text-2xl tracking-tight uppercase relative z-50">
-            B-IMPACT<span class="text-[var(--red)]">.</span>
+        <a href="/" class="brand-mark text-xl md:text-2xl relative z-50 lowercase">
+            click<span class="amp">&amp;</span>craft
         </a>
 
         <div class="hidden md:flex gap-8 font-semibold text-sm tracking-wider uppercase font-title">
-            <a href="index.html" class="nav-link">Accueil</a>
-            <a href="communication.html" class="nav-link active">Créa & Com</a>
-            <a href="developpement.html" class="nav-link">Développement</a>
-            <a href="about.html" class="nav-link">Studio</a>
-            <a href="contact.html" class="nav-link">Contact</a>
+            <a href="/" class="nav-link">Accueil</a>
+            <a href="/communication.html" class="nav-link active">Créa & Com</a>
+            <a href="/developpement.html" class="nav-link">Développement</a>
+            <a href="/about.html" class="nav-link">Studio</a>
+            <a href="/contact.html" class="nav-link">Contact</a>
         </div>
 
         <button type="button" id="mobile-menu-btn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden text-2xl text-[var(--ink)] cursor-pointer relative z-50 bg-transparent border-0">
@@ -50,21 +65,21 @@
     </nav>
 
     <div id="mobile-menu" class="fixed top-0 left-0 w-full h-screen z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8 text-2xl font-title uppercase">
-        <a href="index.html">Accueil</a>
-        <a href="communication.html" class="active">Créa & Com</a>
-        <a href="developpement.html">Développement</a>
-        <a href="about.html">Studio</a>
-        <a href="contact.html">Contact</a>
+        <a href="/">Accueil</a>
+        <a href="/communication.html" class="active">Créa & Com</a>
+        <a href="/developpement.html">Développement</a>
+        <a href="/about.html">Studio</a>
+        <a href="/contact.html">Contact</a>
     </div>
 
     <main class="pt-32 pb-20 px-6 md:px-12 max-w-6xl mx-auto flex-grow">
         <div class="text-center mb-16">
             <span class="tag-stamp tag-stamp--crea mb-6 inline-flex">Créa & Com</span>
-            <h1 data-cms="hero_title" class="stamp font-display text-4xl md:text-6xl mb-4 uppercase">Créa & Com</h1>
-            <p data-cms="hero_desc" class="text-[var(--ink-soft)] text-lg max-w-2xl mx-auto">Stratégie, identité visuelle et animation de communautés. Une communication ciblée, pensée pour donner de l'impact à votre projet.</p>
+            <h1 data-cms="hero_title" class="stamp font-display text-4xl md:text-6xl mb-4 uppercase">Identité Visuelle & Communication Stratégique</h1>
+            <p data-cms="hero_desc" class="text-[var(--ink-soft)] text-lg max-w-2xl mx-auto"><strong>Stratégie, identité visuelle et animation de communautés.</strong> Une communication ciblée, pensée pour donner de l'impact à votre projet.</p>
         </div>
 
-        <h2 class="text-2xl mb-8 uppercase tracking-wider divider pt-8">Études de cas</h2>
+        <h2 class="text-2xl mb-8 uppercase tracking-wider divider pt-8">Portfolio : Études de Cas & Réalisations</h2>
         <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
             <div class="col-span-full text-center py-12 text-[var(--red-deep)] font-mono animate-pulse">
                 <i class="fa-solid fa-circle-notch fa-spin text-3xl mb-4"></i>
@@ -77,9 +92,7 @@
 
             <div class="panel p-8">
                 <div class="flex items-center justify-between mb-6">
-                    <h3 class="text-xl flex items-center gap-3">
-                        <i class="fa-solid fa-image text-[var(--blue-deep)] text-2xl"></i> Créations Adobe
-                    </h3>
+                    <h3 class="text-xl flex items-center gap-3"><i class="..."></i> Créations Adobe (Photoshop, Illustrator)</h3>
                     <div class="flex gap-2">
                         <span class="px-2 py-1 bg-[var(--paper-strong)] text-[var(--ink-soft)] text-[10px] font-bold rounded uppercase font-mono">Ps</span>
                         <span class="px-2 py-1 bg-[var(--paper-strong)] text-[var(--ink-soft)] text-[10px] font-bold rounded uppercase font-mono">Ai</span>
@@ -89,35 +102,56 @@
 
                 <div class="grid grid-cols-2 gap-4">
                     <div class="aspect-square rounded-xl overflow-hidden border border-[var(--line)] bg-[var(--paper-strong)]">
-                        <img src="https://placehold.co/400x400/E3DECF/17130F?text=Image+PS+1" alt="Création Photoshop 1" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        <img src="/assets/uploads/Capture d'écran 2026-08-06 124509.webp" alt="Maquette design Photoshop pour projet branding entreprise 2026" loading="lazy" decoding="async" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="aspect-square rounded-xl overflow-hidden border border-[var(--line)] bg-[var(--paper-strong)]">
-                        <img src="https://placehold.co/400x400/E3DECF/17130F?text=Image+PS+2" alt="Création Photoshop 2" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        <img src="/assets/uploads/2RPA-Festor-Bastien.webp" alt="Affiche promotionnelle design création graphique Bastien Festor" loading="lazy" decoding="async" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
                     </div>
                 </div>
             </div>
 
             <div class="panel p-8">
                 <div class="flex items-center justify-between mb-6">
-                    <h3 class="text-xl flex items-center gap-3">
-                        <i class="fa-solid fa-swatchbook text-[var(--red-deep)] text-2xl"></i> Brandboards & Réseaux
-                    </h3>
+                    <h3 class="text-xl flex items-center gap-3"><i class="..."></i> Brandboards & Design Réseaux Sociaux</h3>
                     <div class="flex gap-2">
                         <span class="px-2 py-1 bg-[var(--paper-strong)] text-[var(--ink-soft)] text-[10px] font-bold rounded uppercase font-mono">Canva</span>
                     </div>
                 </div>
                 <p class="text-[var(--ink-soft)] text-sm mb-6">Déclinaison de chartes graphiques, templates pour réseaux sociaux et brandboards.</p>
 
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="aspect-video col-span-2 rounded-xl overflow-hidden border border-[var(--line)] bg-[var(--paper-strong)]">
-                        <img src="https://placehold.co/800x400/E3DECF/17130F?text=Brandboard+Client" alt="Brandboard" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <div class="aspect-square rounded-xl overflow-hidden border border-[var(--line)] bg-[var(--paper-strong)]">
+                        <img src="/assets/uploads/Capture d'écran 2026-08-06 123811.webp" alt="Post réseaux sociaux" loading="lazy" decoding="async" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="aspect-square rounded-xl overflow-hidden border border-[var(--line)] bg-[var(--paper-strong)]">
-                        <img src="https://placehold.co/400x400/E3DECF/17130F?text=Post+Insta" alt="Post réseaux sociaux" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        <video autoplay loop src="/assets/uploads/Réel 1.mp4" alt="Story promotionnelle" loading="lazy" decoding="async" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        </video>
                     </div>
-                    <div class="aspect-square rounded-xl overflow-hidden border border-[var(--line)] bg-[var(--paper-strong)]">
-                        <img src="https://placehold.co/400x400/E3DECF/17130F?text=Story+Promo" alt="Story promotionnelle" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                    </div>
+                </div>
+
+                <span class="field-label">Brandboard Easy Garden (7 pages)</span>
+                <div class="grid grid-cols-4 sm:grid-cols-7 gap-2">
+                    <a href="/assets/uploads/easy-garden-brandboard-identite-visuelle-1.webp" target="_blank" rel="noopener" class="aspect-[3/4] rounded-lg overflow-hidden border border-[var(--line)] bg-[var(--paper-strong)]">
+                        <img src="/assets/uploads/easy-garden-brandboard-identite-visuelle-1.webp" alt="Brandboard Easy Garden charte graphique couleurs polices logo identité visuelle entreprise jardinier" — page 1" loading="lazy" decoding="async" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                    </a>
+                    <a href="/assets/uploads/easy-garden-brandboard-identite-visuelle-2.webp" target="_blank" rel="noopener" class="aspect-[3/4] rounded-lg overflow-hidden border border-[var(--line)] bg-[var(--paper-strong)]">
+                        <img src="/assets/uploads/easy-garden-brandboard-identite-visuelle-2.webp" alt="Brandboard Easy Garden charte graphique couleurs polices logo identité visuelle entreprise jardinier" loading="lazy" decoding="async" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                    </a>
+                    <a href="/assets/uploads/easy-garden-brandboard-identite-visuelle-3.webp" target="_blank" rel="noopener" class="aspect-[3/4] rounded-lg overflow-hidden border border-[var(--line)] bg-[var(--paper-strong)]">
+                        <img src="/assets/uploads/easy-garden-brandboard-identite-visuelle-3.webp" alt="Brandboard Easy Garden charte graphique couleurs polices logo identité visuelle entreprise jardinier" loading="lazy" decoding="async" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                    </a>
+                    <a href="/assets/uploads/easy-garden-brandboard-identite-visuelle-4.webp" target="_blank" rel="noopener" class="aspect-[3/4] rounded-lg overflow-hidden border border-[var(--line)] bg-[var(--paper-strong)]">
+                        <img src="/assets/uploads/easy-garden-brandboard-identite-visuelle-4.webp" alt="Brandboard Easy Garden charte graphique couleurs polices logo identité visuelle entreprise jardinier" loading="lazy" decoding="async" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                    </a>
+                    <a href="/assets/uploads/easy-garden-brandboard-identite-visuelle-5.webp" target="_blank" rel="noopener" class="aspect-[3/4] rounded-lg overflow-hidden border border-[var(--line)] bg-[var(--paper-strong)]">
+                        <img src="/assets/uploads/easy-garden-brandboard-identite-visuelle-5.webp" alt="Brandboard Easy Garden charte graphique couleurs polices logo identité visuelle entreprise jardinier" loading="lazy" decoding="async" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                    </a>
+                    <a href="/assets/uploads/easy-garden-brandboard-identite-visuelle-6.webp" target="_blank" rel="noopener" class="aspect-[3/4] rounded-lg overflow-hidden border border-[var(--line)] bg-[var(--paper-strong)]">
+                        <img src="/assets/uploads/easy-garden-brandboard-identite-visuelle-6.webp" alt="Brandboard Easy Garden charte graphique couleurs polices logo identité visuelle entreprise jardinier" loading="lazy" decoding="async" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                    </a>
+                    <a href="/assets/uploads/easy-garden-brandboard-identite-visuelle-7.webp" target="_blank" rel="noopener" class="aspect-[3/4] rounded-lg overflow-hidden border border-[var(--line)] bg-[var(--paper-strong)]">
+                        <img src="/assets/uploads/easy-garden-brandboard-identite-visuelle-7.webp" alt="Brandboard Easy Garden charte graphique couleurs polices logo identité visuelle entreprise jardinier" loading="lazy" decoding="async" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                    </a>
                 </div>
             </div>
 
@@ -182,12 +216,6 @@
             </div>
             <div class="flex flex-col items-center gap-3 w-24">
                 <div class="w-16 h-16 rounded-2xl bg-[var(--paper-dim)] border border-[var(--line)] flex items-center justify-center text-2xl">
-                    <i class="fa-brands fa-x-twitter"></i>
-                </div>
-                <span class="text-[10px] uppercase tracking-widest font-semibold text-[var(--ink-soft)] font-mono">X (Twitter)</span>
-            </div>
-            <div class="flex flex-col items-center gap-3 w-24">
-                <div class="w-16 h-16 rounded-2xl bg-[var(--paper-dim)] border border-[var(--line)] flex items-center justify-center text-2xl">
                     <i class="fa-brands fa-tiktok"></i>
                 </div>
                 <span class="text-[10px] uppercase tracking-widest font-semibold text-[var(--ink-soft)] font-mono">TikTok</span>
@@ -223,8 +251,30 @@
     </div>
 
     <footer class="site-footer">
-        © 2026 B-Impact Studio — Bastien Festor
+        © 2026 Click&amp;Craft Studio — Bastien Festor
     </footer>
+
+      <script type="application/ld+json">
+            {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "@id": "https://www.b-impact.be/communication.html",
+            "name": "Portfolio Créatif — Communication & Identité Visuelle",
+            "description": "Études de cas : branding, logos, brandboards, communication visuelle",
+            "creator": {
+                "@type": "Person",
+                "name": "Bastien Festor"
+            },
+            "hasPart": [
+                {
+                "@type": "CreativeWork",
+                "name": "Identité visuelle Easy Garden",
+                "image": "https://www.b-impact.be/assets/uploads/easy-garden-brandboard-identite-visuelle-1.webp",
+                "description": "Branding complet : logo, charte graphique, brandboard 7 pages"
+                }
+            ]
+            }
+        </script>
 
     <script src="/assets/js/cms.js"></script>
     <script src="/assets/js/mobile-menu.js"></script>

@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Le studio | B-Impact Studio</title>
+    <title>Bastien Festor — Créateur Web & Designer Graphique | Click&amp;Craft Studio Namur</title>
 
-    <meta name="description" content="B-Impact Studio est porté par Bastien Festor, étudiant à la HEAJ (Namur), qui relie créativité visuelle et rigueur technique pour le web.">
+    <meta name="description" content="Bastien Festor, fondateur de Click&amp;Craft Studio. Étudiant HEAJ, développeur web React & designer graphique spécialisé en branding et sites vitrines pour PME à Namur & Hainaut.">
+    <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.b-impact.be/about.html">
 
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
@@ -14,36 +15,47 @@
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.b-impact.be/about.html">
-    <meta property="og:title" content="Le studio | B-Impact Studio">
+    <meta property="og:title" content="Le studio | Click&amp;Craft Studio">
     <meta property="og:description" content="Le pont entre la créativité visuelle et la rigueur technique.">
     <meta property="og:image" content="https://www.b-impact.be/assets/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bastien Festor — Designer & Développeur Web">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lato:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/assets/css/theme.css">
-    <style>
-        .photo-frame {
-            background: repeating-linear-gradient(135deg, var(--paper-strong), var(--paper-strong) 10px, var(--paper-dim) 10px, var(--paper-dim) 20px);
-        }
-    </style>
+
+     <script
+         async src="https://www.googletagmanager.com/gtag/js?id=GTM-NSTM84XV">
+    </script>
+
+    <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+     gtag('config', 'GTM-NSTM84XV');
+    </script>
+    
 </head>
 <body class="antialiased" data-page="about">
 
     <canvas id="grain-field" aria-hidden="true"></canvas>
 
     <nav class="site-nav fixed top-0 w-full z-50 py-5 px-6 md:px-12 flex justify-between items-center">
-        <a href="index.html" class="brand-mark text-xl md:text-2xl tracking-tight uppercase relative z-50">
-            B-IMPACT<span class="text-[var(--red)]">.</span>
+        <a href="/" class="brand-mark text-xl md:text-2xl relative z-50 lowercase">
+            click<span class="amp">&amp;</span>craft
         </a>
 
         <div class="hidden md:flex gap-8 font-semibold text-sm tracking-wider uppercase font-title">
-            <a href="index.html" class="nav-link">Accueil</a>
-            <a href="communication.html" class="nav-link">Créa & Com</a>
-            <a href="developpement.html" class="nav-link">Développement</a>
-            <a href="about.html" class="nav-link active">Studio</a>
-            <a href="contact.html" class="nav-link">Contact</a>
+            <a href="/" class="nav-link">Accueil</a>
+            <a href="/communication.html" class="nav-link">Créa & Com</a>
+            <a href="/developpement.html" class="nav-link">Développement</a>
+            <a href="/about.html" class="nav-link active">Studio</a>
+            <a href="/contact.html" class="nav-link">Contact</a>
         </div>
 
         <button type="button" id="mobile-menu-btn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden text-2xl text-[var(--ink)] cursor-pointer relative z-50 bg-transparent border-0">
@@ -52,30 +64,28 @@
     </nav>
 
     <div id="mobile-menu" class="fixed top-0 left-0 w-full h-screen z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8 text-2xl font-title uppercase">
-        <a href="index.html">Accueil</a>
-        <a href="communication.html">Créa & Com</a>
-        <a href="developpement.html">Développement</a>
-        <a href="about.html" class="active">Studio</a>
-        <a href="contact.html">Contact</a>
+        <a href="/">Accueil</a>
+        <a href="/communication.html">Créa & Com</a>
+        <a href="/developpement.html">Développement</a>
+        <a href="/about.html" class="active">Studio</a>
+        <a href="/contact.html">Contact</a>
     </div>
 
     <main class="pt-32 pb-20 px-6 md:px-12 max-w-6xl mx-auto flex-grow flex flex-col justify-center">
 
-        <div class="text-center mb-16">
-            <h1 data-cms="hero_title" class="stamp font-display text-4xl md:text-6xl mb-4 uppercase">
+        <div class="about-hero text-center mb-16">
+            <h1 data-cms="hero_title" class="stamp font-display mb-4 uppercase">
                 Derrière le studio
             </h1>
-            <p data-cms="hero_desc" class="text-[var(--ink-soft)] text-lg max-w-2xl mx-auto">Le pont entre la créativité visuelle et la rigueur technique.</p>
+            <p data-cms="hero_desc" class="text-[var(--ink-soft)] text-lg">Le pont entre la <strong>créativité visuelle</strong> et la <strong>rigueur technique</strong>.</p>
         </div>
 
-        <div class="panel p-6 md:p-12 mb-12 flex flex-col md:flex-row gap-12 items-center md:items-start">
+        <div class="panel about-overview p-6 md:p-12 mb-12 gap-12 items-start">
 
-            <div class="w-full md:w-1/3 flex flex-col items-center">
-                <div class="w-48 h-64 md:w-full md:h-80 rounded-2xl overflow-hidden mb-6 border border-[var(--line-strong)] relative">
-                    <div id="profile-placeholder" class="absolute inset-0 photo-frame flex items-center justify-center text-[var(--ink-faint)] font-mono text-xs uppercase tracking-widest text-center px-4">
-                        Emplacement photo<br>(insérer image)
+                <div class="w-full md:w-1/3 flex flex-col items-center">
+                    <div class="photo-frame w-48 h-64 md:w-full md:h-80 mb-6">
+                        <img src="assets/uploads/IMG_20241030_110052_490.webp" alt="Bastien Festor, fondateur de Click&amp;Craft Studio" class="w-full h-full object-cover">
                     </div>
-                    <img id="profile-image" src="" alt="Bastien Festor, fondateur de B-Impact Studio" class="hidden w-full h-full object-cover relative z-10">
                 </div>
 
                 <div class="w-full flex flex-col gap-3 font-mono text-sm">
@@ -89,7 +99,7 @@
                     </div>
                     <div class="flex items-center justify-between border-b border-[var(--line)] pb-2">
                         <span class="text-[var(--ink-faint)]">Statut</span>
-                        <span class="text-[var(--blue-deep)] text-right">Disponible</span>
+                        <span class="status-pill">Disponible</span>
                     </div>
                 </div>
             </div>
@@ -99,10 +109,10 @@
 
                 <div class="space-y-6 text-[var(--ink-soft)] leading-relaxed text-lg">
                     <p data-cms="para_1">
-                        Salut, je suis <span class="text-[var(--ink)] font-semibold">Bastien</span>, fondateur de B-Impact Studio. Étudiant à la Haute École Albert Jacquard (HEAJ) de Namur, j'ai toujours été fasciné par la façon dont le web et le design façonnent notre quotidien.
+                        Salut, je suis <span class="text-[var(--ink)] font-semibold">Bastien</span>, fondateur de <strong>Click&amp;Craft Studio</strong>. Étudiant à la Haute École Albert Jacquard (HEAJ) de Namur, j'ai toujours été fasciné par la façon dont le web et le design façonnent notre quotidien et nos interactions numériques.
                     </p>
                     <p data-cms="para_2">
-                        Très vite, j'ai réalisé qu'avoir une bonne idée ne suffisait pas : il faut savoir la communiquer <span class="text-[var(--red-deep)] font-medium">visuellement</span>, mais aussi la construire <span class="text-[var(--blue-deep)] font-medium">techniquement</span>. C'est pourquoi B-Impact Studio réunit les deux : d'un côté je conçois des identités graphiques et des stratégies de communication, de l'autre je développe des sites et des applications web sur mesure.
+                        Très vite, j'ai réalisé qu'avoir une bonne idée ne suffisait pas : il faut savoir la communiquer <span class="text-[var(--red-deep)] font-medium">visuellement</span>, mais aussi la construire <span class="text-[var(--blue-deep)] font-medium">techniquement</span>. C'est pourquoi <strong>Click&amp;Craft Studio réunit les deux</strong> : d'un côté je conçois des identités graphiques et des stratégies de communication, de l'autre je développe des <a href="/developpement.html" class="text-[var(--ink)] underline hover:text-[var(--red-deep)] transition-colors">sites et des applications web sur mesure</a>.
                     </p>
 
                     <div class="bg-[var(--paper)] border-l-4 border-[var(--red)] p-6 rounded-r-xl mt-8">
@@ -111,7 +121,7 @@
                             <h3 class="text-[var(--ink)] font-bold uppercase text-sm tracking-wider">Projet de fin d'études (TFE)</h3>
                         </div>
                         <p class="text-sm text-[var(--ink-soft)]">
-                            Actuellement en dernière année, je consacre mon mémoire aux stratégies de communication et d'influence dans le secteur du jeu vidéo. Une analyse qui nourrit directement l'expertise communication de B-Impact Studio.
+                            Actuellement en dernière année, je consacre mon mémoire aux stratégies de communication et d'influence dans le secteur du jeu vidéo. Une analyse qui nourrit directement l'expertise en <a href="/communication.html" class="text-[var(--ink)] underline hover:text-[var(--red-deep)] transition-colors">communication de Click&amp;Craft Studio</a>.
                         </p>
                     </div>
                 </div>
@@ -168,9 +178,43 @@
     </main>
 
     <footer class="site-footer">
-        © 2026 B-Impact Studio — Bastien Festor
+        © 2026 Click&amp;Craft Studio — Bastien Festor
     </footer>
 
+      <script type="application/ld+json">
+ {
+   "@context": "https://schema.org",
+   "@type": "Person",
+   "@id": "https://www.b-impact.be/about.html",
+   "name": "Bastien Festor",
+   "url": "https://www.b-impact.be",
+   "image": "https://www.b-impact.be/assets/uploads/IMG_20241030_110052_490.webp",
+   "description": "Développeur web et designer graphique spécialisé en React.js, Supabase et identité visuelle",
+   "jobTitle": "Founder & Lead Developer",
+   "worksFor": {
+     "@type": "Organization",
+     "name": "Click&Craft Studio"
+   },
+   "sameAs": [
+     "https://www.linkedin.com/in/bastien-festor-927277349",
+    "https://www.instagram.com/_bastien_f/"
+   ],
+   "alumniOf": {
+     "@type": "EducationalOrganization",
+     "name": "Haute École Albert Jacquard (HEAJ)",
+     "location": "Namur, Belgium"
+   },
+   "knowsAbout": [
+     "JavaScript",
+     "React.js", 
+    "Supabase",
+    "Tailwind CSS",
+    "Web Design",
+     "Branding",
+     "SEO"
+   ]
+ }
+  </script>
     <script src="/assets/js/cms.js"></script>
     <script src="/assets/js/mobile-menu.js"></script>
     <script src="/assets/js/grain.js"></script>

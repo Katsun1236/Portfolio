@@ -1,19 +1,21 @@
 :root {
-    --paper: #EEEAE0;
-    --paper-dim: #E3DECF;
-    --paper-strong: #D6CFBA;
-    --ink: #17130F;
-    --ink-soft: rgba(23, 19, 15, 0.62);
-    --ink-faint: rgba(23, 19, 15, 0.4);
-    --line: rgba(23, 19, 15, 0.16);
-    --line-strong: rgba(23, 19, 15, 0.3);
-    --red: #E0431F;
-    --red-deep: #9E2E14;
-    --blue: #1E33C7;
-    --blue-deep: #141F7A;
-    --font-display: 'Archivo Black', 'Arial Black', sans-serif;
-    --font-title: 'Archivo', 'Arial Narrow', sans-serif;
-    --font-body: 'Inter', sans-serif;
+    /* Click&Craft brand board — tokens kept for compatibility, values remapped */
+    --paper: #F7F3EE;          /* crème */
+    --paper-dim: #EFE8DD;      /* crème dim */
+    --paper-strong: #E3D5BE;   /* crème strong */
+    --ink: #1A1A1A;            /* charbon */
+    --ink-soft: rgba(26, 26, 26, 0.62);
+    --ink-faint: rgba(26, 26, 26, 0.4);
+    --line: rgba(26, 26, 26, 0.16);
+    --line-strong: rgba(26, 26, 26, 0.3);
+    --red: #E7B27D;            /* or doux (accent créa) */
+    --red-deep: #C98F52;       /* or foncé */
+    --blue: #A7B89A;           /* vert sauge (accent dev) */
+    --blue-deep: #849277;      /* vert sauge foncé */
+    --gris: #6B6B6B;
+    --font-display: 'Playfair Display', serif;
+    --font-title: 'Lato', sans-serif;
+    --font-body: 'Lato', sans-serif;
     --font-mono: 'IBM Plex Mono', monospace;
 }
 
@@ -23,6 +25,9 @@ html { scroll-behavior: smooth; }
 
 body {
     background-color: var(--paper);
+    background-image:
+        radial-gradient(circle at 1px 1px, var(--line) 1px, transparent 0);
+    background-size: 34px 34px;
     color: var(--ink);
     font-family: var(--font-body);
     margin: 0;
@@ -30,9 +35,43 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
-h1, h2, h3, h4, .font-title { font-family: var(--font-title); font-weight: 800; letter-spacing: -0.01em; }
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, transparent 45%, rgba(26, 26, 26, 0.07) 100%);
+}
+
+.registration-marks span {
+    position: fixed;
+    width: 16px;
+    height: 16px;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.35;
+}
+.registration-marks span::before,
+.registration-marks span::after {
+    content: '';
+    position: absolute;
+    background: var(--ink-faint);
+}
+.registration-marks span::before { top: 50%; left: 0; width: 100%; height: 1px; transform: translateY(-50%); }
+.registration-marks span::after { left: 50%; top: 0; height: 100%; width: 1px; transform: translateX(-50%); }
+.registration-marks span:nth-child(1) { top: 16px; left: 16px; }
+.registration-marks span:nth-child(2) { top: 16px; right: 16px; }
+.registration-marks span:nth-child(3) { bottom: 16px; left: 16px; }
+.registration-marks span:nth-child(4) { bottom: 16px; right: 16px; }
+@media (max-width: 640px) {
+    .registration-marks { display: none; }
+}
+
+h1, h2, h3, h4, .font-title { font-family: var(--font-title); font-weight: 900; letter-spacing: 0; }
 .font-display { font-family: var(--font-display); }
 .font-mono { font-family: var(--font-mono); }
 
@@ -53,22 +92,110 @@ a { color: inherit; }
     pointer-events: none;
 }
 
-.stamp {
-    color: var(--ink);
-    text-shadow: 3px 3px 0 var(--red), -3px -3px 0 var(--blue);
+.about-hero {
+    padding: 4rem 0 2.5rem;
 }
 
-.stamp-sm { text-shadow: 2px 2px 0 var(--red), -2px -2px 0 var(--blue); }
+.about-hero .stamp {
+    font-size: clamp(2.5rem, 4.5vw, 4.5rem);
+    line-height: 1;
+    max-width: 12ch;
+    margin: 0 auto 1rem;
+}
+
+.about-hero p {
+    max-width: 46rem;
+    margin: 0 auto;
+}
+
+.about-overview {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+}
+
+@media (max-width: 1024px) {
+    .about-overview {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.photo-frame {
+    width: 100%;
+    max-width: none;
+    background: linear-gradient(180deg, rgba(247,243,238,0.92), rgba(227,213,190,0.9));
+    border: 1px solid var(--line-strong);
+    border-radius: 28px;
+    padding: 12px;
+    box-shadow: 0 28px 80px rgba(26,26,26,0.08);
+    overflow: hidden;
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 22px;
+    display: block;
+}
+
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.65rem 1rem;
+    border-radius: 999px;
+    background: rgba(132, 146, 119, 0.14);
+    color: var(--blue-deep);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+.stamp {
+    color: var(--ink);
+    position: relative;
+    text-shadow: none;
+}
+.stamp::after {
+    content: '';
+    position: absolute;
+    left: 50%; bottom: -10px;
+    transform: translateX(-50%);
+    width: 46px; height: 2px;
+    background: var(--red-deep);
+}
+
+.stamp-sm {
+    position: relative;
+    text-shadow: none;
+}
+.stamp-sm::after {
+    content: '';
+    position: absolute;
+    left: 50%; bottom: -8px;
+    transform: translateX(-50%);
+    width: 32px; height: 2px;
+    background: var(--red-deep);
+}
 
 .site-nav {
-    background: rgba(238, 234, 224, 0.88);
+    background: rgba(247, 243, 238, 0.88);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--line);
 }
 
 .brand-mark {
     font-family: var(--font-display);
-    letter-spacing: 0.02em;
+    letter-spacing: 0;
+    text-transform: none;
+}
+.brand-mark .amp {
+    color: var(--red-deep);
+    font-style: italic;
 }
 
 .nav-link {
@@ -90,7 +217,7 @@ a { color: inherit; }
 .nav-link.active::after { width: 100%; }
 
 #mobile-menu {
-    background: rgba(238, 234, 224, 0.98);
+    background: rgba(247, 243, 238, 0.98);
     backdrop-filter: blur(16px);
 }
 #mobile-menu a { color: var(--ink-soft); text-decoration: none; }
@@ -158,7 +285,7 @@ a { color: inherit; }
 }
 .btn-ink:hover {
     transform: translateY(-2px);
-    box-shadow: 3px 3px 0 var(--red), -3px -3px 0 var(--blue);
+    box-shadow: 0 10px 26px rgba(201, 143, 82, 0.35);
 }
 
 .btn-outline {
@@ -230,7 +357,7 @@ a { color: inherit; }
 
 .modal-overlay {
     position: fixed; inset: 0;
-    background: rgba(23, 19, 15, 0.55);
+    background: rgba(26, 26, 26, 0.55);
     z-index: 100; opacity: 0; visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
     display: flex; align-items: center; justify-content: center;

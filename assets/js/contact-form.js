@@ -112,8 +112,8 @@
             if (response.ok) {
                 sessionStorage.setItem(STORAGE_KEY, String(Date.now()));
                 btn.innerHTML = '<i class="fa-solid fa-check"></i> Message envoyé !';
-                btn.style.background = "#1E33C7";
-                btn.style.color = "#EEEAE0";
+                btn.style.background = "#849277";
+                btn.style.color = "#F7F3EE";
                 form.reset();
             } else {
                 var msg = result.error || "Erreur lors de l'envoi. Réessayez plus tard.";
@@ -122,8 +122,8 @@
         } catch (error) {
             console.error("Erreur:", error);
             btn.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Échec de l\'envoi';
-            btn.style.background = "#E0431F";
-            btn.style.color = "#EEEAE0";
+            btn.style.background = "#C98F52";
+            btn.style.color = "#F7F3EE";
             if (statusEl) {
                 statusEl.textContent = error.message || "Une erreur est survenue.";
                 statusEl.className = "text-[var(--red-deep)] text-sm text-center mt-4 font-mono";
