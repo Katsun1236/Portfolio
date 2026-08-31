@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Développement Web React & Supabase | Sites Vitrines SEO Namur</title>
+    <title>Développement Web | B-Impact Studio</title>
 
-    <meta name="description" content="Développement web professionnel : sites vitrines SEO, applications React, landing pages conversion. Technologies : React.js, Supabase, Tailwind CSS, Netlify.">    <meta name="robots" content="index, follow">
+    <meta name="description" content="Sites vitrines, applications web (React, Supabase) et landing pages optimisées, développés par B-Impact Studio.">
     <link rel="canonical" href="https://www.b-impact.be/developpement.html">
 
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
@@ -48,33 +48,22 @@
             .cursor-blink { animation: none; }
         }
     </style>
-
-     <script
-         async src="https://www.googletagmanager.com/gtag/js?id=GTM-NSTM84XV">
-    </script>
-
-    <script>
-     window.dataLayer = window.dataLayer || [];
-     function gtag(){dataLayer.push(arguments);}
-     gtag('js', new Date());
-     gtag('config', 'GTM-NSTM84XV');
-    </script>
 </head>
 <body class="antialiased" data-page="developpement">
 
     <canvas id="grain-field" aria-hidden="true"></canvas>
 
     <nav class="site-nav fixed top-0 w-full z-50 py-5 px-6 md:px-12 flex justify-between items-center">
-        <a href="/" class="brand-mark text-xl md:text-2xl tracking-tight uppercase relative z-50">
+        <a href="index.html" class="brand-mark text-xl md:text-2xl tracking-tight uppercase relative z-50">
             B-IMPACT<span class="text-[var(--red)]">.</span>
         </a>
 
         <div class="hidden md:flex gap-8 font-semibold text-sm tracking-wider uppercase font-title">
-            <a href="/" class="nav-link">Accueil</a>
-            <a href="/communication.html" class="nav-link">Créa & Com</a>
-            <a href="/developpement.html" class="nav-link active">Développement</a>
-            <a href="/about.html" class="nav-link">Studio</a>
-            <a href="/contact.html" class="nav-link">Contact</a>
+            <a href="index.html" class="nav-link">Accueil</a>
+            <a href="communication.html" class="nav-link">Créa & Com</a>
+            <a href="developpement.html" class="nav-link active">Développement</a>
+            <a href="about.html" class="nav-link">Studio</a>
+            <a href="contact.html" class="nav-link">Contact</a>
         </div>
 
         <button type="button" id="mobile-menu-btn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden text-2xl text-[var(--ink)] cursor-pointer relative z-50 bg-transparent border-0">
@@ -83,18 +72,19 @@
     </nav>
 
     <div id="mobile-menu" class="fixed top-0 left-0 w-full h-screen z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8 text-2xl font-title uppercase">
-        <a href="/">Accueil</a>
-        <a href="/communication.html">Créa & Com</a>
-        <a href="/developpement.html" class="active">Développement</a>
-        <a href="/about.html">Studio</a>
-        <a href="/contact.html">Contact</a>
+        <a href="index.html">Accueil</a>
+        <a href="communication.html">Créa & Com</a>
+        <a href="developpement.html" class="active">Développement</a>
+        <a href="about.html">Studio</a>
+        <a href="contact.html">Contact</a>
     </div>
 
     <main class="pt-32 pb-20 px-6 md:px-12 max-w-6xl mx-auto flex-grow">
 
         <div class="text-center mb-12">
             <span class="tag-stamp tag-stamp--dev mb-6 inline-flex">Développement</span>
-            <h1 data-cms="hero_title" class="stamp font-display text-4xl md:text-6xl mb-4 uppercase">Développement Web Modern — React.js, Supabase, SEO</h1>            <p data-cms="hero_desc" class="text-[var(--ink-soft)] text-lg max-w-2xl mx-auto"><strong>Des fondations solides pour vos idées.</strong> Des sites performants, accessibles et pensés pour le référencement naturel.</p>
+            <h1 data-cms="hero_title" class="stamp font-display text-4xl md:text-6xl mb-4 uppercase">Développement Web</h1>
+            <p data-cms="hero_desc" class="text-[var(--ink-soft)] text-lg max-w-2xl mx-auto">Des fondations solides pour vos idées. Des sites performants, accessibles et pensés pour le référencement naturel.</p>
         </div>
 
         <div class="mb-20">
@@ -112,7 +102,8 @@
                     &nbsp;&nbsp;expertise: [<span style="color:#c3e88d">'Sites Vitrines'</span>, <span style="color:#c3e88d">'Landing Pages'</span>, <span style="color:#c3e88d">'Web Apps'</span>],<br>
                     &nbsp;&nbsp;location: <span style="color:#c3e88d">'Namur & Hainaut'</span><br>
                     };<br><br>
-                    <span style="color:#8a8578" class="italic">await studio.buildProject();</span><span class="cursor-blink"></span>
+                    <span style="color:#8a8578" class="italic">// Initialisation des projets...</span><br>
+                    <span style="color:#c792ea">await</span> <span style="color:#82aaff">studio</span>.<span style="color:#82aaff">buildProject</span>();<span class="cursor-blink"></span>
                 </div>
             </div>
         </div>
@@ -126,11 +117,12 @@
             </div>
         </div>
 
-            <h2 class="text-2xl mb-8 uppercase tracking-wider divider pt-8">Portfolio : Projets Développés & Déployés</h2>        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+        <h2 class="text-2xl mb-8 uppercase tracking-wider divider pt-8">Architecture & outils</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
             <div class="panel p-8">
                 <div class="flex items-center gap-4 mb-6">
                     <i class="fa-solid fa-layer-group text-3xl text-[var(--blue-deep)]"></i>
-                    <h3 class="text-xl font-mono">Front-end & Interface Utilisateur (React, Tailwind)</h3>
+                    <h3 class="text-xl font-mono">Front-end & UI</h3>
                 </div>
                 <p class="text-[var(--ink-soft)] text-sm mb-6 leading-relaxed">Interfaces modernes, fluides et adaptées à tous les écrans (mobile first).</p>
                 <div class="flex flex-wrap gap-2 font-mono">
@@ -144,7 +136,7 @@
             <div class="panel p-8">
                 <div class="flex items-center gap-4 mb-6">
                     <i class="fa-solid fa-server text-3xl text-[var(--red-deep)]"></i>
-                    <h3 class="text-xl font-mono">Back-end, Base de Données & Infrastructure Cloud</h3>
+                    <h3 class="text-xl font-mono">Systèmes & Déploiement</h3>
                 </div>
                 <p class="text-[var(--ink-soft)] text-sm mb-6 leading-relaxed">Bases de données, authentification et hébergement cloud.</p>
                 <div class="flex flex-wrap gap-2 font-mono">
@@ -188,32 +180,6 @@
         © 2026 B-Impact Studio — Bastien Festor
     </footer>
 
-      <script type="application/ld+json">
-        {
-        "@context": "https://schema.org",
-        "@type": "CollectionPage",
-        "@id": "https://www.b-impact.be/developpement.html",
-        "name": "Portfolio Développement Web",
-        "description": "Sites vitrines, applications web et landing pages développées en React.js et Supabase",
-        "creator": {
-            "@type": "Person",
-            "name": "Bastien Festor"
-        },
-        "hasPart": [
-            {
-            "@type": "SoftwareApplication",
-            "name": "Easy Garden — Site Vitrine",
-            "description": "Site vitrine pour entreprise jardinerie",
-            "applicationCategory": "WebApplication",
-            "offers": {
-                "@type": "Offer",
-                "priceCurrency": "EUR",
-                "price": "Sur devis"
-            }
-            }
-        ]
-        }
-     </script>
     <script src="/assets/js/cms.js"></script>
     <script src="/assets/js/mobile-menu.js"></script>
     <script src="/assets/js/grain.js"></script>

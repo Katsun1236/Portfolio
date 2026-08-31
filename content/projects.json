@@ -1,32 +1,43 @@
 {
   "projects": [
     {
+      "slug": "drop-the-mic",
+      "title": "Drop the Mic",
+      "category": "Créa",
+      "tag": "Stand-up & Événementiel",
+      "short_description": "Stratégie de communication pour un événement de stand-up à La Nef.",
+      "description": "Développement de la stratégie de communication globale pour un événement de stand-up à La Nef. Création de l'identité visuelle de A à Z, planification des publications et animation de la communauté sur les réseaux sociaux.",
+      "image": "",
+      "icon": "fa-microphone-lines",
+      "gradient": "from-purple-900 to-black",
+      "stack": "Stratégie de Marque, Canva, Premiere Pro, Instagram, TikTok",
+      "link": "https://drop-the-mic.netlify.app"
+    },
+    {
       "slug": "easy-garden-crea",
       "title": "Easy Garden",
       "category": "Créa",
       "tag": "Identité Visuelle",
       "short_description": "Création de l'identité digitale complète pour un jardinier paysagiste.",
       "description": "Création de l'identité visuelle, élaboration d'un brandboard complet et développement du site vitrine pour un artisan jardinier paysagiste. Une attention particulière a été portée à l'image de marque pour rassurer la clientèle locale.",
-      "image": "/assets/uploads/easy-garden-carte-de-visite-recto-identite-visuelle.webp",
+      "image": "",
       "icon": "fa-leaf",
       "gradient": "from-green-900 to-black",
       "stack": "Photoshop, Illustrator, Brandboard, SEO Local",
-      "link": "https://canva.link/uh38uxvrpw5ztzhg",
-      "link_label": "Voir la carte"
+      "link": "https://easy-garden.eu"
     },
     {
-      "slug": "carte-visite-parcs-jardins",
-      "title": "Indépendant Parcs & Jardins",
+      "slug": "mj-lierre",
+      "title": "MJ Lierre-sur-Sambre",
       "category": "Créa",
-      "tag": "Carte de Visite",
-      "short_description": "Création d'une carte de visite recto pour un indépendant en parcs et jardins.",
-      "description": "Conception graphique d'une carte de visite (une face) pour un indépendant du secteur parcs et jardins, pensée pour être simple, lisible et directement utilisable sur le terrain auprès des clients.",
-      "image": "/assets/uploads/carte-de-visite-jardinier-independant-parc-jardin.webp",
-      "icon": "fa-tree",
-      "gradient": "from-emerald-900 to-black",
-      "stack": "Photoshop, Illustrator",
-      "link": "https://canva.link/eshl8ebbnckkn6j",
-      "link_label": "Voir la carte"
+      "tag": "Projet d'étude (Fictif)",
+      "short_description": "Identité visuelle Néo-Brutaliste pour le festival \"Jeunes Talents\".",
+      "description": "Conception d'une identité visuelle au style Néo-Brutaliste assumé pour le festival fictif 'Jeunes Talents'. L'objectif était de cibler un public jeune et hyper-connecté avec des couleurs vives et des typographies percutantes.",
+      "image": "",
+      "icon": "fa-masks-theater",
+      "gradient": "from-orange-900 to-black",
+      "stack": "Recherche Identitaire, Photoshop, Illustrator, UI Design",
+      "link": "https://mj-lss.netlify.app"
     },
     {
       "slug": "articbase",
@@ -35,24 +46,11 @@
       "tag": "Landing Page",
       "short_description": "Page de capture (Landing Page) optimisée pour une campagne SEA.",
       "description": "Landing page de capture conçue pour une campagne SEA. Structure orientée conversion, temps de chargement optimisé et tracking des interactions utilisateur.",
-      "image": "/assets/uploads/articbase-landing-page-web-b-impact-studio.webp",
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
       "icon": "",
       "gradient": "",
       "stack": "HTML, CSS, JavaScript, SEO, Google Ads",
-      "link": "https://articbase.netlify.app"
-    },
-    {
-      "slug": "drop-the-mic-dev",
-      "title": "Drop the Mic",
-      "category": "Dev",
-      "tag": "Site Événementiel",
-      "short_description": "Site web développé pour accompagner la communication de l'événement de stand-up.",
-      "description": "Développement du site événementiel, pensé pour relayer l'identité visuelle créée en parallèle et centraliser les informations pratiques (dates, lieu, billetterie).",
-      "image": "/assets/uploads/drop-the-mic-identite-visuelle-evenement-standup.webp",
-      "icon": "",
-      "gradient": "",
-      "stack": "HTML, CSS, JavaScript, Netlify",
-      "link": "https://drop-the-mic.netlify.app"
+      "link": "#"
     },
     {
       "slug": "easy-garden-dev",
@@ -61,24 +59,24 @@
       "tag": "Site Vitrine",
       "short_description": "Site web vitrine professionnel, full responsive avec optimisation SEO.",
       "description": "Site vitrine professionnel pour un jardinier paysagiste : design responsive, optimisation SEO local, formulaire de contact et intégration des réseaux sociaux.",
-      "image": "/assets/uploads/easy-garden-site-vitrine-jardinier-paysagiste-namur.webp",
+      "image": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop",
       "icon": "",
       "gradient": "",
       "stack": "HTML, CSS, JavaScript, SEO Local, Netlify",
       "link": "https://easy-garden.eu"
     },
     {
-      "slug": "mj-lierre-dev",
-      "title": "MJ Lierre-sur-Sambre",
+      "slug": "blocus",
+      "title": "Projet Blocus",
       "category": "Dev",
-      "tag": "Landing Page (Projet d'étude)",
-      "short_description": "Landing page développée pour le festival fictif dans le cadre du projet d'étude.",
-      "description": "Développement de la landing page associée à l'identité visuelle Néo-Brutaliste du festival fictif 'Jeunes Talents', réalisée dans le cadre d'un projet d'étude.",
-      "image": "/assets/uploads/mj-lierre-sur-sambre-identite-visuelle-festival-fictif.webp",
+      "tag": "Web App",
+      "short_description": "Application web de gestion avec tableau de bord et authentification.",
+      "description": "Application web sur mesure avec tableau de bord, gestion de données et authentification utilisateur. Architecture front-end moderne couplée à une base de données cloud.",
+      "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop",
       "icon": "",
       "gradient": "",
-      "stack": "HTML, CSS, JavaScript",
-      "link": "https://mj-lss.netlify.app"
+      "stack": "React, Supabase, Tailwind CSS, Netlify",
+      "link": "#"
     }
   ]
 }

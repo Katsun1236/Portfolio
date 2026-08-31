@@ -24,18 +24,16 @@
         var preview = project.image
             ? '<img src="' + escapeHtml(project.image) + '" alt="' + title + '" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">'
             : '<i class="fa-solid ' + escapeHtml(icon) + ' text-5xl text-[var(--red-deep)] opacity-70 group-hover:opacity-100 transition-opacity"></i>';
-        var gradientClass = project.gradient ? 'bg-gradient-to-br ' + escapeHtml(project.gradient) : 'bg-[var(--paper-strong)]';
-        var linkLabel = project.link_label ? escapeHtml(project.link_label) : 'Voir le projet';
 
         card.innerHTML =
-            '<div class="h-48 relative overflow-hidden flex items-center justify-center ' + gradientClass + '">' +
+            '<div class="h-48 bg-[var(--paper-strong)] relative overflow-hidden flex items-center justify-center">' +
                 preview +
                 '<div class="absolute top-4 right-4 tag-stamp tag-stamp--crea bg-[var(--paper)]">' + tag + '</div>' +
             '</div>' +
             '<div class="p-8">' +
                 '<h3 class="text-xl font-title font-extrabold mb-2">' + title + '</h3>' +
                 '<p class="text-sm text-[var(--ink-soft)] mb-6 line-clamp-2">' + shortDesc + '</p>' +
-                '<span class="text-[var(--red-deep)] text-sm font-mono flex items-center gap-2 group-hover:gap-4 transition-all">' + linkLabel + ' <i class="fa-solid fa-arrow-right"></i></span>' +
+                '<span class="text-[var(--red-deep)] text-sm font-mono flex items-center gap-2 group-hover:gap-4 transition-all">Voir le projet <i class="fa-solid fa-arrow-right"></i></span>' +
             '</div>';
 
         return card;
